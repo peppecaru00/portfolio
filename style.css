@@ -2,7 +2,7 @@
 body{
     display: flex;
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     align-items: start;
     background: #f5f5f5;
     height: 100vh;
@@ -20,18 +20,24 @@ body{
     width: 100%;
     margin: .5rem 0;
     font-family: 'Mabry Pro';
+
+    animation-timing-function: ease-in-out;
+    transition: 0.2s;
+    z-index: 100;
+}
+
+.header-container.hidden {
+    transform: translate(0,-200px);
 }
 
 .header {
-    background: rgba(0, 0, 0, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(150px);
     height: 3.5rem;
-    width: 25%;
-    min-width: 500px;
+    min-width: 25%;
     margin: 1rem 0;
     border-radius: 99rem;
     color: #f5f5f5;
@@ -82,4 +88,12 @@ body{
 .styled-still{
     width: 100%;
     border-radius: 1rem;
+    transition: cubic-bezier();
+    transition: 0.3s;
+}
+
+.styled-still:hover{
+    width: 100%;
+    border-radius: 1rem;
+    transform: scale(1.01);
 }
