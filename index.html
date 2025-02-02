@@ -7,11 +7,11 @@
     <title>Giuseppe Caruso</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="functions.js"></script>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
-    <header-container class="header-container">
+    <div class="header-container">
         <header class="header">
             <div class="logo">
                 GC
@@ -22,21 +22,12 @@
                 <button class="nav-button">Contacts</button>
             </div>
         </header>
-    </header-container>
-
-    <div class="media-container" id="media-container">
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                fetch('imageList.json')
-                    .then(response => response.json())
-                    .then(images => {
-                        mapImages(images);
-                    });
-            });
-        </script>
     </div>
+    <div class="media-container" id="media-container"></div>
 
-
+ <footer class="footer">
+    Designed with ❤️ by me.
+ </footer>
 </body>
 
 </html>
