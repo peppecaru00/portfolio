@@ -13,8 +13,10 @@ function mapImages(imageList) {
     let i = 0;
     while (i < imageList.length) {
         const imgDiv = document.createElement('div');
+        imgDiv.classList.add('image-container'); // Add a class to the div
         const img = document.createElement('img');
         img.src = folderPath + imageList[i];
+        img.classList.add('styled-still'); // Add a class to the img
         imgDiv.appendChild(img);
         container.appendChild(imgDiv);
         i++;

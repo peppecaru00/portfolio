@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Giuseppe Caruso</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="functions.js"></script>
 </head>
 
 <body>
-    <nav>
-        <div class="logo">
-             GC
-        </div>
-    </nav>
-    <div class="media-container-column" id="media-container">
+    <header-container class="header-container">
+        <header class="header">
+            <div class="logo">
+                GC
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-button">Stills</button>
+                <button class="nav-button">Video</button>
+                <button class="nav-button">Contacts</button>
+            </div>
+        </header>
+    </header-container>
+
+    <div class="media-container" id="media-container">
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                fetch('imageList.json')
+                    .then(response => response.json())
+                    .then(images => {
+                        mapImages(images);
+                    });
+            });
+        </script>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('imageList.json')
-                .then(response => response.json())
-                .then(images => {
-                    mapImages(images);
-                });
-        });
-    </script>
+
+
 </body>
+
 </html>
