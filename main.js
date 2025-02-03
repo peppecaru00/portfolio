@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//image-focus
 document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         // Only handle clicks on non-expanded images
@@ -97,4 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//navigation
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('[data-page]');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const path = button.dataset.page;
+            history.pushState({}, '', path);
+            loadContent(path);
+        });
+    });
 
+    function loadContent(path) {
+        // Add your content loading logic here
+        const content = document.getElementById('content');
+        // Update content based on path
+    }
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', () => {
+        loadContent(window.location.pathname);
+    });
+});
