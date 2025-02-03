@@ -20,9 +20,9 @@
                 <button @click="currentPage = 'videos'" 
                         :class="{ 'active': currentPage === 'videos' }" 
                         class="nav-button">Video</button>
-                <button @click="currentPage = 'contacts'" 
-                        :class="{ 'active': currentPage === 'contacts' }" 
-                        class="nav-button">Contacts</button>
+                <button @click="currentPage = 'me'" 
+                        :class="{ 'active': currentPage === 'me' }" 
+                        class="nav-button">Me</button>
             </div>
         </header>
         <button @click="theme = (theme === 'dark' ? 'light' : 'dark')" class="theme-toggle">
@@ -30,28 +30,31 @@
         </button>
     </div>
 
-    <main>
+    <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" 
              x-transition 
+             x-init="fetch('components/me.html')
+                    .then(response => response.text())
+                    .then(html => $el.innerHTML = html)"
              class="me-container" 
              id="me-container"></div>
 
         <div x-show="currentPage === 'stills'" 
              x-transition 
+             x-include="'components/stills.html'"
              class="stills-container" 
              id="stills-container"></div>
         
         <div x-show="currentPage === 'videos'" 
              x-transition 
+             x-include="'components/videos.html'"
              class="video-container"></div>
-             
-        <div x-show="currentPage === 'contacts'" 
-             x-transition 
-             class="contact-container"></div>
+
     </main>
 
     <footer class="footer">
         Designed with ❤️ by me.
     </footer>
+    
 </body>
 </html>
