@@ -89,26 +89,8 @@ document.addEventListener('click', (e) => {
         const expandedImg = e.target.cloneNode(true);
         expandedImg.classList.add('expanded-image');
 
-        const prevButton = document.createElement('button');
-        prevButton.classList.add('nav-button', 'prev');
-        prevButton.innerHTML = '&larr;';
-        prevButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            expandedImg.src = images[currentImageIndex].src;
-        });
-
-        const nextButton = document.createElement('button');
-        nextButton.classList.add('nav-button', 'next');
-        nextButton.innerHTML = '&rarr;';
-        nextButton.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            expandedImg.src = images[currentImageIndex].src;
-        });
-
         expandedImgContainer.appendChild(expandedImg);
         overlay.appendChild(expandedImgContainer);
-        overlay.appendChild(prevButton);
-        overlay.appendChild(nextButton);
         document.body.appendChild(overlay);
 
         requestAnimationFrame(() => {
