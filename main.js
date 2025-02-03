@@ -67,27 +67,53 @@ document.addEventListener('DOMContentLoaded', () => {
 //image-focus
 document.addEventListener('click', (e) => {
     if (e.target && e.target.classList.contains('styled-still')) {
+        const images = Array.from(document.querySelectorAll('.styled-still'));
+        const currentIndex = images.indexOf(e.target);
+        let currentImageIndex = currentIndex;
+
         const scrollPosition = window.scrollY;
         const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-        
+
         // Lock scroll without jump
         document.body.style.position = 'fixed';
         document.body.style.top = `-${scrollPosition}px`;
         document.body.style.width = '100%';
         document.body.style.paddingRight = `${scrollBarWidth}px`;
-        
+
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
-            
+
+        const expandedImgContainer = document.createElement('div');
+        expandedImgContainer.classList.add('expanded-image-container');
+
         const expandedImg = e.target.cloneNode(true);
         expandedImg.classList.add('expanded-image');
-        
-        overlay.appendChild(expandedImg);
+
+        const prevButton = document.createElement('button');
+        prevButton.classList.add('nav-button', 'prev');
+        prevButton.innerHTML = '&larr;';
+        prevButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            expandedImg.src = images[currentImageIndex].src;
+        });
+
+        const nextButton = document.createElement('button');
+        nextButton.classList.add('nav-button', 'next');
+        nextButton.innerHTML = '&rarr;';
+        nextButton.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            expandedImg.src = images[currentImageIndex].src;
+        });
+
+        expandedImgContainer.appendChild(expandedImg);
+        overlay.appendChild(expandedImgContainer);
+        overlay.appendChild(prevButton);
+        overlay.appendChild(nextButton);
         document.body.appendChild(overlay);
-        
+
         requestAnimationFrame(() => {
             overlay.classList.add('active');
-            expandedImg.classList.add('active');
+            expandedImgContainer.classList.add('active');
         });
 
         overlay.addEventListener('click', (event) => {
@@ -98,9 +124,9 @@ document.addEventListener('click', (e) => {
                 document.body.style.paddingRight = '';
                 document.body.style.width = '';
                 window.scrollTo(0, scrollPosition);
-                
+
                 overlay.classList.remove('active');
-                expandedImg.classList.remove('active');
+                expandedImgContainer.classList.remove('active');
                 setTimeout(() => overlay.remove(), 300);
             }
         });
