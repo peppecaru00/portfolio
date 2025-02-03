@@ -64,57 +64,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
 //image-focus
-document.addEventListener('click', (e) => {
-    if (e.target && e.target.classList.contains('styled-still')) {
-        const images = Array.from(document.querySelectorAll('.styled-still'));
-        const currentIndex = images.indexOf(e.target);
-        let currentImageIndex = currentIndex;
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('styled-still')) {
+            const scrollY = window.scrollY;
+            document.documentElement.style.setProperty('--scroll-position', `-${scrollY}px`);
+            document.body.classList.add('overlay-open');
+            
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
 
-        const scrollPosition = window.scrollY;
-        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            const expandedImgContainer = document.createElement('div');
+            expandedImgContainer.classList.add('expanded-image-container');
 
-        // Lock scroll without jump
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollPosition}px`;
-        document.body.style.width = '100%';
-        document.body.style.paddingRight = `${scrollBarWidth}px`;
+            const expandedImg = e.target.cloneNode(true);
+            expandedImg.classList.add('expanded-image');
 
-        const overlay = document.createElement('div');
-        overlay.classList.add('overlay');
+            expandedImgContainer.appendChild(expandedImg);
+            overlay.appendChild(expandedImgContainer);
+            document.body.appendChild(overlay);
 
-        const expandedImgContainer = document.createElement('div');
-        expandedImgContainer.classList.add('expanded-image-container');
+            requestAnimationFrame(() => {
+                overlay.classList.add('active');
+                expandedImgContainer.classList.add('active');
+            });
 
-        const expandedImg = e.target.cloneNode(true);
-        expandedImg.classList.add('expanded-image');
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    document.body.classList.remove('overlay-open');
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollY);
 
-        expandedImgContainer.appendChild(expandedImg);
-        overlay.appendChild(expandedImgContainer);
-        document.body.appendChild(overlay);
-
-        requestAnimationFrame(() => {
-            overlay.classList.add('active');
-            expandedImgContainer.classList.add('active');
-        });
-
-        overlay.addEventListener('click', (event) => {
-            if (event.target === overlay) {
-                // Restore scroll position smoothly
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.paddingRight = '';
-                document.body.style.width = '';
-                window.scrollTo(0, scrollPosition);
-
-                overlay.classList.remove('active');
-                expandedImgContainer.classList.remove('active');
-                setTimeout(() => overlay.remove(), 300);
-            }
-        });
-    }
+                    overlay.classList.remove('active');
+                    expandedImgContainer.classList.remove('active');
+                    setTimeout(() => overlay.remove(), 300);
+                }
+            });
+        }
+    });
 });
-
 //navigation
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-page]');
