@@ -7,22 +7,30 @@ body{
     font-family: 'Mabry Pro';
 }
 
-.cv-body{
+.me-content{
+    display: flex;
+    flex-direction: ;
+    width: 100dvw;
+    margin: 0 2rem 0 10rem
+}
+
+.cv-section{
+    box-sizing: border-box;
     background: var(--header-background);
-    border-top: 1px solid var(--header-border);
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(120px);
-    width: 80dvw;
+    box-shadow: var(--glassmorphism);
+    backdrop-filter: var(--backdrop-blur);
+    width: 50dvw;
+    max-width: 600px;
     height: 80dvh;
-    border-radius: 1rem;
-    padding: 2rem 0 0 3rem;
-    
+    border-radius: 1.5rem;
+    padding: 2rem 2rem 0 3rem;
 }
 
 .self-presentation{
     font-size: 3rem;
+    line-height: 100%;
     font-weight: 300;
-    width: 20em;
+    width: 100%;
     letter-spacing: -.07rem;
 }
 

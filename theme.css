@@ -39,6 +39,7 @@
     --light-theme-toggle-icon: var(--icon-light);
     --theme-toggle-cursor: var(--cursor-dark);
     --glassmorphism: inset .5px .5px .5px rgba(255, 255, 255, 0.6), inset -.5px -.5px .5px rgba(0, 0, 0, 0.6);
+    --glassmorphism-small: inset .5px .5px .7px rgba(255, 255, 255, 0.6), inset -.5px -.5px .7px rgba(0, 0, 0, 0.6);
 }
 
 .theme-toggle{
@@ -50,7 +51,7 @@
     background-color: var(--header-background);
     outline: none;
     border: none;
-    box-shadow: var(--glassmorphism);
+    box-shadow: var(--glassmorphism-small);
     border-radius: 999rem;
     margin-left: 1rem;
     backdrop-filter: var(--backdrop-blur);
