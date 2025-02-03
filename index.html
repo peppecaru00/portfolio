@@ -10,42 +10,6 @@
     <script src="main.js" defer></script>
 </head>
 
-<script>
-
-document.addEventListener('DOMContentLoaded', () => {
-
-            fetch('imageList.json')
-                .then(response => response.json())
-                .then(images => {
-                    mapImages(images);
-                });
-
-            let lastScrollTop = 0;
-            const navbar = document.querySelector('.header-container');
-            let isManualScroll = false;
-
-            window.addEventListener('scroll', () => {
-                isManualScroll = true;
-            });
-
-            setInterval(() => {
-                if (isManualScroll) {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scrollTop > lastScrollTop) {
-
-                        navbar.classList.add('hidden');
-                    } else {
-
-                        navbar.classList.remove('hidden');
-                    }
-                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-                    isManualScroll = false;
-                }
-            }, 100); 
-        });
-   
-</script>
-
 <body>
     <div class="header-container">
         <header class="header">
