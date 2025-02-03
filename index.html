@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" x-data="{ theme: 'dark', currentPage: 'me' }" :data-theme="theme">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giuseppe Caruso</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="main.js" defer></script>
 </head>
-
-<body x-data="{ currentPage: 'me' }">
+<body>
     <div class="header-container">
         <header class="header">
-            <button @click="currentPage = 'me'" class="logo-button">GC</button>
+            <button @click="currentPage = 'me'" class="logo-button">Giuseppe Caruso</button>
             <div class="nav-buttons">
                 <button @click="currentPage = 'stills'" 
                         :class="{ 'active': currentPage === 'stills' }" 
@@ -26,6 +25,9 @@
                         class="nav-button">Contacts</button>
             </div>
         </header>
+        <button @click="theme = (theme === 'dark' ? 'light' : 'dark')" class="theme-toggle">
+            
+        </button>
     </div>
 
     <main>
@@ -48,9 +50,8 @@
              class="contact-container"></div>
     </main>
 
- <footer class="footer">
-    Designed with ❤️ by me.
- </footer>
+    <footer class="footer">
+        Designed with ❤️ by me.
+    </footer>
 </body>
-
 </html>

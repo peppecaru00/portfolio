@@ -1,12 +1,9 @@
-:root {
-    --scrollbar-width: 8px;
-}
-
 html {
     overflow-y: scroll; /* Force scrollbar to always show */
     overflow-x: hidden;
     scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: rgba(0, 0, 0, 0.3) transparent; /* For Firefox */
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); /* For Firefox */
+    
 }
 
 ::-webkit-scrollbar {
@@ -32,7 +29,8 @@ body{
     justify-content: start;
     flex-direction: column;
     align-items: center;
-    background: #111;
+    background: var(--background-color);
+    transition: background-color 0.3s, color 0.3s;
     height: 100vh;
     margin-right: calc(100vw - 100%); /* Prevent layout shift */
     margin: 0;
@@ -47,8 +45,9 @@ body{
     top: 0;
     left: 0;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    margin: .5rem 0;
+    margin: 1rem 0;
     font-family: 'Mabry Pro';
     user-select: none;
     transition: all 0.3s ease-in-out;
@@ -58,27 +57,27 @@ body{
 
 
 .header {
-    background: rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    background: var(--header-background);
+    border-top: 1px solid var(--header-border);
     border-left: 1px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(120px);
     -webkit-backdrop-filter: blur(120px);
-    height: 3.5rem;
-    min-width: 25%;
-    margin: 1rem 0;
+    height: var(--navbar-height);
+    min-width: 25dvw;
     border-radius: 99rem;
     color: #f5f5f5;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .logo-button {
     position: inherit;
     font-family: inherit;
-    font-weight: 900;
-    font-size: 1.6rem;
+    font-weight: 100;
+    font-size: 2rem;
     justify-content: center;
     padding: 0 0 0 1em;
     margin: 0;
@@ -87,6 +86,7 @@ body{
     text-decoration: none;
     border: none;
     outline: none;
+    text-align: center;
     background: none;
 }
 
@@ -105,7 +105,7 @@ body{
     outline: none;
     color: inherit;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 
@@ -128,9 +128,11 @@ body{
 
 .group-title {
     font-family: 'Mabry Pro';
-    color: #000000;
-    font-weight: 800;
-    margin-bottom: 0rem;
+    color: var(--group-title-color);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0;
+    transition: color 0.3s, color 0.3s;
 }
 
 .group-images {
