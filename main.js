@@ -8,7 +8,7 @@ function groupImages(imageList) {
 }
 
 function mapImages(imageList) {
-    const container = document.getElementById('media-container');
+    const container = document.getElementById('stills-container');
     const folderPath = 'Media/Stills/';
     const groups = groupImages(imageList);
 
@@ -65,37 +65,46 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //image-focus
-document.addEventListener('DOMContentLoaded', () => {
-    document.addEventListener('click', (e) => {
-        // Only handle clicks on non-expanded images
-        if (e.target && 
-            e.target.classList.contains('styled-still') && 
-            !e.target.classList.contains('expanded-image')) {
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('styled-still')) {
+        const scrollPosition = window.scrollY;
+        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        
+        // Lock scroll without jump
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.style.width = '100%';
+        document.body.style.paddingRight = `${scrollBarWidth}px`;
+        
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+            
+        const expandedImg = e.target.cloneNode(true);
+        expandedImg.classList.add('expanded-image');
+        
+        overlay.appendChild(expandedImg);
+        document.body.appendChild(overlay);
+        
+        requestAnimationFrame(() => {
+            overlay.classList.add('active');
+            expandedImg.classList.add('active');
+        });
 
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            
-            const expandedImg = e.target.cloneNode(true);
-            expandedImg.classList.add('expanded-image');
-            
-            overlay.appendChild(expandedImg);
-            document.body.appendChild(overlay);
-            
-            requestAnimationFrame(() => {
-                overlay.classList.add('active');
-                expandedImg.classList.add('active');
-            });
-
-            // Close on overlay click
-            overlay.addEventListener('click', (evt) => {
-                if (evt.target === overlay) {
-                    overlay.classList.remove('active');
-                    expandedImg.classList.remove('active');
-                    setTimeout(() => overlay.remove(), 300);
-                }
-            });
-        }
-    });
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) {
+                // Restore scroll position smoothly
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.paddingRight = '';
+                document.body.style.width = '';
+                window.scrollTo(0, scrollPosition);
+                
+                overlay.classList.remove('active');
+                expandedImg.classList.remove('active');
+                setTimeout(() => overlay.remove(), 300);
+            }
+        });
+    }
 });
 
 //navigation

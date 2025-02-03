@@ -10,10 +10,10 @@
     <script src="main.js" defer></script>
 </head>
 
-<body x-data="{ currentPage: 'stills' }">
+<body x-data="{ currentPage: 'me' }">
     <div class="header-container">
         <header class="header">
-            <button @click="currentPage = 'stills'" class="logo-button">GC</button>
+            <button @click="currentPage = 'me'" class="logo-button">GC</button>
             <div class="nav-buttons">
                 <button @click="currentPage = 'stills'" 
                         :class="{ 'active': currentPage === 'stills' }" 
@@ -29,10 +29,15 @@
     </div>
 
     <main>
+        <div x-show="currentPage === 'me'" 
+             x-transition 
+             class="me-container" 
+             id="me-container"></div>
+
         <div x-show="currentPage === 'stills'" 
              x-transition 
-             class="media-container" 
-             id="media-container"></div>
+             class="stills-container" 
+             id="stills-container"></div>
         
         <div x-show="currentPage === 'videos'" 
              x-transition 
