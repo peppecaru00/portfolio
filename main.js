@@ -7,43 +7,6 @@ function groupImages(imageList) {
     }, {});
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const carousels = document.querySelectorAll('.carousel');
-
-    carousels.forEach(carousel => {
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-
-        carousel.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            carousel.classList.add('active');
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2;
-            carousel.scrollLeft = scrollLeft - walk;
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDragging = false;
-            carousel.classList.remove('active');
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            isDragging = false;
-            carousel.classList.remove('active');
-        });
-    });
-});
-
-
-
 function mapImages(imageList) {
     const container = document.getElementById('media-container');
     const folderPath = 'Media/Stills/';
@@ -58,7 +21,7 @@ function mapImages(imageList) {
         title.classList.add('group-title');
         
         const carousel = document.createElement('div');
-        carousel.classList.add('carousel');
+        carousel.classList.add('group-images');
         
         images.forEach(imageName => {
             const imgDiv = document.createElement('div');
@@ -99,31 +62,39 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Scroll detected'); // Debug log
         isManualScroll = true;
     });
+});
 
-    setInterval(() => {
-        if (isManualScroll) {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add('hidden');
-                console.log('Hiding navbar'); // Debug log
-            } else {
-                navbar.classList.remove('hidden');
-                console.log('Showing navbar'); // Debug log
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            isManualScroll = false;
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', (e) => {
+        // Only handle clicks on non-expanded images
+        if (e.target && 
+            e.target.classList.contains('styled-still') && 
+            !e.target.classList.contains('expanded-image')) {
+
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            
+            const expandedImg = e.target.cloneNode(true);
+            expandedImg.classList.add('expanded-image');
+            
+            overlay.appendChild(expandedImg);
+            document.body.appendChild(overlay);
+            
+            requestAnimationFrame(() => {
+                overlay.classList.add('active');
+                expandedImg.classList.add('active');
+            });
+
+            // Close on overlay click
+            overlay.addEventListener('click', (evt) => {
+                if (evt.target === overlay) {
+                    overlay.classList.remove('active');
+                    expandedImg.classList.remove('active');
+                    setTimeout(() => overlay.remove(), 300);
+                }
+            });
         }
-    }, 100);
-
-    // Disable right-click on images
-    document.querySelectorAll('.styled-still').forEach(img => {
-        img.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            console.log('Right-click prevented'); // Debug log
-        });
     });
-
-    console.log("main.js initialization complete"); // Debug log
 });
 
 

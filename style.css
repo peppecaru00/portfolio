@@ -1,9 +1,9 @@
 
 body{
     display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
     background: #f5f5f5;
     height: 100vh;
     width: 100vw;
@@ -26,9 +26,6 @@ body{
     z-index: 100;
 }
 
-.header-container.hidden {
-    transform: translate(0,-200px);
-}
 
 .header {
     background: rgba(0, 0, 0, 0.4);
@@ -82,16 +79,13 @@ body{
     justify-content: flex-start;
     align-items: flex-start;
     object-fit: contain;
-    margin: 5rem 0 0 0;
+    margin: 7rem 0 0 0;
     padding: 0 10rem;
     overflow-x: visible;
-    user-select: none;
     gap: 0rem;
 }
 
 .group-container {
-    margin: 0;
-    padding: 1rem 0;
     overflow-x: visible;
 }
 
@@ -102,34 +96,31 @@ body{
     margin-bottom: 0rem;
 }
 
-.carousel {
+.group-images {
     display: flex;
-    overflow-x: scroll;
+    justify-content: flex-start;
     gap: 1rem;
-    padding: 1.5rem 0 0 0;
-    width: 100vw;
+    padding: 1.5rem 0 3rem 0;
+    flex-wrap: wrap;
+    max-width: 98dvw;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     user-select: none;
-    cursor: grab;
-}
-.carousel.active {
-    cursor: grabbing;
-    cursor: -webkit-grabbing;
+    transition: all 0.2s ease-in-out;
 }
 
-.carousel::-webkit-scrollbar {
+.group-images::-webkit-scrollbar {
     display: none;
 }
 
-.carousel::-webkit-scrollbar-track {
+.group-images::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
 }
 
-.carousel::-webkit-scrollbar-thumb {
+.group-images::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
 }
@@ -137,28 +128,68 @@ body{
 
 .image-container{
     flex: 0 0 auto;
-    width: 600px;
-    scroll-snap-align: start;
+    max-width: 500px;
+    min-width: 30%;
     border-radius: 1rem;
-    transition: ease-in-out;
-    transition: 0.2s;
+    transition: all 0.2s ease-in-out;
     object-fit: contain;
     cursor: url('Cursors/focus.svg') 12 12, pointer;
 }
 
 .styled-still{
     width: 100%;
-    border-radius: .8rem;
-    transition: ease-in-out;
-    transition: 0.2s;
+    border-radius: 1em;
+    transition: all 0.2s ease-in-out;
     object-fit: contain;
     cursor: url('Cursors/focus.svg') 12 12, pointer;
 }
 
 .styled-still:hover{
     transform: scale(1.01);
-    border-radius: 1rem;
-    user-select: none;
+    border-radius: 1.5em;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.overlay.active {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(50px);
+    opacity: 1;
+    pointer-events: all;
+    cursor: url('Cursors/back-arrow.svg') 12 12, pointer;
+}
+
+.expanded-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: .6rem;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none ;
+}
+
+.expanded-image.active {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .footer{
