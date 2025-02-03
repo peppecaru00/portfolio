@@ -32,7 +32,7 @@ body{
     justify-content: start;
     flex-direction: column;
     align-items: center;
-    background: #f5f5f5;
+    background: #111;
     height: 100vh;
     margin-right: calc(100vw - 100%); /* Prevent layout shift */
     margin: 0;
@@ -58,7 +58,7 @@ body{
 
 
 .header {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.08);
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     border-left: 1px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(120px);
@@ -78,7 +78,7 @@ body{
     position: inherit;
     font-family: inherit;
     font-weight: 900;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     justify-content: center;
     padding: 0 0 0 1em;
     margin: 0;
@@ -94,7 +94,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0 3em;
+    padding: 0 2em;
     gap: 1.5em;
 }
 
@@ -104,7 +104,7 @@ body{
     border: none;
     outline: none;
     color: inherit;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
 }
@@ -175,15 +175,14 @@ body{
 
 .styled-still{
     width: 100%;
-    border-radius: 1em;
+    border-radius: .8rem;
     transition: all 0.2s ease-in-out;
-    object-fit: contain;
     cursor: url('Cursors/focus.svg') 12 12, pointer;
 }
 
 .styled-still:hover{
     transform: scale(1.01);
-    border-radius: 1.5em;
+    border-radius: 1.5rem;
 }
 
 .overlay {
@@ -213,21 +212,34 @@ body{
     cursor: url('Cursors/back-arrow.svg') 12 12, pointer;
 }
 
-.expanded-image {
+.expanded-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-height: 90dvh;
     max-width: 90dvw;
-    object-fit: contain;
+    overflow: hidden;
     border-radius: 1rem;
     transform: scale(0.95);
     opacity: 0;
     transition: all 0.3s ease-in-out;
-    pointer-events: none ;
+    pointer-events: none;
+}
+
+.expanded-image-container.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.expanded-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .expanded-image.active {
     transform: scale(1);
     opacity: 1;
-    border-radius: 1rem;
 }
 
 .footer{
