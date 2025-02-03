@@ -6,24 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giuseppe Caruso</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="main.js" defer></script>
 </head>
 
-<body>
+<body x-data="{ currentPage: 'stills' }">
     <div class="header-container">
         <header class="header">
-            <div class="logo">
-                GC
-            </div>
+            <button @click="currentPage = 'stills'" class="logo-button">GC</button>
             <div class="nav-buttons">
-                <button class="nav-button">Stills</button>
-                <button class="nav-button">Video</button>
-                <button class="nav-button">Contacts</button>
+                <button @click="currentPage = 'stills'" 
+                        :class="{ 'active': currentPage === 'stills' }" 
+                        class="nav-button">Stills</button>
+                <button @click="currentPage = 'videos'" 
+                        :class="{ 'active': currentPage === 'videos' }" 
+                        class="nav-button">Video</button>
+                <button @click="currentPage = 'contacts'" 
+                        :class="{ 'active': currentPage === 'contacts' }" 
+                        class="nav-button">Contacts</button>
             </div>
         </header>
     </div>
-    <div class="media-container" id="media-container"></div>
+
+    <main>
+        <div x-show="currentPage === 'stills'" 
+             x-transition 
+             class="media-container" 
+             id="media-container"></div>
+        
+        <div x-show="currentPage === 'videos'" 
+             x-transition 
+             class="video-container"></div>
+             
+        <div x-show="currentPage === 'contacts'" 
+             x-transition 
+             class="contact-container"></div>
+    </main>
 
  <footer class="footer">
     Designed with ❤️ by me.
