@@ -58,8 +58,7 @@ body{
 
 .header {
     background: var(--header-background);
-    border-top: 1px solid var(--header-border);
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--glassmorphism);
     backdrop-filter: blur(120px);
     -webkit-backdrop-filter: blur(120px);
     height: var(--navbar-height);
@@ -192,7 +191,7 @@ body{
     top: 0;
     left: 0;
     width: 100dvw;
-    height: 100svh;
+    height: 100dvh;
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
     display: flex;
