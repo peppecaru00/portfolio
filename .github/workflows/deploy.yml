@@ -6,26 +6,25 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd Portfolio
+          npm install
 
       - name: Build project
-        run: npm run build
+        run: |
+          cd Portfolio
+          npm run build
 
       - name: Deploy to GitHub Pages
-        run: |
-          git add -A
-          git commit -m 'Deploy to GitHub Pages'
-          git push origin gh-pages --force
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Portfolio/dist
