@@ -9,7 +9,7 @@ fs.readdir(imagesDir, (err, files) => {
         console.error('Unable to scan directory:', err);
         return;
     }
-    const imageFiles = files.filter(file => /\.(jpg|jpeg|png|gif)$/.test(file));
+    const imageFiles = files.filter(file => /\.(jpg|jpeg|png|webp)$/.test(file));
     fs.writeFileSync(outputFilePath, JSON.stringify(imageFiles, null, 2));
     console.log('Image list generated:', outputFilePath);
 });
