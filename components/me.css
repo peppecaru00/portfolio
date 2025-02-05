@@ -9,14 +9,14 @@ body{
 
 .me-content{
     display: flex;
-    flex-direction: ;
+    flex-direction: column;
     width: 100dvw;
     margin: 0 2rem 0 10rem
 }
 
 .cv-section{
     box-sizing: border-box;
-    background: var(--header-background);
+    background: var(--container-background);
     box-shadow: var(--glassmorphism);
     backdrop-filter: var(--backdrop-blur);
     width: 50dvw;
