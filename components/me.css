@@ -9,22 +9,48 @@ body{
 
 .me-content{
     display: flex;
-    flex-direction: column;
-    width: 100dvw;
-    margin: 0 2rem 0 10rem
+    flex-direction: row;
+    width: 90dvw;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 0 5rem 0 5rem;
 }
 
-.cv-section{
+a{
+    color: inherit;
+    text-decoration: underline;
+
+}
+
+a:hover{
+    color: var(--text-muted);
+}
+
+.cv-section-1{
     box-sizing: border-box;
     background: var(--container-background);
     box-shadow: var(--glassmorphism);
     backdrop-filter: var(--backdrop-blur);
-    width: 50dvw;
-    max-width: 600px;
-    height: 80dvh;
+    min-width: 600px;
+    max-width: 30%;
+    height: auto;
     border-radius: 1.5rem;
-    padding: 2rem 2rem 0 3rem;
+    padding: 2rem 2rem 5rem 3rem;
 }
+
+.cv-section-2{
+    box-sizing: border-box;
+    background: var(--container-background);
+    box-shadow: var(--glassmorphism);
+    backdrop-filter: var(--backdrop-blur);
+    max-width: 100%;
+    min-width: 700px;
+    height: auto;
+    border-radius: 1.5rem;
+    padding: 2rem 2rem 5rem 3rem;
+}
+
 
 .self-presentation{
     font-size: 3rem;
@@ -39,7 +65,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     font-size: 1.5rem;
-    padding: 2rem 0 1rem 0;
+    padding: 2rem 0 0 0;
 }
 
 .personal-information{
@@ -49,12 +75,83 @@ body{
 }
 
 .information-title{
-    padding: 1.5rem 0 0 0;
-    font-size: 1.5rem;
+    padding: 2rem 0 0 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 90%;
+}
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+}
+
+.contact{
+    font-size: 1.4rem;
+}
+
+.space{
+    height: .6rem;
+}
+.space-small{
+    height: .4rem;
+}
+
+.text-muted{
+    color: var(--text-muted);
+    transition: color 0.3s ease-in-out ;
+}
+
+.text-small{
+    font-size: 1.2rem;
+}
+
+.instagram{
+    font-family: 'Instagram Sans';
+}
+
+.username{
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+.education-title{
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -.08rem;
+}
+
+.degree{
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding: 1rem 0 0 0;
+}
+
+.institution{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.semibold{
     font-weight: 700;
 }
 
-.mail{
-    font-size: 1rem;
-    font-weight: 400;
+@media screen and (max-width: 1200px){
+    .me-content{
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 2rem 0 2rem;
+    }
+
+    .cv-section-1{
+        min-width: 90dvw;
+    }
+
+    .cv-section-2{
+        min-width: 90dvw;
+    }
+
+    
+    
 }
