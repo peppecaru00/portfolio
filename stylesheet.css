@@ -98,7 +98,7 @@
 @font-face {
     font-family: 'Mabry Pro';
     src: url('Fonts/mabry-pro/MabryPro-Bold.woff2') format('woff2');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -126,6 +126,23 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Instagram Sans';
+    src: url('Fonts/mabry-pro/MabryPro-Regular.woff2') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Instagram Sans';
+    src: url('Fonts/mabry-pro/MabryPro-Regular.woff2') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 
 

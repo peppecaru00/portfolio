@@ -6,13 +6,14 @@
     <title>Giuseppe Caruso</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="theme.css">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="main.js" defer></script>
 </head>
 <body>
     <div class="header-container">
         <header class="header">
-            <button @click="currentPage = 'me'" class="logo-button">Giuseppe Caruso</button>
+            <button @click="currentPage = 'me'" class="logo-button"><span class="logo-icon"></span></button>
             <div class="nav-buttons">
                 <button @click="currentPage = 'stills'" 
                         :class="{ 'active': currentPage === 'stills' }" 
