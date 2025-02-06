@@ -7,5 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "alpinejs": "^3.13.3"
+  },
+  "scripts": {
+    "build": "echo 'No build command specified' && exit 0"
   }
 }
