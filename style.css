@@ -59,7 +59,7 @@ body{
 .header {
     background: var(--header-background);
     box-shadow: var(--glassmorphism);
-    backdrop-filter: blur(120px);
+    backdrop-filter: var(--backdrop-blur);
     -webkit-backdrop-filter: blur(120px);
     height: var(--navbar-height);
     min-width: 15dvw;
@@ -133,6 +133,7 @@ body{
     padding: 0 10rem;
     overflow-x: visible;
     gap: 0rem;
+    transition: all 0.3s ease-in-out;
 }
 
 .group-container {
@@ -149,18 +150,17 @@ body{
 }
 
 .group-images {
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
     gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     padding: 1.5rem 0 3rem 0;
-    flex-wrap: wrap;
     max-width: 98dvw;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     user-select: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .group-images::-webkit-scrollbar {
@@ -193,6 +193,7 @@ body{
     border-radius: .8rem;
     transition: all 0.2s ease-in-out;
     cursor: url('Cursors/focus.svg') 12 12, pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .styled-still:hover{
@@ -314,5 +315,6 @@ body{
     .footer{
         padding: 2rem 0 1rem 0;
     }
-    
+
 }
+
