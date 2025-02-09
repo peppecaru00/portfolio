@@ -1,0 +1,29 @@
+.video-container {
+    display: grid;
+    width: 90dvw;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+
+.video-content {
+    display: grid;
+    width: 100%;
+    max-width: 1280px;
+    height: auto;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 2rem;
+    object-fit: contain;
+}
+
+.video-player {
+    position: relative;
+    height: auto;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.plyr {
+    --plyr-color-main: #ffab87;
+    --plyr-video-background: transparent;
+}

@@ -6,7 +6,7 @@
     --icon-dark: url('Icons/sun.svg');
     --cursor-dark: url('Cursors/go-light.svg') 8 6, pointer;
     --cursor-light: url('Cursors/go-dark.svg') 8 6, pointer;
-    --backdrop-blur: blur(80px);
+    --backdrop-blur: blur(500px);
 }
 
 [data-theme="light"] {

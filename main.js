@@ -41,6 +41,49 @@ function mapImages(imageList) {
     });
 }
 
+function fetchVideoList() {
+    return fetch('videoList.json')
+        .then(response => response.json())
+        .then(videoList => {
+            mapVideos(videoList);
+        })
+        .catch(error => console.error('Error fetching video list:', error));
+}
+
+function initVideoPage() {
+    fetchVideoList();
+}
+
+function mapVideos(videoList) {
+    const container = document.getElementById('video-content');
+    if (!container) {
+        console.error('Video content container not found');
+        return;
+    }
+    const folderPath = 'Media/Videos/';
+
+    videoList.forEach(videoName => {
+        const videoWrapper = document.createElement('div');
+        videoWrapper.classList.add('video-player');
+
+        const videoEl = document.createElement('video');
+        videoEl.classList.add('plyr');
+        videoEl.setAttribute('playsinline', '');
+        videoEl.setAttribute('controls', '');
+
+        const sourceEl = document.createElement('source');
+        sourceEl.src = folderPath + videoName;
+        sourceEl.type = 'video/mp4';
+
+        videoEl.appendChild(sourceEl);
+        videoWrapper.appendChild(videoEl);
+        container.appendChild(videoWrapper);
+    });
+
+    // Initialize Plyr for all video elements
+    Plyr.setup('.plyr', { /* Plyr options */ });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded"); // Debug log
 
@@ -129,5 +172,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle browser back/forward
     window.addEventListener('popstate', () => {
         loadContent(window.location.pathname);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+   
+    // Initialize Plyr when video page is shown
+    document.querySelector('[x-show="currentPage === \'videos\'"]')
+        .addEventListener('x-show', () => {
+            const player = new Plyr('#player', {
+                controls: [
+                    'play-large',
+                    'play',
+                    'progress',
+                    'current-time',
+                    'mute',
+                    'volume',
+                    'fullscreen'
+                ],
+                hideControls: true,
+                keyboard: { focused: true, global: true }
+            });
     });
 });
