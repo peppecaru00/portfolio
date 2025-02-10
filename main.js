@@ -66,6 +66,10 @@ function mapVideos(videoList) {
         const videoWrapper = document.createElement('div');
         videoWrapper.classList.add('video-player');
 
+        const title = document.createElement('div');
+        title.classList.add('video-title');
+        title.textContent = videoName.replace(/\.[^/.]+$/, ""); // Remove file extension for title
+
         const videoEl = document.createElement('video');
         videoEl.classList.add('plyr');
         videoEl.setAttribute('playsinline', '');
@@ -76,6 +80,7 @@ function mapVideos(videoList) {
         sourceEl.type = 'video/mp4';
 
         videoEl.appendChild(sourceEl);
+        videoWrapper.appendChild(title);
         videoWrapper.appendChild(videoEl);
         container.appendChild(videoWrapper);
     });

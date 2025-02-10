@@ -1,5 +1,7 @@
 .video-container {
     display: grid;
+    align-items: center;
+    justify-content: center;
     width: 90dvw;
     padding: 2rem 0;
     gap: 1rem;
@@ -7,8 +9,7 @@
 
 .video-content {
     display: grid;
-    width: 100%;
-    max-width: 1280px;
+    width: 60dvw;
     height: auto;
     margin: 0 auto;
     gap: 2rem;
@@ -16,14 +17,27 @@
     object-fit: contain;
 }
 
+.video-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 1rem 0 1rem 1.5rem;
+}
+
 .video-player {
     position: relative;
     height: auto;
-    border-radius: 1rem;
+    object-fit: contain;
     overflow: hidden;
 }
 
 .plyr {
     --plyr-color-main: #ffab87;
     --plyr-video-background: transparent;
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .video-content {
+        width: 90dvw;
+    }
 }
