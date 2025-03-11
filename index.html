@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="components/designs.css" />
     <link rel="stylesheet" href="components/me.css">
+    <link rel="stylesheet" href="components/portfolio.css">
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
@@ -18,23 +18,11 @@
 </head>
 
 <body>
-    <div class="header-container">
-        <header class="header">
-            <button @click="currentPage = 'me'" class="logo-button"><span class="logo-icon"></span></button>
-            <div class="nav-buttons">
-                <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
-                    class="nav-button">stills</button>
-                <button @click="currentPage = 'designs'" :class="{ 'active': currentPage === 'designs' }"
-                    class="nav-button">designs</button>
-                <button @click="currentPage = 'me'" :class="{ 'active': currentPage === 'me' }"
-                    class="nav-button">me</button>
-            </div>
-        </header>
-        <button @click="theme = (theme === 'dark' ? 'light' : 'dark')" class="theme-toggle">
 
-        </button>
-    </div>
-
+    <div x-init="fetch('components/header.html')
+    .then(response => response.text())
+    .then(html => $el.outerHTML = html)"></div>
+    
     <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
                     .then(response => response.text())
@@ -43,10 +31,6 @@
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
             class="stills-container" id="stills-container"></div>
 
-        <div x-show="currentPage === 'designs'" 
-            x-transition x-init="fetchDesignList()" 
-            class="designs-container" 
-            id="designs-container"></div>
 
     </main>
 

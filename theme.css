@@ -2,8 +2,8 @@
     --scrollbar-thumb: rgba(255, 255, 255, 0.2);
     --scrollbar-track: rgba(0, 0, 0, 0.1);
     --navbar-height: 3.5rem;
-    --icon-light: url('Icons/moon.svg');
-    --icon-dark: url('Icons/sun.svg');
+    --icon-light: url('Icons/sun.svg');
+    --icon-dark: url('Icons/moon.svg');
     --cursor-dark: url('Cursors/go-light.svg') 8 6, pointer;
     --cursor-light: url('Cursors/go-dark.svg') 8 6, pointer;
     --backdrop-blur: blur(500px);

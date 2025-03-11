@@ -6,14 +6,6 @@ function groupImages(imageList) {
         return groups;
     }, {});
 }
-function groupDesigns(designsList) {
-    return designsList.reduce((groups, image) => {
-        const prefix = image.split('-')[0];
-        if (!groups[prefix]) groups[prefix] = [];
-        groups[prefix].push(design);
-        return groups;
-    }, {});
-}
 
 
 function mapImages(imageList) {
@@ -48,49 +40,6 @@ function mapImages(imageList) {
         groupContainer.appendChild(carousel);
         container.appendChild(groupContainer);
     });
-}
-
-function mapDesigns(designList) {
-    const container = document.getElementById('designs-container');
-    const folderPath = 'Media/Designs/';
-    const groups = groupImages(designList);
-
-    Object.entries(groups).forEach(([groupName, images]) => {
-        const groupContainer = document.createElement('div');
-        groupContainer.classList.add('group-container');
-
-        const title = document.createElement('h2');
-        title.textContent = groupName;
-        title.classList.add('group-title');
-
-        const carousel = document.createElement('div');
-        carousel.classList.add('group-images');
-
-        images.forEach(imageName => {
-            const imgDiv = document.createElement('div');
-            imgDiv.classList.add('image-container');
-
-            const img = document.createElement('img');
-            img.src = folderPath + imageName;
-            img.classList.add('styled-design');
-
-            imgDiv.appendChild(img);
-            carousel.appendChild(imgDiv);
-        });
-
-        groupContainer.appendChild(title);
-        groupContainer.appendChild(carousel);
-        container.appendChild(groupContainer);
-    });
-}
-
-function fetchDesignList() {
-    return fetch('designsList.json')
-        .then(response => response.json())
-        .then(designList => {
-            mapDesigns(designList);
-        })
-        .catch(error => console.error('Error fetching design list:', error));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
