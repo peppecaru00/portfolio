@@ -269,6 +269,10 @@ body{
     transition: color 0.3s ease-in-out;
 }
 
+.portfolio_link{
+    text-underline-offset: .11rem;
+}
+
 
 @media screen and (max-width: 800px) {
     .header-container{
