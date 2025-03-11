@@ -23,6 +23,7 @@
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>
     
+
     <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
                     .then(response => response.text())
