@@ -19,22 +19,23 @@
 
 <body>
 
+<!-- header loading section -->
     <div x-init="fetch('components/header.html')
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>
     
-
+<!-- routing section -->
     <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
                     .then(response => response.text())
                     .then(html => $el.innerHTML = html)" class="me-container" id="me-container"></div>
 
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
-            class="stills-container" id="stills-container"></div>
-
+            class="stills-container" id="stills-container">Enjoy some cool stills i got from my videos 🤙🏼</div>
 
     </main>
 
+<!-- footer -->
     <footer class="footer">
         Designed with 🤗, by me.
     </footer>
