@@ -125,6 +125,13 @@ body{
     text-decoration: none;
 }
 
+.portfolio_link span{
+    font-size: 0.75rem;
+    font-weight: 300;
+    position: relative;
+    bottom: 0.1em;
+}
+
 .portfolio_link:hover{
     color: rgba(var(--text-color));
 }
