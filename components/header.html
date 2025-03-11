@@ -2,9 +2,12 @@
     <header class="header">
         <button @click="currentPage = 'me'" class="logo-button"><span class="logo-icon"></span></button>
         <div class="nav-buttons">
+
+            <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
+                class="nav-button">photos</button>
             
             <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
-                class="nav-button">stills</button>
+                class="nav-button">video stills</button>
         
             <button @click="currentPage = 'me'" :class="{ 'active': currentPage === 'me' }"
                 class="nav-button">me</button>
