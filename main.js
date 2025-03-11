@@ -6,6 +6,15 @@ function groupImages(imageList) {
         return groups;
     }, {});
 }
+function groupDesigns(designsList) {
+    return designsList.reduce((groups, image) => {
+        const prefix = image.split('-')[0];
+        if (!groups[prefix]) groups[prefix] = [];
+        groups[prefix].push(design);
+        return groups;
+    }, {});
+}
+
 
 function mapImages(imageList) {
     const container = document.getElementById('stills-container');
@@ -41,52 +50,47 @@ function mapImages(imageList) {
     });
 }
 
-function fetchVideoList() {
-    return fetch('videoList.json')
-        .then(response => response.json())
-        .then(videoList => {
-            mapVideos(videoList);
-        })
-        .catch(error => console.error('Error fetching video list:', error));
-}
+function mapDesigns(designList) {
+    const container = document.getElementById('designs-container');
+    const folderPath = 'Media/Designs/';
+    const groups = groupImages(designList);
 
-function initVideoPage() {
-    fetchVideoList();
-}
+    Object.entries(groups).forEach(([groupName, images]) => {
+        const groupContainer = document.createElement('div');
+        groupContainer.classList.add('group-container');
 
-function mapVideos(videoList) {
-    const container = document.getElementById('video-content');
-    if (!container) {
-        console.error('Video content container not found');
-        return;
-    }
-    const folderPath = 'Media/Videos/';
+        const title = document.createElement('h2');
+        title.textContent = groupName;
+        title.classList.add('group-title');
 
-    videoList.forEach(videoName => {
-        const videoWrapper = document.createElement('div');
-        videoWrapper.classList.add('video-player');
+        const carousel = document.createElement('div');
+        carousel.classList.add('group-images');
 
-        const title = document.createElement('div');
-        title.classList.add('video-title');
-        title.textContent = videoName.replace(/\.[^/.]+$/, ""); // Remove file extension for title
+        images.forEach(imageName => {
+            const imgDiv = document.createElement('div');
+            imgDiv.classList.add('image-container');
 
-        const videoEl = document.createElement('video');
-        videoEl.classList.add('plyr');
-        videoEl.setAttribute('playsinline', '');
-        videoEl.setAttribute('controls', '');
+            const img = document.createElement('img');
+            img.src = folderPath + imageName;
+            img.classList.add('styled-design');
 
-        const sourceEl = document.createElement('source');
-        sourceEl.src = folderPath + videoName;
-        sourceEl.type = 'video/mp4';
+            imgDiv.appendChild(img);
+            carousel.appendChild(imgDiv);
+        });
 
-        videoEl.appendChild(sourceEl);
-        videoWrapper.appendChild(title);
-        videoWrapper.appendChild(videoEl);
-        container.appendChild(videoWrapper);
+        groupContainer.appendChild(title);
+        groupContainer.appendChild(carousel);
+        container.appendChild(groupContainer);
     });
+}
 
-    // Initialize Plyr for all video elements
-    Plyr.setup('.plyr', { /* Plyr options */ });
+function fetchDesignList() {
+    return fetch('designsList.json')
+        .then(response => response.json())
+        .then(designList => {
+            mapDesigns(designList);
+        })
+        .catch(error => console.error('Error fetching design list:', error));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -155,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 //navigation
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('[data-page]');
@@ -177,26 +182,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle browser back/forward
     window.addEventListener('popstate', () => {
         loadContent(window.location.pathname);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-   
-    // Initialize Plyr when video page is shown
-    document.querySelector('[x-show="currentPage === \'videos\'"]')
-        .addEventListener('x-show', () => {
-            const player = new Plyr('#player', {
-                controls: [
-                    'play-large',
-                    'play',
-                    'progress',
-                    'current-time',
-                    'mute',
-                    'volume',
-                    'fullscreen'
-                ],
-                hideControls: true,
-                keyboard: { focused: true, global: true }
-            });
     });
 });
