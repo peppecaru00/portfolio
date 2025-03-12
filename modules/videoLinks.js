@@ -1,7 +1,8 @@
 export function getVideoLinks() {
     return {
-        'Compleanno': 'https://drive.google.com/file/d/1YErUWvU_Ev-KPrhrkwbdj-9FEEWD8L-Q/view?usp=drive_link',
-        'Merda': 'https://drive.google.com/file/d/1-8psPLcbPTdT6BdM6yFaUdXwxccn7JMT/view?usp=drive_link',
+        'Compleanno': 'https://youtu.be/DfPS_DdDqho',
+        'Merda': 'https://youtu.be/Bd2u4AvVJ7U',
+        'Turenheimer': 'https://youtu.be/xZri1Ajktg4',
         // Add more groups and links as needed
     };
 }
