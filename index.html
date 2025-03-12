@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giuseppe Caruso</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="components/me.css">
+    <link rel="stylesheet" href="Styles/me.css">
+    <link rel="stylesheet" href="Styles/stills.css">
+    <link rel="stylesheet" href="Styles/photos.css">
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="/Styles/stylesheet.css">
+    <link rel="stylesheet" href="/Styles/theme.css">
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
@@ -31,6 +33,9 @@
 
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
             class="stills-container" id="stills-container">Enjoy some cool stills i got from my videos 🤙🏼</div>
+
+        <div x-show="currentPage === 'photos'" x-transition x-include="'components/photos.html'"
+            class="photos-container" id="photos-container">Check out my photography collection 📸</div>
 
     </main>
 

@@ -1,0 +1,26 @@
+<div class="photos-grid">
+    <h1>My Photography</h1>
+    <p>Check out my photography collection 📸</p>
+    
+    <div class="photos-content" x-data="photosComponent()">
+        <div class="photo-grid">
+            <template x-for="photo in photos" :key="photo.id">
+                <div class="photo-item">
+                    <img :src="'photos/' + photo.filename" :alt="photo.description" 
+                         @click="openPhotoModal(photo)">
+                    <div class="photo-caption" x-text="photo.description"></div>
+                </div>
+            </template>
+        </div>
+        
+        <!-- Photo Modal -->
+        <div x-show="selectedPhoto" class="photo-modal" @click.self="closePhotoModal()">
+            <div class="photo-modal-content">
+                <span class="close-button" @click="closePhotoModal()">&times;</span>
+                <img x-show="selectedPhoto" :src="selectedPhoto ? 'photos/' + selectedPhoto.filename : ''" 
+                     :alt="selectedPhoto ? selectedPhoto.description : ''">
+                <div class="photo-modal-caption" x-text="selectedPhoto ? selectedPhoto.description : ''"></div>
+            </div>
+        </div>
+    </div>
+</div>s
