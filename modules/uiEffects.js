@@ -1,11 +1,14 @@
-export function setupImageFocus() {
+/**
+ * Sets up click handlers for expanding images
+ * @param {string} [selector='.styled-still, .styled-photo'] - CSS selector for images that can be expanded
+ */
+export function setupImageFocus(selector = '.styled-still, .styled-photo') {
     document.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('styled-still')) {
+        if (e.target && (e.target.classList.contains('styled-still') || e.target.classList.contains('styled-photo'))) {
             openImageOverlay(e.target);
         }
     });
 }
-
 function openImageOverlay(imageElement) {
     const scrollY = window.scrollY;
     document.documentElement.style.setProperty('--scroll-position', `-${scrollY}px`);

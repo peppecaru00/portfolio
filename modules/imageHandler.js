@@ -90,24 +90,41 @@ export function mapPhotos(photoList) {
  * Creates or ensures the overlay for expanded stills exists
  */
 function ensureOverlayExists() {
-    if (document.getElementById('stills-overlay')) return;
+    // Use a single overlay ID 'image-overlay' for ALL images
+    if (document.getElementById('image-overlay')) return;
     
     const overlay = document.createElement('div');
-    overlay.id = 'stills-overlay';
+    overlay.id = 'image-overlay';
     overlay.className = 'overlay';
     
     const expandedContainer = document.createElement('div');
     expandedContainer.className = 'expanded-image-container';
+    
+    // Add close button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = '&times;';
+    closeButton.setAttribute('aria-label', 'Close');
     
     const expandedImg = document.createElement('img');
     expandedImg.className = 'expanded-image';
     expandedImg.id = 'expanded-image';
     expandedImg.alt = 'Expanded view';
     
+    // Add caption element
+    const caption = document.createElement('div');
+    caption.className = 'expanded-image-caption';
+    caption.id = 'expanded-image-caption';
+    
     expandedContainer.appendChild(expandedImg);
+    expandedContainer.appendChild(closeButton);
+    expandedContainer.appendChild(caption);
     overlay.appendChild(expandedContainer);
     
-    // Single event listener for closing
+    // Single event listener for closing with button
+    closeButton.addEventListener('click', closeExpandedImage);
+    
+    // Single event listener for closing with background click
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
             closeExpandedImage();
@@ -116,17 +133,13 @@ function ensureOverlayExists() {
     
     // Keyboard support
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            // Close whichever is active
-            if (state.overlayActive) {
-                closeExpandedImage();
-            } else if (state.modalActive) {
-                closePhotoModal();
-            }
+        if (e.key === 'Escape' && state.overlayActive) {
+            closeExpandedImage();
         }
     });
     
     document.body.appendChild(overlay);
+    console.log('Universal image overlay created');
 }
 
 /**

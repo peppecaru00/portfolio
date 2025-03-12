@@ -64,34 +64,6 @@
     border-radius: 8px;
 }
 
-/* Photo modal styles (similar to the overlay in stills) */
-.photo-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1002;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.photo-modal.active {
-    background: var(--overlay-background);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(50px);
-    opacity: 1;
-    pointer-events: all;
-    cursor: url('../Cursors/back-arrow.svg') 12 12, pointer;
-    user-select: none;
-}
-
 .photo-modal-content {
     display: flex;
     flex-direction: column;
@@ -126,42 +98,9 @@
     font-family: 'Mabry Pro';
 }
 
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: var(--text-color);
-    cursor: pointer;
-    background: var(--container-background);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--glassmorphism-small);
-}
 
 body.modal-open {
     overflow: hidden;
-}
-
-/* Optional hover effect to show photo captions */
-.photo-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 8px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.photos-container .image-container:hover .photo-caption {
-    opacity: 1;
 }
 
 /* Media queries for responsive design */
