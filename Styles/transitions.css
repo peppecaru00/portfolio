@@ -1,0 +1,19 @@
+/* Add these styles for page transitions */
+body.transitioning {
+    cursor: wait !important;
+}
+
+main {
+    transition: opacity 0.3s ease-in-out;
+    width: 100%;
+}
+
+.page-content {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Optional: prevent interaction during transitions */
+body.transitioning main {
+    pointer-events: none;
+}
