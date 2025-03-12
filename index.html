@@ -42,6 +42,11 @@
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>
     
+    <!-- header loading section -->
+    <div x-init="fetch('components/header.html')
+    .then(response => response.text())
+    .then(html => $el.outerHTML = html)"></div>
+    
 <!-- routing section -->
     <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
