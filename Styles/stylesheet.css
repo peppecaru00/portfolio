@@ -1,0 +1,144 @@
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-BlackItalic.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-SemiBoldItalic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grenette Pro';
+    src: url('../Fonts/grenette-pro/GrenettePro-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-BlackItalic.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../Fonts/mabry-pro/MabryPro-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Instagram Sans';
+    src: url('../Fonts/InstagramSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Instagram Sans';
+    src: url('../Fonts/InstagramSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
