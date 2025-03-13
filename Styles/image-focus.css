@@ -60,3 +60,9 @@
     transform: scale(1);
     opacity: 1;
 }
+
+body.scroll-lock {
+    position: fixed;
+    width: 100%;
+    overflow-y: scroll;
+  }

@@ -253,9 +253,9 @@ function formatImageName(imageName) {
 export function expandImage(src) {
     if (state.overlayActive) return; // Prevent double activation
     
-    const overlay = document.getElementById('stills-overlay');
+    const overlay = document.getElementById('image-overlay');
     if (!overlay) {
-        console.error('Stills overlay not found');
+        console.error('Image overlay not found');
         return;
     }
     
@@ -269,10 +269,13 @@ export function expandImage(src) {
     overlay.classList.add('active');
     state.overlayActive = true;
     
+    // Store current scroll position and lock scrolling
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.classList.add('scroll-lock');
+    
     // Show image container with slight delay for smooth animation
     setTimeout(() => {
         expandedImgContainer.classList.add('active');
-        document.body.classList.add('scroll-lock');
     }, 10);
 }
 
@@ -282,7 +285,7 @@ export function expandImage(src) {
 export function closeExpandedImage() {
     if (!state.overlayActive) return; // Prevent closing if not active
     
-    const overlay = document.getElementById('stills-overlay');
+    const overlay = document.getElementById('image-overlay');
     if (!overlay) return;
     
     const expandedImgContainer = overlay.querySelector('.expanded-image-container');
@@ -290,11 +293,17 @@ export function closeExpandedImage() {
     // Hide image container first
     expandedImgContainer.classList.remove('active');
     
-    // After animation completes, hide overlay
+    // After animation completes, hide overlay and restore scrolling
     setTimeout(() => {
         overlay.classList.remove('active');
-        state.overlayActive = false;
+        
+        // Restore scroll position
+        const scrollY = document.body.style.top;
+        document.body.style.top = '';
         document.body.classList.remove('scroll-lock');
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        
+        state.overlayActive = false;
     }, 300); // Match your CSS transition duration
 }
 
