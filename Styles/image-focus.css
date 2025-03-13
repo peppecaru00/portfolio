@@ -1,3 +1,12 @@
+html.no-scroll,
+body.no-scroll {
+    position: fixed !important;
+    touch-action: none !important;
+    -ms-touch-action: none !important;
+    overscroll-behavior: none !important;
+    -webkit-overflow-scrolling: none !important;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -12,6 +21,7 @@
     z-index: 1002;
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
     transition: all 0.3s ease-in-out;
 }
 
@@ -60,9 +70,3 @@
     transform: scale(1);
     opacity: 1;
 }
-
-body.scroll-lock {
-    position: fixed;
-    width: 100%;
-    overflow-y: scroll;
-  }
