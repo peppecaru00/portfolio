@@ -109,9 +109,6 @@ body.no-scroll {
     transition: transform 0.3s ease;
 }
 
-.expanded-image.zoomed:active {
-    cursor: grabbing;
-}
 
 .expanded-image-container.zoom-mode {
     overflow: hidden;
