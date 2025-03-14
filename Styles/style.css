@@ -1,3 +1,36 @@
+/* Add to your image-focus.css */
+
+/* Loading state styles */
+body.initializing * {
+    pointer-events: none !important; /* Prevent all interactions */
+}
+
+.overlay.initializing,
+.expanded-image-container.initializing {
+    opacity: 0 !important;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.loading-indicator.visible {
+    opacity: 1;
+}
+
 html {
     overflow-y: scroll; /* Force scrollbar to always show */
     scrollbar-width: thin; /* For Firefox */

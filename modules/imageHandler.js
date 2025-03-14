@@ -363,9 +363,6 @@ export function openPhotoModal(src, caption) {
     modalImg.src = src;
     captionText.textContent = formatImageName(caption);
     
-    // Lock scrolling
-    document.body.classList.add('modal-open');
-    state.modalActive = true;
 }
 
 /**
@@ -382,10 +379,7 @@ export function closePhotoModal() {
     setTimeout(() => {
         modal.style.display = 'none';
     }, 300);
-    
-    // Re-enable scrolling
-    document.body.classList.remove('modal-open');
-    state.modalActive = false;
+
 }
 
 /**
