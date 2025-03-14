@@ -70,3 +70,60 @@ body.no-scroll {
     transform: scale(1);
     opacity: 1;
 }
+
+.zoom-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    pointer-events: all;
+    justify-content: center;
+    z-index: 1100;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.zoom-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.zoom-button svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+/* Zoomed image styles */
+.expanded-image.zoomed {
+    transform: scale(1.5);
+    cursor: grab;
+    transition: transform 0.3s ease;
+}
+
+.expanded-image.zoomed:active {
+    cursor: grabbing;
+}
+
+.expanded-image-container.zoom-mode {
+    overflow: hidden;
+    cursor: grab;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .zoom-button {
+        bottom: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+    }
+}
