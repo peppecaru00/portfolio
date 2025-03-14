@@ -50,6 +50,8 @@ function closeImageOverlay(overlay, expandedImgContainer, scrollY) {
     setTimeout(() => overlay.remove(), 300);
 }
 
+
+
 export function setupScrollDetection() {
     let lastScrollTop = 0;
     const navbar = document.querySelector('.header-container');
