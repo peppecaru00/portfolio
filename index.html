@@ -14,11 +14,10 @@
     <link rel="stylesheet" href="Styles/transitions.css">
     <link rel="stylesheet" href="Styles/image-focus.css">
     <link rel="icon" href="favicon.png" type="image/x-icon">
-    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/lib/imagesloaded.pkgd.min.js"></script>
+    <script defer src="js/lib/cdn.min.js"></script>
     <script type="module" src="main.js" defer></script>
-
+    
     <script>
         // Automatically detect if we're on GitHub Pages and set the base accordingly
         (function() {
@@ -41,11 +40,6 @@
 <body>
 
 <!-- header loading section -->
-    <div x-init="fetch('components/header.html')
-    .then(response => response.text())
-    .then(html => $el.outerHTML = html)"></div>
-    
-    <!-- header loading section -->
     <div x-init="fetch('components/header.html')
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>
