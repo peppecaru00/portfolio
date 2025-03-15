@@ -98,13 +98,7 @@ const state = {
       
       const expandedContainer = document.createElement('div');
       expandedContainer.className = 'expanded-image-container';
-      
-      // Add close button
-      const closeButton = document.createElement('button');
-      closeButton.className = 'close-button';
-      closeButton.innerHTML = '&times;';
-      closeButton.setAttribute('aria-label', 'Close');
-      
+            
       const expandedImg = document.createElement('img');
       expandedImg.className = 'expanded-image';
       expandedImg.id = 'expanded-image';
@@ -116,12 +110,8 @@ const state = {
       caption.id = 'expanded-image-caption';
       
       expandedContainer.appendChild(expandedImg);
-      expandedContainer.appendChild(closeButton);
       expandedContainer.appendChild(caption);
       overlay.appendChild(expandedContainer);
-      
-      // Single event listener for closing with button
-      closeButton.addEventListener('click', closeExpandedImage);
       
       // Single event listener for closing with background click
       overlay.addEventListener('click', (e) => {

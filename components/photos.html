@@ -12,15 +12,5 @@
                 </div>
             </template>
         </div>
-        
-        <!-- Photo Modal -->
-        <div x-show="selectedPhoto" class="photo-modal" @click.self="closePhotoModal()">
-            <div class="photo-modal-content">
-                <span class="close-button" @click="closePhotoModal()">&times;</span>
-                <img x-show="selectedPhoto" :src="selectedPhoto ? 'photos/' + selectedPhoto.filename : ''" 
-                     :alt="selectedPhoto ? selectedPhoto.description : ''">
-                <div class="photo-modal-caption" x-text="selectedPhoto ? selectedPhoto.description : ''"></div>
-            </div>
-        </div>
     </div>
 </div>
