@@ -77,11 +77,6 @@ function openImageOverlay(imageElement) {
         }
     });
 
-    setTimeout(() => {
-        overlay.classList.add('active');
-        expandedImgContainer.classList.add('active');
-    }, 10);
-
     overlay.addEventListener('click', (event) => {
         if (event.target === overlay) {
             closeImageOverlay(overlay, expandedImgContainer, scrollY);
