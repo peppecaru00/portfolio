@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ theme: 'dark', currentPage: 'stills' }" :data-theme="theme">
+<html lang="en" x-data="{ theme: 'dark', currentPage: 'photos', contentLoaded: false, isLoading: true }"
+    :data-theme="theme">
 
 <head>
     <meta charset="UTF-8">
@@ -17,10 +18,10 @@
     <script src="js/lib/imagesloaded.pkgd.min.js"></script>
     <script defer src="js/lib/cdn.min.js"></script>
     <script type="module" src="main.js" defer></script>
-    
+
     <script>
         // Automatically detect if we're on GitHub Pages and set the base accordingly
-        (function() {
+        (function () {
             const isGitHub = window.location.hostname.endsWith('github.io');
             if (isGitHub) {
                 // Extract repo name from path for GitHub Pages
@@ -34,34 +35,41 @@
             }
         })();
     </script>
-    
+
 </head>
 
 <body>
+    <!-- Loading overlay -->
+    <div class="loading-overlay" x-show="isLoading" x-transition:leave="loading-hidden">
+        <div class="loading-spinner"></div>
+    </div>
 
-<!-- header loading section -->
+    <!-- header loading section -->
     <div x-init="fetch('components/header.html')
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>
-    
-<!-- routing section -->
+
+    <!-- routing section -->
     <main @transitionend="isLoading = false">
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
                     .then(response => response.text())
-                    .then(html => $el.innerHTML = html)" class="me-container" id="me-container"></div>
+                    .then(html => $el.innerHTML = html).then(isLoading = false)"
+                     class="me-container" id="me-container"></div>
 
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
             class="stills-container" id="stills-container"></div>
 
-        <div x-show="currentPage === 'photos'" x-transition x-include="'components/photos.html'"
-            class="photos-container" id="photos-container"></div>
+        <div x-show="currentPage === 'photos'" x-transition class="photos-container" id="photos-container"></div>
 
     </main>
 
-<!-- footer -->
-    <footer class="footer">
-        Designed with 🤗, by me.
-    </footer>
+    <!-- footer - only show after content is loaded -->
+    <div x-show="contentLoaded" x-transition:enter="transition-opacity" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100">
+        <footer class="footer">
+            Designed with 🤗, by me.
+        </footer>
+    </div>
 
 </body>
 
