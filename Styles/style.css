@@ -170,7 +170,7 @@
         background-position: left;
         display: block;
         position: relative;
-
+        left: 7%;
         transform: translate(-50%);
     }
 
@@ -232,7 +232,7 @@
         }
 
         .logo-icon::before {
-            left: 14%;
+            left: 16%;
         }
 
         .nav-buttons {
