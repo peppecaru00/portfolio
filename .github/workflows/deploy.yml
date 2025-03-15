@@ -27,7 +27,7 @@ jobs:
         run: npm install
         
       - name: Generate image list
-        run: node path/to/generateImageList.js
+        run: node generateImageList.js
         
       - name: Build project
         run: npm run build
