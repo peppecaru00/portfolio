@@ -28,6 +28,15 @@ jobs:
         
       - name: Generate image list
         run: node generateImageList.js
+
+      
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add photoList.json
+          git commit -m "Update photoList.json"
+          git push
         
       - name: Build project
         run: npm run build
