@@ -3,13 +3,29 @@
  * @param {string} [selector='.styled-still, .styled-photo'] - CSS selector for images that can be expanded
  */
 export function setupImageFocus(selector = '.styled-still, .styled-photo') {
-    document.addEventListener('click', (e) => {
+    // Remove any existing event listener first
+    document.removeEventListener('click', handleImageClick);
+    
+    // Add a single event listener
+    document.addEventListener('click', handleImageClick);
+    
+    function handleImageClick(e) {
         if (e.target && (e.target.classList.contains('styled-still') || e.target.classList.contains('styled-photo'))) {
-            openImageOverlay(e.target);
+            // Check if an overlay is already open
+            if (!document.querySelector('.overlay.active')) {
+                openImageOverlay(e.target);
+            }
         }
-    });
+    }
 }
 function openImageOverlay(imageElement) {
+
+    // Check if an overlay already exists and remove it
+    const existingOverlay = document.querySelector('.overlay');
+    if (existingOverlay) {
+        existingOverlay.remove();
+    }
+    
     const scrollY = window.scrollY;
     document.documentElement.style.setProperty('--scroll-position', `-${scrollY}px`);
     document.body.classList.add('overlay-open');
@@ -60,17 +76,37 @@ function openImageOverlay(imageElement) {
             closeImageOverlay(overlay, expandedImgContainer, scrollY);
         }
     });
+
+    setTimeout(() => {
+        overlay.classList.add('active');
+        expandedImgContainer.classList.add('active');
+    }, 10);
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closeImageOverlay(overlay, expandedImgContainer, scrollY);
+        }
+    });
 }
 
 function closeImageOverlay(overlay, expandedImgContainer, scrollY) {
+    // Immediately remove active classes to trigger transitions
+    overlay.classList.remove('active');
+    expandedImgContainer.classList.remove('active');
+    
+    // Remove body classes
     document.body.classList.remove('overlay-open');
     document.body.style.position = '';
     document.body.style.top = '';
     window.scrollTo(0, scrollY);
 
-    overlay.classList.remove('active');
-    expandedImgContainer.classList.remove('active');
-    setTimeout(() => overlay.remove(), 300);
+    // Wait for transitions to complete before removing elements
+    setTimeout(() => {
+        // Make sure the overlay still exists before trying to remove it
+        if (document.body.contains(overlay)) {
+            overlay.remove();
+        }
+    }, 300); // Match your CSS transition duration
 }
 
 
