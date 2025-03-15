@@ -252,11 +252,7 @@ const state = {
       // Show overlay with animation
       overlay.classList.add('active');
       state.overlayActive = true;
-      
-      // Store current scroll position and lock scrolling
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.classList.add('scroll-lock');
-      
+
       // Show image container with slight delay for smooth animation
       setTimeout(() => {
           expandedImgContainer.classList.add('active');
@@ -284,7 +280,6 @@ const state = {
           // Restore scroll position
           const scrollY = document.body.style.top;
           document.body.style.top = '';
-          document.body.classList.remove('scroll-lock');
           window.scrollTo(0, parseInt(scrollY || '0') * -1);
           
           state.overlayActive = false;
