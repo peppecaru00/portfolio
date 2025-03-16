@@ -23,7 +23,7 @@
     font-family: 'Mabry Pro';
     color: var(--group-title-color);
     font-weight: 800;
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 0;
     transition: color 0.3s, color 0.3s;
 }
@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
+
 }
 
 .photos-container .group-images {
@@ -64,45 +64,6 @@
     border-radius: 8px;
 }
 
-.photo-modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-height: 90dvh;
-    max-width: 90dvw;
-    overflow: hidden;
-    border-radius: 1rem;
-    transform: scale(0.95);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-}
-
-.photo-modal-content.active {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.photo-modal-content img {
-    max-width: 100%;
-    max-height: 80vh;
-    display: block;
-    border-radius: 8px;
-}
-
-.photo-modal-caption {
-    color: var(--text-color);
-    text-align: center;
-    margin-top: 15px;
-    font-size: 1rem;
-    font-family: 'Mabry Pro';
-}
-
-
-body.modal-open {
-    overflow: hidden;
-}
-
 /* Media queries for responsive design */
 @media screen and (max-width: 800px) {
     .photos-container {
@@ -118,15 +79,4 @@ body.modal-open {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
-    .photo-modal-content {
-        max-width: 95vw;
-    }
-    
-    .close-button {
-        top: 10px;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        font-size: 20px;
-    }
 }

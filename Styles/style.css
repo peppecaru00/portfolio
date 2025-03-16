@@ -1,7 +1,7 @@
     /* Initial styles to avoid white flash */
-    html,
-    body {
+    html{
         background-color: var(--background-color);
+        transition: background-color 0.3s, color 0.3s;
     }
 
     /* Loading state styles */
@@ -123,13 +123,12 @@
         user-select: none;
         transition: all 0.3s ease-in-out;
         z-index: 1001;
-        transform: translateZ(0);
-        /* Create new stacking context */
+
     }
 
     .header {
         background: var(--header-background);
-        box-shadow: var(--glassmorphism);
+        border: var(--header-border) 1.5px solid;
         backdrop-filter: var(--backdrop-blur);
         -webkit-backdrop-filter: blur(120px);
         height: var(--navbar-height);
@@ -146,10 +145,7 @@
     .logo-button {
         position: inherit;
         font-family: inherit;
-        font-weight: 100;
-        font-size: 2rem;
         justify-content: center;
-        padding: 0 0 0 1em;
         margin: 0;
         cursor: pointer;
         color: inherit;
@@ -170,15 +166,17 @@
         background-position: left;
         display: block;
         position: relative;
-        left: 7%;
-        transform: translate(-50%);
+        left: 10%;
     }
 
     .nav-buttons {
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: flex-end;
         padding: 0 2em;
+        position: relative;
+        right: -1.4em;
         gap: 1.5em;
     }
 
@@ -187,14 +185,30 @@
         background: none;
         border: none;
         outline: none;
-        color: inherit;
+        color: var(--text-muted);
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 100;
         cursor: pointer;
     }
 
+    .nav-button.active {
+        color: #f5f5f5;
+    }
+
     .portfolio_link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-decoration: none;
+        background-color: var(--button-background);
+        border: var(--header-border) 1.5px solid;
+        border-radius: 22rem;
+        padding: .5em .8em;
+        transition: background-color 0.3s, border 0.3s ease-in-out; 
+    }
+
+    .portfolio_link:hover{
+        background-color: var(--button-background-hover);
     }
 
     .portfolio_link span {
@@ -205,7 +219,7 @@
     }
 
     .portfolio_link:hover {
-        color: rgba(var(--text-color));
+        color: #f5f5f5;
     }
 
     .footer {
@@ -232,7 +246,7 @@
         }
 
         .logo-icon::before {
-            left: 16%;
+            left: 2%;
         }
 
         .nav-buttons {

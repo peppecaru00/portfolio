@@ -7,14 +7,21 @@
     --cursor-dark: url('../Cursors/go-light.svg') 8 6, pointer;
     --cursor-light: url('../Cursors/go-dark.svg') 8 6, pointer;
     --backdrop-blur: blur(500px);
+    --button-background-light: rgba(0, 0, 0, 0.1);
+    --header-border-light: rgba(0, 0, 0, 0.2);
+    --header-border-dark: rgba(255,255,255,0.15);
+    --button-background-dark: rgba(255, 255, 255, 0.1);
+    --button-background-hover-light: rgba(255, 255, 255, 0.15);
+    --button-background-hover-dark: rgba(0, 0, 0, 0.15);
+    --text-muted-dark: rgba(255, 255, 255, 0.5);
+    --text-muted-light: rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="light"] {
     --background-color: #f5f5f5;
     --text-color: #111;
     --group-title-color: #111;
-    --header-background: rgba(0, 0, 0, 0.28);
-    --header-border: rgba(255, 255, 255, 0.4);
+    --header-background: rgba(0, 0, 0, 0.3);
     --container-background: rgba(0, 0, 0, 0.1);
     --scrollbar-thumb: rgba(0, 0, 0, 0.3);
     --overlay-background: rgba(255, 255, 255, .7);
@@ -22,10 +29,12 @@
     --scrollbar-track: rgba(0, 0, 0, 0.1);
     --theme-toggle-icon: var(--icon-dark);
     --theme-toggle-cursor: var(--cursor-light);
-    --glassmorphism: inset .5px .5px .5px rgba(255, 255, 255, 0.6), inset -.5px -.5px .5px rgba(0, 0, 0, 0.2);
+    --glassmorphism: inset .5px .5px .5px rgba(49, 27, 27, 0.6), inset -.5px -.5px .5px rgba(0, 0, 0, 0.2);
     --glassmorphism-small: inset .5px .5px .7px rgba(255, 255, 255, 0.6), inset -.5px -.5px .7px rgba(0, 0, 0, 0.2);
     --mail-icon: url('../Icons/mail_icon_dark.svg');
-    --text-muted: rgba(0, 0, 0, 0.7);
+    --header-border: var(--header-border-light);
+    --button-background: var(--button-background-dark);
+    --button-background-hover: var(--button-background-hover-light);
 }
 
 [data-theme="dark"] {
@@ -45,6 +54,10 @@
     --glassmorphism-small: inset .5px .5px .7px rgba(255, 255, 255, 0.6), inset -.5px -.5px .7px rgba(0, 0, 0, 0.6);
     --mail-icon: url('../Icons/mail_icon_light.svg');
     --text-muted: rgba(255, 255, 255, 0.7);
+    --header-border: var(--header-border-dark);
+    --button-background: var(--button-background-dark);
+    --button-background-hover: var(--button-background-hover-light);
+
 }
 
 .theme-toggle{
@@ -55,8 +68,7 @@
     width: calc(var(--navbar-height) - .5rem);;
     background-color: var(--header-background);
     outline: none;
-    border: none;
-    box-shadow: var(--glassmorphism-small);
+    border: 1.5px solid var(--header-border);
     border-radius: 999rem;
     margin-left: 1rem;
     backdrop-filter: var(--backdrop-blur);
