@@ -94,7 +94,7 @@ function closeImageOverlay(overlay, expandedImgContainer, scrollY) {
     document.body.classList.remove('overlay-open');
     document.body.style.position = '';
     document.body.style.top = '';
-    window.scrollTo(0, scrollY);
+    window.scrollTo(scrollY, scrollY);
 
     // Wait for transitions to complete before removing elements
     setTimeout(() => {
