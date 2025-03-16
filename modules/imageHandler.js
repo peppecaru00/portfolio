@@ -272,18 +272,7 @@ const state = {
       
       // Hide image container first
       expandedImgContainer.classList.remove('active');
-      
-      // After animation completes, hide overlay and restore scrolling
-      setTimeout(() => {
-          overlay.classList.remove('active');
-          
-          // Restore scroll position
-          const scrollY = document.body.style.top;
-          document.body.style.top = '';
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
-          
-          state.overlayActive = false;
-      }, 300); // Match your CSS transition duration
+
   }
   
   /**
