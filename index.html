@@ -1,5 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ theme: 'dark', currentPage: 'photos', contentLoaded: false, isLoading: true }"
+<html lang="en" x-data="{ 
+    theme: 'dark', 
+    currentPage: 'photos', 
+    contentLoaded: false, 
+    isLoading: true,
+    
+    // Add this function
+    changePage(page) {
+        const oldPage = this.currentPage;
+        this.currentPage = page;
+        // Import and call our handler
+        if (window.uiEffects && window.uiEffects.handlePageChange) {
+            window.uiEffects.handlePageChange(page, oldPage);
+        }
+    }
+}"
     :data-theme="theme">
 
 <head>
@@ -70,6 +85,8 @@
             Designed with 🤗, by me.
         </footer>
     </div>
+
+    <div class="warning"> ⚠️ Website work in progress - may be buggy ⚠️</div>
 
 </body>
 

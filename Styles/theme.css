@@ -7,14 +7,14 @@
     --cursor-dark: url('../Cursors/go-light.svg') 8 6, pointer;
     --cursor-light: url('../Cursors/go-dark.svg') 8 6, pointer;
     --backdrop-blur: blur(500px);
-    --button-background-light: rgba(0, 0, 0, 0.1);
+    --button-background-light: rgba(0, 0, 0, 0.15);
     --header-border-light: rgba(0, 0, 0, 0.2);
     --header-border-dark: rgba(255,255,255,0.15);
     --button-background-dark: rgba(255, 255, 255, 0.1);
     --button-background-hover-light: rgba(255, 255, 255, 0.15);
     --button-background-hover-dark: rgba(0, 0, 0, 0.15);
     --text-muted-dark: rgba(255, 255, 255, 0.5);
-    --text-muted-light: rgba(0, 0, 0, 0.5);
+    --text-muted-light: rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="light"] {
@@ -35,6 +35,7 @@
     --header-border: var(--header-border-light);
     --button-background: var(--button-background-dark);
     --button-background-hover: var(--button-background-hover-light);
+    --text-muted: var(--text-muted-light);
 }
 
 [data-theme="dark"] {
@@ -57,6 +58,7 @@
     --header-border: var(--header-border-dark);
     --button-background: var(--button-background-dark);
     --button-background-hover: var(--button-background-hover-light);
+    --text-muted: var(--text-muted-dark);
 
 }
 

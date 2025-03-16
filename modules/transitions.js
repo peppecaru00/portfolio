@@ -212,6 +212,12 @@ function setupTransitionHandlers() {
             transitionActive = false;
             document.body.classList.remove('transitioning');
             console.log('Transition completed');
+            
+            // Restore scroll position for the new page
+            if (currentPage && typeof scrollPositions[currentPage] === 'number') {
+                console.log(`Restoring scroll position for ${currentPage}: ${scrollPositions[currentPage]}`);
+                window.scrollTo(0, scrollPositions[currentPage]);
+            }
         });
     }
 }
