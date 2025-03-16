@@ -30,25 +30,27 @@ a:hover{
 .cv-section-1{
     box-sizing: border-box;
     background: var(--container-background);
-    box-shadow: var(--glassmorphism);
+    border: 1.5px solid var(--header-border);
     backdrop-filter: var(--backdrop-blur);
     min-width: 600px;
     max-width: 30%;
     height: auto;
     border-radius: 1.5rem;
     padding: 2rem 2rem 5rem 3rem;
+    transition: color 0.3s ease-in-out
 }
 
 .cv-section-2{
     box-sizing: border-box;
     background: var(--container-background);
-    box-shadow: var(--glassmorphism);
+    border: 1.5px solid var(--header-border);
     backdrop-filter: var(--backdrop-blur);
     max-width: 100%;
     min-width: 700px;
     height: auto;
     border-radius: 1.5rem;
     padding: 2rem 2rem 5rem 3rem;
+    transition: color 0.3s ease-in-out
 }
 
 
@@ -100,7 +102,6 @@ a:hover{
 
 .text-muted{
     color: var(--text-muted);
-    transition: color 0.3s ease-in-out ;
 }
 
 .text-small{

@@ -68,6 +68,7 @@ body.no-scroll {
 
 .expanded-image.zoomed {
     width: 95vw;
+    height: 95vh;
     object-fit: cover;
 }
 
@@ -104,12 +105,48 @@ body.no-scroll {
     color: white;
 }
 
+/* Close button styles */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
-    .zoom-button {
-        bottom: 10px;
+    .close-button, .zoom-button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .close-button {
+        top: 10px;
         right: 10px;
-        width: 35px;
-        height: 35px;
+    }
+    
+    .zoom-button {
+        bottom: 20px;
+        right: 20px;
     }
 }

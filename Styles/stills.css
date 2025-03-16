@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     object-fit: contain;
-    margin: 7rem 0 0 0;
+    margin: 2rem 0 0 0;
     padding: 0 10rem;
     overflow-x: visible;
     gap: 0rem;
@@ -21,7 +21,7 @@
     font-family: 'Mabry Pro';
     color: var(--group-title-color);
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 0;
     transition: color 0.3s, color 0.3s;
 }
