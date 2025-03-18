@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     object-fit: contain;
     margin: 2rem 0 0 0;
     padding: 0 10rem;
@@ -50,7 +50,7 @@
 .group-images {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     padding: 1.5rem 0 3rem 0;
     max-width: 98dvw;
     -webkit-overflow-scrolling: touch;

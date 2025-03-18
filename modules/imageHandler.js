@@ -84,6 +84,26 @@ const state = {
   
       renderImageGroups(groups, container, folderPath, {}, 'photo');
   }
+
+  export function mapDesigns(designList) {
+    const container = document.getElementById('design-container');
+    if (!container) {
+        console.error('Design container not found');
+        return;
+    }
+    
+    const folderPath = 'Media/Designs/';
+    const groups = groupImages(photoList);
+    
+    // Preserve welcome message if exists
+    const welcomeMessage = container.querySelector('p');
+    container.innerHTML = '';
+    if (welcomeMessage) {
+        container.appendChild(welcomeMessage);
+    }
+
+    renderImageGroups(groups, container, folderPath, {}, 'design');
+}
   
   /**
    * Creates or ensures the overlay for expanded stills exists
@@ -234,30 +254,7 @@ const state = {
    * Expands a still image in the overlay
    * @param {string} src - Image source URL
    */
-  export function expandImage(src) {
-      if (state.overlayActive) return; // Prevent double activation
-      
-      const overlay = document.getElementById('image-overlay');
-      if (!overlay) {
-          console.error('Image overlay not found');
-          return;
-      }
-      
-      const expandedImgContainer = overlay.querySelector('.expanded-image-container');
-      const expandedImg = document.getElementById('expanded-image');
-      
-      // Set image source
-      expandedImg.src = src;
-      
-      // Show overlay with animation
-      overlay.classList.add('active');
-      state.overlayActive = true;
 
-      // Show image container with slight delay for smooth animation
-      setTimeout(() => {
-          expandedImgContainer.classList.add('active');
-      }, 10);
-  }
   
   /**
    * Closes an expanded still image

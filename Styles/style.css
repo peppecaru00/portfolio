@@ -3,6 +3,7 @@
         background-color: var(--background-color);
         transition: background-color 0.3s, color 0.3s;
         font-family: 'Mabry Pro', sans-serif;
+        overflow-x: hidden;
     }
 
     /* Loading state styles */
