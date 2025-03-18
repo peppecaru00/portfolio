@@ -2,12 +2,6 @@ html{
     margin-top: 10rem;
 }
 
-body{
-    overflow-x: hidden;
-    color: var(--text-color);
-    font-family: 'Mabry Pro';
-}
-
 .me-content{
     display: flex;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
