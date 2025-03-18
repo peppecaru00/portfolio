@@ -31,6 +31,7 @@ a:hover{
     min-width: 600px;
     max-width: 30%;
     height: auto;
+    color: var(--text-color);
     border-radius: 1.5rem;
     padding: 2rem 2rem 5rem 3rem;
     transition: color 0.3s ease-in-out

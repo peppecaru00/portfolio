@@ -14,7 +14,7 @@
     --button-background-hover-light: rgba(255, 255, 255, 0.15);
     --button-background-hover-dark: rgba(0, 0, 0, 0.15);
     --text-muted-dark: rgba(255, 255, 255, 0.5);
-    --text-muted-light: rgba(255, 255, 255, 0.5);
+    --text-muted-light: rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="light"] {
