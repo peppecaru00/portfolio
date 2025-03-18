@@ -2,6 +2,7 @@ import { mapImages, fetchImages, fetchPhotos, mapPhotos } from './modules/imageH
 import { setupImageFocus, setupScrollDetection } from './modules/uiEffects.js';
 import { setupNavigation } from './modules/navigation.js';
 import { setupPageTransitions } from './modules/transitions.js';
+import {setupCustomCursor} from './modules/dotCursor.js';
 
 // Initialize everything when DOM is ready - SINGLE event listener
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize UI effects
     setupScrollDetection();
     setupNavigation();
+    setupCustomCursor();
     
     // Check if the stills container exists in the DOM
     const stillsContainer = document.getElementById('stills-container');
