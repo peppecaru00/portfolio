@@ -41,12 +41,6 @@ function handleImageClick(e) {
 }
 }
 
-// Dictionary to store scroll positions by page
-const scrollPositions = {
-    me: 0,
-    stills: 0,
-    photos: 0,
-};
 
 function openImageOverlay(imageElement, currentPage) {
 
@@ -56,14 +50,7 @@ function openImageOverlay(imageElement, currentPage) {
         existingOverlay.remove();
     }
 
-    // Store current scroll position with proper page key
-    if (currentPage && currentPage !== 'unknown') {
-        scrollPositions[currentPage] = window.scrollY;
-        console.log(`Storing scroll for ${currentPage}: ${window.scrollY}`);
-        console.log('scrollPositions:', scrollPositions);
-    }
 
-    document.documentElement.style.setProperty('--scroll-position', `-${window.scrollY}px`);
     document.body.classList.add('overlay-open');
 
     //add zoom button
@@ -117,7 +104,7 @@ function openImageOverlay(imageElement, currentPage) {
 }
 
 
-function closeImageOverlay(overlay, expandedImgContainer, currentPage) {
+function closeImageOverlay(overlay, expandedImgContainer) {
     // Immediately remove active classes to trigger transitions
     overlay.classList.remove('active');
     expandedImgContainer.classList.remove('active');
@@ -126,14 +113,6 @@ function closeImageOverlay(overlay, expandedImgContainer, currentPage) {
     document.body.classList.remove('overlay-open');
     document.body.style.position = '';
     document.body.style.top = '';
-
-    // Restore the scroll position for that page
-    if (currentPage && typeof scrollPositions[currentPage] === 'number') {
-        console.log(`Restoring scroll for ${currentPage} to: ${scrollPositions[currentPage]}`);
-        window.scrollTo(0, scrollPositions[currentPage]);
-    } else {
-        console.warn(`No valid scroll position for page: ${currentPage}`);
-    }
 
     // Wait for transitions to complete before removing elements
     setTimeout(() => {
@@ -151,10 +130,9 @@ export function setupScrollDetection() {
     const navbar = document.querySelector('.header-container');
     let isManualScroll = false;
 
+
+
     window.addEventListener('scroll', () => {
         isManualScroll = true;
-
-        // Add your scroll logic here if needed
-        // For example: navbar hide/show on scroll
     });
 }
