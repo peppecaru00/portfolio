@@ -3,12 +3,14 @@ html{
 }
 
 body{
+    overflow-x: hidden;
     color: var(--text-color);
     font-family: 'Mabry Pro';
 }
 
 .me-content{
     display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     flex-direction: row;
     width: 90dvw;
     justify-content: center;
@@ -27,26 +29,13 @@ a:hover{
     color: var(--text-muted);
 }
 
-.cv-section-1{
+.cv-section{
     box-sizing: border-box;
     background: var(--container-background);
     border: 1.5px solid var(--header-border);
     backdrop-filter: var(--backdrop-blur);
     min-width: 600px;
     max-width: 30%;
-    height: auto;
-    border-radius: 1.5rem;
-    padding: 2rem 2rem 5rem 3rem;
-    transition: color 0.3s ease-in-out
-}
-
-.cv-section-2{
-    box-sizing: border-box;
-    background: var(--container-background);
-    border: 1.5px solid var(--header-border);
-    backdrop-filter: var(--backdrop-blur);
-    max-width: 100%;
-    min-width: 700px;
     height: auto;
     border-radius: 1.5rem;
     padding: 2rem 2rem 5rem 3rem;
@@ -117,6 +106,10 @@ a:hover{
     font-weight: normal;
 }
 
+.external-links{
+    margin: 1rem 0;
+}
+
 .education-title{
     font-size: 3rem;
     font-weight: 500;
@@ -132,6 +125,7 @@ a:hover{
 .institution{
     font-size: 1.2rem;
     font-weight: 500;
+    transition: color 0.3s ease-in-out
 }
 
 .semibold{
@@ -141,6 +135,7 @@ a:hover{
 @media screen and (max-width: 1200px){
     .me-content{
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
         padding: 0 2rem 0 2rem;
     }
