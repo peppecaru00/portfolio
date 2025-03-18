@@ -44,7 +44,7 @@
 
 .photos-container .image-container {
     position: relative;
-    cursor: url('../Cursors/focus.svg') 12 12, pointer;
+  /*  cursor: url('../Cursors/focus.svg') 12 12 , pointer;*/
     transition: transform 0.3s ease;
     overflow: hidden;
     border-radius: 8px;
