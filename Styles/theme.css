@@ -4,8 +4,6 @@
     --navbar-height: 3.5rem;
     --icon-light: url('../Icons/sun.svg');
     --icon-dark: url('../Icons/moon.svg');
-    --cursor-dark: url('../Cursors/go-light.svg') 8 6, pointer;
-    --cursor-light: url('../Cursors/go-dark.svg') 8 6, pointer;
     --backdrop-blur: blur(500px);
     --button-background-light: rgba(0, 0, 0, 0.15);
     --header-border-light: rgba(0, 0, 0, 0.2);
