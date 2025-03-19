@@ -7,10 +7,10 @@ export function setupCustomCursor() {
     // Add icon element inside cursor with offset
     const icon = document.createElement('div');
     icon.className = 'cursor-icon';
-    icon.innerHTML = `<img src="../Cursors/focus.svg" alt="expand" width="36" height="24">`; // You can use any icon
+    icon.innerHTML = `<img src="./Cursors/focus.svg" alt="expand" width="36" height="24">`; // You can use any icon
 
     const closeIcon = document.createElement('img');
-    closeIcon.src = "../Cursors/arrow-back.svg"; // Use your close icon SVG
+    closeIcon.src = "./Cursors/arrow-back.svg"; // Use your close icon SVG
     closeIcon.width = 24;
     closeIcon.height = 24;
     closeIcon.alt = "close";
