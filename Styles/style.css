@@ -5,6 +5,13 @@
         font-family: 'Mabry Pro', sans-serif;
         overflow-x: hidden;
         cursor: none;
+        overflow-y: scroll;
+        /* Force scrollbar to always show */
+        scrollbar-width: thin;
+        /* For Firefox */
+        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        /* For Firefox */
+
     }
 
     /* Loading state styles */
@@ -42,12 +49,24 @@
         /* Start position for animation */
         transition: opacity 0.2s ease, transform 0.2s ease;
         pointer-events: none;
+        user-select: none;
+    }
+
+    .cursor-dot .close-icon {
+        position: absolute;
+        left: 1.5rem;
+        top: .2rem;
+        transform: translate(-px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: none;
+        user-select: none;
     }
 
     .cursor-dot.show-icon .cursor-icon {
         opacity: 1;
         transform: translateX(0);
     }
+    
 
     /* Loading indicator */
     .loading-indicator {
@@ -102,15 +121,6 @@
         visibility: hidden;
     }
 
-    html {
-        overflow-y: scroll;
-        /* Force scrollbar to always show */
-        scrollbar-width: thin;
-        /* For Firefox */
-        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-        /* For Firefox */
-
-    }
 
     ::-webkit-scrollbar {
         width: 8px;
@@ -173,7 +183,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        transition: background-color 0.3s, color 0.3s;
+        transition: background-color 0.3s, color 0.3s; 
     }
 
     .logo-button {
@@ -221,6 +231,7 @@
         color: var(--text-muted);
         font-size: 1rem;
         font-weight: 100;
+        cursor: none;
     }
 
     .nav-button.active {
@@ -237,6 +248,7 @@
         border-radius: 22rem;
         padding: .5em .8em;
         transition: background-color 0.3s, border 0.3s ease-in-out;
+        cursor: none;
     }
 
     .portfolio_link:hover {
