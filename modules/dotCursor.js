@@ -58,7 +58,7 @@ export function setupCustomCursor() {
             cursor.classList.remove('show-icon');
             cursor.style.width = '1.5em'; 
             cursor.style.height = '1.5em';}
-
+            
         else if (isOverOverlay) {
             // Show close icon for overlay
             icon.style.display = 'none';
