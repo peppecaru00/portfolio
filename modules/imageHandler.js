@@ -30,36 +30,67 @@ const state = {
    * @param {string[]} imageList - Array of image filenames
    */
   export function mapImages(imageList) {
-      const container = document.getElementById('stills-container');
-      if (!container) {
-          console.error('Stills container not found');
-          return;
-      }
-      
-      const folderPath = 'Media/Stills/';
-      const groups = groupImages(imageList);
-      
-      // Preserve welcome message if exists
-      const welcomeMessage = container.querySelector('p');
-      container.innerHTML = '';
-      if (welcomeMessage) {
-          container.appendChild(welcomeMessage);
-      }
-  
-      // Create overlay for expanded stills if it doesn't exist
-      ensureOverlayExists();
-  
-      // Import video links dynamically
-      import('./videoLinks.js')
-          .then(module => {
-              const videoLinks = module.getVideoLinks();
-              renderImageGroups(groups, container, folderPath, videoLinks);
-          })
-          .catch(error => {
-              console.error('Error loading video links:', error);
-              renderImageGroups(groups, container, folderPath, {});
-          });
-  }
+    const container = document.getElementById('stills-container');
+    if (!container) {
+        console.error('Stills container not found');
+        return;
+    }
+    
+    const folderPath = 'Media/Stills/';
+    const groups = groupImages(imageList);
+    
+    // Preserve welcome message if exists
+    const welcomeMessage = container.querySelector('p');
+    container.innerHTML = '';
+    if (welcomeMessage) {
+        container.appendChild(welcomeMessage);
+    }
+
+    // Create overlay for expanded stills if it doesn't exist
+    ensureOverlayExists();
+
+    // Show loading state
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'loading-spinner';
+    loadingElement.textContent = 'Loading images...';
+    container.appendChild(loadingElement);
+
+    // Import video links dynamically
+    import('./videoLinks.js')
+        .then(module => {
+            const videoLinks = module.getVideoLinks();
+            // Remove loading indicator
+            container.removeChild(loadingElement);
+            renderImageGroups(groups, container, folderPath, videoLinks);
+            
+            // Preload images to avoid empty displays
+            preloadImages(imageList, folderPath);
+        })
+        .catch(error => {
+            console.error('Error loading video links:', error);
+            // Remove loading indicator
+            if (loadingElement.parentNode === container) {
+                container.removeChild(loadingElement);
+            }
+            renderImageGroups(groups, container, folderPath, {});
+        });
+}
+
+/**
+ * Preloads images to avoid empty displays when switching pages quickly
+ * @param {string[]} imageList - Array of image filenames
+ * @param {string} folderPath - Path to the images folder
+ */
+function preloadImages(imageList, folderPath) {
+    if (!imageList || !imageList.length) return;
+    
+    imageList.forEach(imageName => {
+        const img = new Image();
+        img.src = folderPath + imageName;
+    });
+}
+
+
   
   /**
    * Maps and displays photos on the page
@@ -277,18 +308,38 @@ const state = {
    * @returns {Promise<string[]>} Promise resolving to array of image filenames
    */
   export function fetchImages() {
-      return fetch('imageList.json')
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error(`Failed to fetch images: ${response.status} ${response.statusText}`);
-              }
-              return response.json();
-          })
-          .catch(error => {
-              console.error('Error loading images:', error);
-              return [];
-          });
-  }
+    // Add loading state to the stills container if it exists
+    const container = document.getElementById('stills-container');
+    if (container) {
+        const loadingElement = document.createElement('div');
+        loadingElement.className = 'loading-spinner';
+        loadingElement.textContent = 'Loading images...';
+        container.innerHTML = '';
+        container.appendChild(loadingElement);
+    }
+    
+    return fetch('imageList.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch images: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error loading images:', error);
+            
+            // Show error message in the container
+            if (container) {
+                container.innerHTML = '';
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Failed to load images. Please try again later.';
+                container.appendChild(errorMessage);
+            }
+            
+            return [];
+        });
+}       
   
   /**
    * Fetches the list of photos
