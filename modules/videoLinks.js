@@ -3,6 +3,7 @@ export function getVideoLinks() {
         'Compleanno': 'https://youtu.be/DfPS_DdDqho',
         'Merda': 'https://youtu.be/Bd2u4AvVJ7U',
         'Turenheimer': 'https://youtu.be/xZri1Ajktg4',
+        'FragileBTS': 'https://youtu.be/GRZqdg5-h2U',
         // Add more groups and links as needed
     };
 }
