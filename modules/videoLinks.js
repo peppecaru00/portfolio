@@ -4,6 +4,7 @@ export function getVideoLinks() {
         'Merda': 'https://youtu.be/Bd2u4AvVJ7U',
         'Turenheimer': 'https://youtu.be/xZri1Ajktg4',
         'FragileBTS': 'https://youtu.be/GRZqdg5-h2U',
+        'PrimoMaggio': 'https://youtu.be/cvP7Oz6uYh4',
         // Add more groups and links as needed
     };
 }
