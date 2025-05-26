@@ -276,14 +276,19 @@
         transition: color 0.3s ease-in-out;
     }
 
-    /* Add this to your CSS file */
     .loading-spinner {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        font-size: 1.2rem;
-        color: #666;
+        display: block;
+        /* Or 'inline-block' if preferred */
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        /* Light grey track */
+        border-left-color: var(--primary-color, #007bff);
+        /* Spinner color, use your site's primary color */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 30px auto;
+        /* Centers the spinner if it's a block in a larger container */
     }
 
     .error-message {
@@ -308,6 +313,22 @@
         height: 2em;
         background-color: rgba(214, 82, 82, 0.443);
         backdrop-filter: blur(10px);
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Optional: If you want to hide the "Loading images..." text when using the CSS spinner */
+    .loading-spinner.visual-only {
+        text-indent: -9999px;
+        /* Hides text if you keep it in the JS */
     }
 
     @media screen and (max-width: 800px) {
