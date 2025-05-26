@@ -2,68 +2,74 @@
 
 <body>
     <div class="home-content" id="home-content">
-          <!-- Welcome Section with Animation -->
+        <!-- Welcome Section with Animation -->
         <div class="welcome-section" x-data="{ visible: false }" x-init="setTimeout(() => visible = true, 100)">
-            <div class="welcome-message" 
-                 x-show="visible" 
-                 x-transition:enter="transition ease-out duration-1000"
-                 x-transition:enter-start="opacity-0 transform translate-y-8"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <h1 class="welcome-title">Hi! Welcome to my portfolio</h1>
+            <div class="welcome-message" x-show="visible" x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="opacity-0 transform translate-y-8"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+                <h1 class="welcome-title">Welcome, <br>this is my portfolio</h1>
                 <p class="welcome-subtitle">Explore my videos, photos and design works!</p>
             </div>
         </div>
 
         <!-- Looping Video Section -->
-        <div class="looping-video-section" x-data="{ videoVisible: false }" x-init="setTimeout(() => videoVisible = true, 200)">
-            <video autoplay loop muted playsinline class="looping-video" 
-                   x-show="videoVisible"
-                   x-transition:enter="transition ease-out duration-1000 delay-100"
-                   x-transition:enter-start="opacity-0 transform scale-95"
-                   x-transition:enter-end="opacity-100 transform scale-100">
+        <div class="looping-video-section" x-data="{ videoVisible: false }"
+            x-init="setTimeout(() => videoVisible = true, 200)">
+            <div class="latest-video-label">Latest Video</div>
+            <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
+                x-transition:enter="transition ease-out duration-1000 delay-100"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100">
                 <source src="Media/test_conversione.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
 
         <!-- Personal Information Section - Layout in 2 parts -->
-        <div class="personal-info-grid" x-data="{ infoVisible: false }" x-init="setTimeout(() => infoVisible = true, 300)">
-              <!-- Introduction -->
-            <div class="intro-section" 
-                 x-show="infoVisible"
-                 x-transition:enter="transition ease-out duration-800 delay-200"
-                 x-transition:enter-start="opacity-0 transform translate-y-6"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="section-icon">👋</div>
+        <div class="personal-info-grid" x-data="{ infoVisible: false }"
+            x-init="setTimeout(() => infoVisible = true, 300)">
+            <!-- Introduction -->
+            <div class="intro-section" x-show="infoVisible"
+                x-transition:enter="transition ease-out duration-800 delay-200"
+                x-transition:enter-start="opacity-0 transform translate-y-6"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+                <div class="image-container">
+                    <img src="Media/home_photo.jpg" alt="Giuseppe Caruso" class="profile-image">
+                </div>
                 <div class="self-presentation">I'm <b>Giuseppe Caruso</b>, a media engineering student with
                     passion for <i>video</i>, <b>gra<u>phi</u>cs</b> and <u>design</u>.</div>
             </div>
 
             <!-- Personal Details -->
-            <div class="personal-details" 
-                 x-show="infoVisible"
-                 x-transition:enter="transition ease-out duration-800 delay-300"
-                 x-transition:enter-start="opacity-0 transform translate-y-6"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="section-icon">🧩</div>
-                <h3 class="section-title">About me</h3>
+            <div class="personal-details" x-show="infoVisible"
+                x-transition:enter="transition ease-out duration-800 delay-300"
+                x-transition:enter-start="opacity-0 transform translate-y-6"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+                <div class="section-title">
+                    <div class="section-icon">🧩</div>
+                    <h3 class="personal-details-title">About me</h3>
+                </div>
+
                 <div class="detail-item">
                     <div class="icon-wrapper"><span class="item-icon">🎂</span></div>03.04.2000
                 </div>
                 <div class="detail-item">
                     <div class="icon-wrapper"><span class="item-icon">📍</span></div>
-                     Noto (SR), Sicily
+                    Noto (SR), Sicily
                 </div>
             </div>
 
             <!-- Contact Information -->
-            <div class="contact-info" 
-                 x-show="infoVisible"
-                 x-transition:enter="transition ease-out duration-800 delay-400"
-                 x-transition:enter-start="opacity-0 transform translate-y-6"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="section-icon">📬</div>
-                <div class="contact-title">Get in touch :D</div>
+            <div class="contact-info" x-show="infoVisible"
+                x-transition:enter="transition ease-out duration-800 delay-400"
+                x-transition:enter-start="opacity-0 transform translate-y-6"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+
+                <div class="section-title">
+                    <div class="section-icon">📬</div>
+                    <div class="contact-title">Get in touch :D</div>
+                </div>
+
                 <div class="contact-items">
                     <div class="contact-item">
                         <div class="icon-wrapper"><span class="item-icon">📧</span></div>
@@ -78,22 +84,33 @@
                         <span class="semibold">(+39) 392 580 8834</span>
                     </div>
                     <div class="contact-item instagram">
-                        <div class="icon-wrapper"><span class="item-icon"><svg aria-label="Instagram" fill="#ed4e90" height="32" role="img" viewBox="0 0 24 24" width="32"><title>Instagram</title><path d="M12 2.982c2.937 0 3.285.011 4.445.064a6.087 6.087 0 0 1 2.042.379 3.408 3.408 0 0 1 1.265.823 3.408 3.408 0 0 1 .823 1.265 6.087 6.087 0 0 1 .379 2.042c.053 1.16.064 1.508.064 4.445s-.011 3.285-.064 4.445a6.087 6.087 0 0 1-.379 2.042 3.643 3.643 0 0 1-2.088 2.088 6.087 6.087 0 0 1-2.042.379c-1.16.053-1.508.064-4.445.064s-3.285-.011-4.445-.064a6.087 6.087 0 0 1-2.043-.379 3.408 3.408 0 0 1-1.264-.823 3.408 3.408 0 0 1-.823-1.265 6.087 6.087 0 0 1-.379-2.042c-.053-1.16-.064-1.508-.064-4.445s.011-3.285.064-4.445a6.087 6.087 0 0 1 .379-2.042 3.408 3.408 0 0 1 .823-1.265 3.408 3.408 0 0 1 1.265-.823 6.087 6.087 0 0 1 2.042-.379c1.16-.053 1.508-.064 4.445-.064M12 1c-2.987 0-3.362.013-4.535.066a8.074 8.074 0 0 0-2.67.511 5.392 5.392 0 0 0-1.949 1.27 5.392 5.392 0 0 0-1.269 1.948 8.074 8.074 0 0 0-.51 2.67C1.012 8.638 1 9.013 1 12s.013 3.362.066 4.535a8.074 8.074 0 0 0 .511 2.67 5.392 5.392 0 0 0 1.27 1.949 5.392 5.392 0 0 0 1.948 1.269 8.074 8.074 0 0 0 2.67.51C8.638 22.988 9.013 23 12 23s3.362-.013 4.535-.066a8.074 8.074 0 0 0 2.67-.511 5.625 5.625 0 0 0 3.218-3.218 8.074 8.074 0 0 0 .51-2.67C22.988 15.362 23 14.987 23 12s-.013-3.362-.066-4.535a8.074 8.074 0 0 0-.511-2.67 5.392 5.392 0 0 0-1.27-1.949 5.392 5.392 0 0 0-1.948-1.269 8.074 8.074 0 0 0-2.67-.51C15.362 1.012 14.987 1 12 1Zm0 5.351A5.649 5.649 0 1 0 17.649 12 5.649 5.649 0 0 0 12 6.351Zm0 9.316A3.667 3.667 0 1 1 15.667 12 3.667 3.667 0 0 1 12 15.667Zm5.872-10.859a1.32 1.32 0 1 0 1.32 1.32 1.32 1.32 0 0 0-1.32-1.32Z"></path></svg></span></div>
-                        <span class="username"><a rel="noopener noreferrer" target="_blank" href="https://instagram.com/giuseppe_caruso00">@giuseppe.caruso00</a></span>
+                        <div class="icon-wrapper"><span class="item-icon"><svg aria-label="Instagram" fill="#ed4e90"
+                                    height="32" role="img" viewBox="0 0 24 24" width="32">
+                                    <title>Instagram</title>
+                                    <path
+                                        d="M12 2.982c2.937 0 3.285.011 4.445.064a6.087 6.087 0 0 1 2.042.379 3.408 3.408 0 0 1 1.265.823 3.408 3.408 0 0 1 .823 1.265 6.087 6.087 0 0 1 .379 2.042c.053 1.16.064 1.508.064 4.445s-.011 3.285-.064 4.445a6.087 6.087 0 0 1-.379 2.042 3.643 3.643 0 0 1-2.088 2.088 6.087 6.087 0 0 1-2.042.379c-1.16.053-1.508.064-4.445.064s-3.285-.011-4.445-.064a6.087 6.087 0 0 1-2.043-.379 3.408 3.408 0 0 1-1.264-.823 3.408 3.408 0 0 1-.823-1.265 6.087 6.087 0 0 1-.379-2.042c-.053-1.16-.064-1.508-.064-4.445s.011-3.285.064-4.445a6.087 6.087 0 0 1 .379-2.042 3.408 3.408 0 0 1 .823-1.265 3.408 3.408 0 0 1 1.265-.823 6.087 6.087 0 0 1 2.042-.379c1.16-.053 1.508-.064 4.445-.064M12 1c-2.987 0-3.362.013-4.535.066a8.074 8.074 0 0 0-2.67.511 5.392 5.392 0 0 0-1.949 1.27 5.392 5.392 0 0 0-1.269 1.948 8.074 8.074 0 0 0-.51 2.67C1.012 8.638 1 9.013 1 12s.013 3.362.066 4.535a8.074 8.074 0 0 0 .511 2.67 5.392 5.392 0 0 0 1.27 1.949 5.392 5.392 0 0 0 1.948 1.269 8.074 8.074 0 0 0 2.67.51C8.638 22.988 9.013 23 12 23s3.362-.013 4.535-.066a8.074 8.074 0 0 0 2.67-.511 5.625 5.625 0 0 0 3.218-3.218 8.074 8.074 0 0 0 .51-2.67C22.988 15.362 23 14.987 23 12s-.013-3.362-.066-4.535a8.074 8.074 0 0 0-.511-2.67 5.392 5.392 0 0 0-1.27-1.949 5.392 5.392 0 0 0-1.948-1.269 8.074 8.074 0 0 0-2.67-.51C15.362 1.012 14.987 1 12 1Zm0 5.351A5.649 5.649 0 1 0 17.649 12 5.649 5.649 0 0 0 12 6.351Zm0 9.316A3.667 3.667 0 1 1 15.667 12 3.667 3.667 0 0 1 12 15.667Zm5.872-10.859a1.32 1.32 0 1 0 1.32 1.32 1.32 1.32 0 0 0-1.32-1.32Z">
+                                    </path>
+                                </svg></span></div>
+                        <span class="username"><a rel="noopener noreferrer" target="_blank"
+                                href="https://instagram.com/giuseppe_caruso00">@giuseppe.caruso00</a></span>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Education Section - Separate from personal info grid -->
-        <div class="education-section" x-data="{ infoVisible: false }" x-init="setTimeout(() => infoVisible = true, 300)">
-            <div class="education-info" 
-                 x-show="infoVisible"
-                 x-transition:enter="transition ease-out duration-800 delay-500"
-                 x-transition:enter-start="opacity-0 transform translate-y-6"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="section-icon">🎓</div>
-                <div class="education-title">Education</div>
+        <div class="education-section" x-data="{ infoVisible: false }"
+            x-init="setTimeout(() => infoVisible = true, 300)">
+            <div class="education-info" x-show="infoVisible"
+                x-transition:enter="transition ease-out duration-800 delay-500"
+                x-transition:enter-start="opacity-0 transform translate-y-6"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+
+                <div class="section-title">
+                    <div class="section-icon">🎓</div>
+                    <div class="education-title">Education</div>
+                </div>
+
                 <div class="education-items">
                     <div class="education-item">
                         <div class="item-icon-wrapper"><span class="edu-icon">🚀</span></div>
@@ -115,28 +132,26 @@
         </div>
 
         <!-- Navigation Cards with Hover Animations -->
-        <div class="navigation-cards" 
-             x-data="{ cardsVisible: false }" 
-             x-init="setTimeout(() => cardsVisible = true, 600)">
-            
-            <div class="cards-container"
-                 x-show="cardsVisible"
-                 x-transition:enter="transition ease-out duration-1000 delay-300"
-                 x-transition:enter-start="opacity-0 transform translate-y-8"
-                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                
+        <div class="navigation-cards" x-data="{ cardsVisible: false }"
+            x-init="setTimeout(() => cardsVisible = true, 600)">
+
+            <div class="cards-container" x-show="cardsVisible"
+                x-transition:enter="transition ease-out duration-1000 delay-300"
+                x-transition:enter-start="opacity-0 transform translate-y-8"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+
                 <div class="nav-card" @click="currentPage = 'photos'">
                     <div class="card-icon">📸</div>
                     <h3>Photos</h3>
                     <p>Explore my photography work</p>
                 </div>
-                
+
                 <div class="nav-card" @click="currentPage = 'stills'">
                     <div class="card-icon">🎬</div>
                     <h3>Video Stills</h3>
                     <p>See frames from my video projects</p>
                 </div>
-                
+
                 <div class="nav-card" @click="window.open('/portfolio/pdf/portfolio-design.pdf', '_blank')">
                     <div class="card-icon">🎨</div>
                     <h3>Designs</h3>

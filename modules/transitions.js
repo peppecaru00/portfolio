@@ -283,25 +283,32 @@ function getCurrentPageFromDOM() {
  */
 function handlePageChange(newPage) {
     console.log('Page changed to:', newPage);
-    
-    // Save current scroll position before switching
-    if (typeof saveCurrentScrollPosition === 'function') {
+
+    // Ensure saveCurrentScrollPosition is defined and called
+    if (window.saveCurrentScrollPosition && typeof window.saveCurrentScrollPosition === 'function') {
+        window.saveCurrentScrollPosition();
+    } else if (typeof saveCurrentScrollPosition === 'function') { 
+        // Fallback if not on window
         saveCurrentScrollPosition();
+    } else {
+        console.warn('saveCurrentScrollPosition function not found.');
+    }
+
+    document.body.classList.add('transitioning');
+
+    // Restore scroll BEFORE removing transition class, and ensure it's defined
+    if (window.restoreScrollPosition && typeof window.restoreScrollPosition === 'function') {
+        window.restoreScrollPosition(newPage);
+    } else if (typeof restoreScrollPosition === 'function') {
+         // Fallback if not on window
+        restoreScrollPosition(newPage);
+    } else {
+        console.warn('restoreScrollPosition function not found.');
     }
     
-    // Add transition class
-    document.body.classList.add('transitioning');
-    
-    // Small delay to let page content update, then restore scroll
+    // Small delay to let page content update
     setTimeout(() => {
-        if (typeof restoreScrollPosition === 'function') {
-            restoreScrollPosition(newPage);
-        }
-        
-        // Remove transition class
-        setTimeout(() => {
-            document.body.classList.remove('transitioning');
-        }, 100);
-    }, 50);
+        document.body.classList.remove('transitioning');
+    }, 50); // Adjusted delay slightly, can be tuned
 }
 

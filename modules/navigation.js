@@ -1,4 +1,3 @@
-
 // Store scroll positions for each page
 const scrollPositions = {
     'home': 0,

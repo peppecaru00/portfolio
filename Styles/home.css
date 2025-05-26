@@ -8,6 +8,7 @@
 }
 
 .home-content {
+    justify-content: center;
     width: 100%;
     max-width: 1500px;
     margin: 0 auto;
@@ -42,8 +43,17 @@
 }
 
 @keyframes pulseGlow {
-    0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.03; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.08; }
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.03;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.08;
+    }
 }
 
 .welcome-message {
@@ -74,12 +84,12 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 255, 255, 0.1) 700%, 
-        rgba(255, 255, 255, 0.2) 80%, 
-        rgba(255, 255, 255, 0.1) 100%, 
-        transparent 100%);
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 700%,
+            rgba(255, 255, 255, 0.2) 80%,
+            rgba(255, 255, 255, 0.1) 100%,
+            transparent 100%);
     background-size: 200% 100%;
     animation: shimmerOverlay 4s ease-in-out infinite;
     -webkit-background-clip: text;
@@ -99,23 +109,39 @@
 }
 
 @keyframes shimmerText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes shimmerOverlay {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Personal Information Bento-Box Layout */
 .personal-info-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto auto auto; /* Added 4th row for education */
-    gap: 1.5rem; /* Increased gap between rows and columns for better spacing */
-    grid-auto-rows: 1fr; /* Make all rows in the grid the same height */
+    grid-template-rows: auto auto auto auto;
+    /* Added 4th row for education */
+    gap: 1.5rem;
+    /* Increased gap between rows and columns for better spacing */
+    grid-auto-rows: 1fr;
+    /* Make all rows in the grid the same height */
     padding: 0;
     position: relative;
 }
@@ -135,18 +161,41 @@
 }
 
 @keyframes moveGradient {
-    0%, 100% { transform: translate(0, 0) scale(0.9); }
-    25% { transform: translate(5%, 5%) scale(1); }
-    50% { transform: translate(0, 8%) scale(1.1); }
-    75% { transform: translate(-5%, 3%) scale(1); }
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(0.9);
+    }
+
+    25% {
+        transform: translate(5%, 5%) scale(1);
+    }
+
+    50% {
+        transform: translate(0, 8%) scale(1.1);
+    }
+
+    75% {
+        transform: translate(-5%, 3%) scale(1);
+    }
 }
 
 .intro-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     grid-column: 1 / -1;
     background: var(--random-card-bg, var(--card-background));
     border-radius: var(--homecard-border-radius);
-    padding: 4rem 3.5rem;
-    text-align: center;
+    padding: 3rem 3rem;
+    /* text-align: center; */
+    /* Removed to allow flex alignment */
+    display: flex;
+    /* Added for layout control */
+    align-items: center;
+    /* Vertically center items */
+    gap: 2rem;
+    /* Added space between image and text */
     backdrop-filter: blur(20px);
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.15));
     position: relative;
@@ -155,18 +204,49 @@
     transition: all 0.3s ease;
 }
 
+.image-container {
+    height: 100%;
+    border-radius: calc(var(--homecard-border-radius) - 1rem);
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.profile-image {
+    max-width: 500px;
+    /* Adjust as needed */
+    height: 150%;
+    height: auto;
+    display: block;
+    /* To allow margin auto to center if needed, or just for block behavior */
+
+}
+
+.intro-section .image-container {
+    flex-shrink: 0;
+    /* Prevent image from shrinking */
+    /* Add any specific styling for the image container if needed */
+}
+
+.intro-section .self-presentation {
+    text-align: left;
+    /* Align text to the left */
+    /* Add any specific styling for the text container if needed */
+}
+
 .section-icon {
     font-size: 3.2rem;
     display: inline-block;
     filter: none;
     background: var(--random-section-icon-bg, linear-gradient(135deg, rgba(var(--accent-color-rgb, 102, 126, 234), 0.25), rgba(var(--accent-color-alt-rgb, 118, 75, 162), 0.25)));
     border-radius: 20px;
+    min-width: 80px;
     width: 80px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 2rem;
+    margin-right: 1rem;
+    /* Added space to the right of the icon */
     position: relative;
     overflow: hidden;
     box-shadow: none;
@@ -238,45 +318,89 @@
 
 
 @keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* Desynchronized floating animations for different icon types */
 @keyframes floatIcon1 {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(2deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
 }
 
 @keyframes floatIcon2 {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    33% { transform: translateY(-8px) rotate(-1deg); }
-    66% { transform: translateY(-6px) rotate(1deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-8px) rotate(-1deg);
+    }
+
+    66% {
+        transform: translateY(-6px) rotate(1deg);
+    }
 }
 
 @keyframes floatIcon3 {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-7px) rotate(1deg); }
-    75% { transform: translateY(-11px) rotate(-1deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-7px) rotate(1deg);
+    }
+
+    75% {
+        transform: translateY(-11px) rotate(-1deg);
+    }
 }
 
 @keyframes floatIcon4 {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    40% { transform: translateY(-9px) rotate(-2deg); }
-    80% { transform: translateY(-5px) rotate(1deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    40% {
+        transform: translateY(-9px) rotate(-2deg);
+    }
+
+    80% {
+        transform: translateY(-5px) rotate(1deg);
+    }
 }
 
 /* Subtle pulse animation for smaller icons */
 @keyframes subtleFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-3px) scale(1.02); }
-}
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-3px) scale(1.02);
+    }
 }
 
 .self-presentation {
@@ -286,6 +410,8 @@
     color: var(--text-color);
     margin: 0;
     letter-spacing: -0.02em;
+    flex-grow: 1;
+    /* Allow text to take remaining space */
 }
 
 .personal-details {
@@ -303,7 +429,12 @@
     height: 100%;
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
+.personal-details-title{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.01em;
+}
 .detail-item {
     font-size: 1.4rem;
     font-weight: 600;
@@ -347,13 +478,6 @@
 .icon-wrapper:hover {
     transform: scale(1.15) rotate(5deg);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
 }
 
 .self-presentation {
@@ -416,10 +540,12 @@
 .contact-info {
     background: var(--random-card-bg, var(--card-background));
     border-radius: var(--homecard-border-radius);
-    padding: 3rem 2.5rem; /* Same padding as personal-details for consistency */
+    padding: 3rem 2.5rem;
+    /* Same padding as personal-details for consistency */
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; /* Same gap as personal-details */
+    gap: 1.2rem;
+    /* Same gap as personal-details */
     box-shadow: 0 10px 30px var(--random-card-shadow, rgba(0, 0, 0, 0.06));
     backdrop-filter: blur(10px);
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.12));
@@ -427,11 +553,13 @@
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+a{
+    cursor: none;
+}
 .contact-title {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-color);
-    margin-bottom: 1rem;
     letter-spacing: -0.01em;
 }
 
@@ -486,17 +614,24 @@
     box-shadow: 0 15px 40px var(--random-card-shadow, rgba(0, 0, 0, 0.06));
     backdrop-filter: blur(15px);
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.12));
-    display: block; /* Ensure block display */
-    position: relative; /* Establish new stacking context */
-    z-index: 1; /* Ensure it's on top */
+    display: block;
+    /* Ensure block display */
+    position: relative;
+    /* Establish new stacking context */
+    z-index: 1;
+    /* Ensure it's on top */
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.section-title{
+    display: flex;
+    align-items: center;
+}
 .education-title {
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 800;
     color: var(--text-color);
-    margin-bottom: 2rem;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -527,7 +662,7 @@
     border-color: rgba(var(--accent-color-rgb), 0.25);
 }
 
-.item-icon{
+.item-icon {
     font-size: 2.5rem;
     color: var(--accent-color);
     transition: transform 0.3s ease, color 0.3s ease;
@@ -580,17 +715,33 @@
     justify-content: center;
 }
 
-.education-item:hover  {
+.education-item:hover {
     transform: scale(1.02);
-    animation: rotate 0.75s cubic-bezier(.36,.07,.19,.97) both;
+    animation: rotate 0.75s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 @keyframes wiggle {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(8deg); }
-    40% { transform: rotate(-8deg); }
-    60% { transform: rotate(4deg); }
-    80% { transform: rotate(-4deg); }
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    20% {
+        transform: rotate(8deg);
+    }
+
+    40% {
+        transform: rotate(-8deg);
+    }
+
+    60% {
+        transform: rotate(4deg);
+    }
+
+    80% {
+        transform: rotate(-4deg);
+    }
 }
 
 .degree {
@@ -647,6 +798,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Remove hover effects by commenting out or deleting these rules
 .intro-section:hover,
 .personal-details:hover,
 .contact-info:hover,
@@ -654,7 +806,7 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 }
-
+*/
 
 /* Pause animations on hover for better interaction */
 .section-icon:hover,
@@ -697,11 +849,15 @@
 
 /* Navigation Cards */
 .navigation-cards {
-    margin-top: 5rem; /* Further increased margin for better separation */
+    margin-top: 5rem;
+    /* Further increased margin for better separation */
     margin-bottom: 3rem;
-    clear: both; /* Ensure no floating elements interfere */
-    position: relative; /* Create a new stacking context */
-    z-index: 1; /* Ensure it's above any potentially overlapping elements */
+    clear: both;
+    /* Ensure no floating elements interfere */
+    position: relative;
+    /* Create a new stacking context */
+    z-index: 1;
+    /* Ensure it's above any potentially overlapping elements */
 }
 
 .cards-container {
@@ -760,7 +916,7 @@
     transform: translateY(-8px) scale(1.02);
 }
 
-.nav-card > * {
+.nav-card>* {
     position: relative;
     z-index: 1;
 }
@@ -871,6 +1027,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -884,21 +1041,21 @@
         grid-template-rows: auto auto auto;
         gap: 1.2rem;
     }
-    
+
     .self-presentation {
         font-size: 1.9rem;
     }
-    
+
     .intro-section,
     .education-section .education-info {
         padding: 2.5rem 2rem;
     }
-    
+
     .personal-details,
     .contact-info {
         padding: 2rem 1.5rem;
     }
-    
+
     .education-section {
         margin: 3rem 0;
     }
@@ -989,8 +1146,10 @@
         font-size: 2rem;
     }
 
-    .personal-details, .contact-info {
-        min-height: 220px; /* Reduced minimum height for smaller screens */
+    .personal-details,
+    .contact-info {
+        min-height: 220px;
+        /* Reduced minimum height for smaller screens */
     }
 }
 
@@ -1015,6 +1174,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1022,40 +1182,66 @@
 }
 
 /* Ensure consistent height and layout for personal-info-grid elements */
-.personal-details, .contact-info {
-    min-height: 300px; /* Set a minimum height for both elements */
+.personal-details,
+.contact-info {
+    min-height: 300px;
+    /* Set a minimum height for both elements */
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Use flex-start instead of center for consistent alignment */
-    box-sizing: border-box; /* Ensure padding is included in height calculations */
+    justify-content: flex-start;
+    /* Use flex-start instead of center for consistent alignment */
+    box-sizing: border-box;
+    /* Ensure padding is included in height calculations */
 }
 
 /* Fix for grid layout to ensure equal heights */
 .personal-info-grid {
-    align-items: stretch; /* Make sure the grid items stretch to fill the available space */
+    align-items: stretch;
+    /* Make sure the grid items stretch to fill the available space */
 }
 
 /* Looping Video Section */
 .looping-video-section {
-    width: 100%;
-    margin: 8rem 0; /* Adjust margin as needed */
+    width: 105%;
+    margin: 8rem auto;
+    /* Adjust margin as needed */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: var(--homecard-border-radius, 24px); /* Match card border radius */
+    border-radius: var(--homecard-border-radius, 24px);
+    /* Match card border radius */
     overflow: hidden;
     position: relative;
-    background-color: var(--card-background); /* Optional: background if video doesn't load */
+    background-color: var(--card-background);
+    /* Optional: background if video doesn't load */
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.1));
     box-shadow: 0 10px 30px var(--random-card-shadow, rgba(0, 0, 0, 0.05));
+}
+
+.latest-video-label {
+    height: 3rem;
+    width: 12rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 2.1rem;
+    backdrop-filter: blur(30px);
+    text-align: center;
+    padding-top: 1.1rem;
 }
 
 .looping-video {
     width: 100%;
     height: auto;
-    max-height: 80vh; /* Adjust max height as needed */
+    max-height: 80vh;
+    /* Adjust max height as needed */
     object-fit: cover;
-    display: block; /* Remove extra space below video */
-    border-radius: var(--homecard-border-radius, 24px); /* Match container */
+    display: block;
+    /* Remove extra space below video */
+    border-radius: var(--homecard-border-radius, 24px);
+    /* Match container */
 }

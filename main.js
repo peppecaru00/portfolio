@@ -8,6 +8,11 @@ import {setupCustomCursor} from './modules/dotCursor.js';
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded");
 
+    // Disable automatic scroll restoration by the browser
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
     // Setup page transitions (this should be first)
     setTimeout(() => setupPageTransitions(), 100); 
 
