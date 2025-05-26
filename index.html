@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="Styles/transitions.css">
     <link rel="stylesheet" href="Styles/image-focus.css">
     <link rel="icon" href="favicon.png" type="image/x-icon">
-    <script src="js/lib/imagesloaded.pkgd.min.js"></script>
-    <script defer src="js/lib/cdn.min.js"></script>
+    <script src="js/lib/imagesloaded.pkgd.min.js"></script>    <script defer src="js/lib/cdn.min.js"></script>
+    <script src="Scripts/colorUtils.js" defer></script>
     <script type="module" src="main.js" defer></script>
 
     <script>
@@ -57,11 +57,6 @@
                     .then(response => response.text())
                     .then(html => $el.innerHTML = html).then(isLoading = false, contentLoaded = true)"
                      class="home-container" id="home-container"></div>
-
-        <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
-                    .then(response => response.text())
-                    .then(html => $el.innerHTML = html).then(isLoading = false, contentLoaded = true)"
-                     class="me-container" id="me-container"></div>
 
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
             class="stills-container" id="stills-container"></div>

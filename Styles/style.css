@@ -313,6 +313,7 @@
         height: 2em;
         background-color: rgba(214, 82, 82, 0.443);
         backdrop-filter: blur(10px);
+        z-index: 999;
     }
 
     @keyframes spin {
