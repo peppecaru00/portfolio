@@ -13,6 +13,10 @@
     --button-background-hover-dark: rgba(0, 0, 0, 0.15);
     --text-muted-dark: rgba(255, 255, 255, 0.5);
     --text-muted-light: rgba(0, 0, 0, 0.4);
+    --accent-color: #667eea;
+    --accent-color-rgb: 102, 126, 234;
+    --accent-color-alt: #764ba2;
+    --accent-color-alt-rgb: 118, 75, 162;
 }
 
 [data-theme="light"] {
@@ -20,7 +24,7 @@
     --text-color: #111;
     --group-title-color: #111;
     --header-background: rgba(0, 0, 0, 0.3);
-    --container-background: rgba(0, 0, 0, 0.1);
+    --container-background: rgba(0, 0, 0, 0.03);
     --scrollbar-thumb: rgba(0, 0, 0, 0.3);
     --overlay-background: rgba(255, 255, 255, .7);
     --scrollbar-color: rgba(0, 0, 0, 0.2);

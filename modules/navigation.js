@@ -1,6 +1,7 @@
 
 // Store scroll positions for each page
 const scrollPositions = {
+    'home': 0,
     'photos': 0,
     'stills': 0,
     'me': 0
@@ -45,21 +46,22 @@ function determinePageFromButton(button) {
     const buttonClass = button.className || '';
     
     if (buttonClass.includes('logo-button') || buttonText.includes('logo')) {
-        return 'me'; // Logo goes to me page based on HTML structure
+        return 'home'; // Logo now goes to home page
     }
     
+    if (buttonText.includes('home')) return 'home';
     if (buttonText.includes('photo')) return 'photos';
     if (buttonText.includes('still')) return 'stills';
     if (buttonText.includes('me') || buttonText.includes('about')) return 'me';
     
     // Default fallback
-    return 'photos';
+    return 'home';
 }
 
 // Save the current scroll position for the current page
 function saveCurrentScrollPosition() {
     // Get current page from Alpine.js data on HTML element
-    let currentPage = 'photos'; // default
+    let currentPage = 'home'; // default to home now
     
     try {
         // Access Alpine.js data directly from the html element
@@ -68,22 +70,27 @@ function saveCurrentScrollPosition() {
             currentPage = htmlEl.__x.$data.currentPage;
         } else {
             // Fallback: try to determine from visible page containers
+            const homeContainer = document.getElementById('home-container');
             const photosContainer = document.getElementById('photos-container');
             const stillsContainer = document.getElementById('stills-container');
             const meContainer = document.getElementById('me-container');
             
             // Check which container is currently visible (has x-show="true")
-            if (stillsContainer && stillsContainer.style.display !== 'none' && !stillsContainer.hidden) {
+            if (homeContainer && homeContainer.style.display !== 'none' && !homeContainer.hidden) {
+                currentPage = 'home';
+            } else if (stillsContainer && stillsContainer.style.display !== 'none' && !stillsContainer.hidden) {
                 currentPage = 'stills';
             } else if (meContainer && meContainer.style.display !== 'none' && !meContainer.hidden) {
                 currentPage = 'me';
+            } else if (photosContainer && photosContainer.style.display !== 'none' && !photosContainer.hidden) {
+                currentPage = 'photos';
             } else {
-                currentPage = 'photos'; // default to photos
+                currentPage = 'home'; // default to home
             }
         }
     } catch (error) {
         console.log('Could not access Alpine.js data, using fallback detection');
-        currentPage = 'photos';
+        currentPage = 'home';
     }
     
     scrollPositions[currentPage] = window.pageYOffset || document.documentElement.scrollTop;

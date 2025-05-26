@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" x-data="{ 
     theme: 'dark', 
-    currentPage: 'photos', 
+    currentPage: 'home', 
     contentLoaded: false, 
     isLoading: true}"
     :data-theme="theme">
@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giuseppe Caruso</title>
+    <title>Giuseppe Caruso</title>    <link rel="stylesheet" href="Styles/home.css">
     <link rel="stylesheet" href="Styles/me.css">
     <link rel="stylesheet" href="Styles/stills.css">
     <link rel="stylesheet" href="Styles/photos.css">
@@ -51,10 +51,13 @@
     <!-- header loading section -->
     <div x-init="fetch('components/header.html')
     .then(response => response.text())
-    .then(html => $el.outerHTML = html)"></div>
-
-    <!-- routing section -->
+    .then(html => $el.outerHTML = html)"></div>    <!-- routing section -->
     <main @transitionend="isLoading = false">
+        <div x-show="currentPage === 'home'" x-transition x-init="fetch('components/home.html')
+                    .then(response => response.text())
+                    .then(html => $el.innerHTML = html).then(isLoading = false, contentLoaded = true)"
+                     class="home-container" id="home-container"></div>
+
         <div x-show="currentPage === 'me'" x-transition x-init="fetch('components/me.html')
                     .then(response => response.text())
                     .then(html => $el.innerHTML = html).then(isLoading = false, contentLoaded = true)"

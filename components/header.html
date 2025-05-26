@@ -1,7 +1,10 @@
 <div class="header-container">
     <header class="header">
-        <button @click="currentPage = 'me'" class="logo-button"><span class="logo-icon"></span></button>
+        <button @click="currentPage = 'home'" class="logo-button"><span class="logo-icon"></span></button>
         <div class="nav-buttons">
+
+            <button @click="currentPage = 'home'" :class="{ 'active': currentPage === 'home' }"
+                class="nav-button">home</button>
 
             <button @click="currentPage = 'photos'" :class="{ 'active': currentPage === 'photos' }"
                 class="nav-button">photos</button>

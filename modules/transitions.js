@@ -256,6 +256,7 @@ function setupFallbackPageDetection() {
  */
 function getCurrentPageFromDOM() {
     // Check body classes
+    if (document.body.classList.contains('page-home')) return 'home';
     if (document.body.classList.contains('page-stills')) return 'stills';
     if (document.body.classList.contains('page-me')) return 'me';
     
@@ -263,16 +264,18 @@ function getCurrentPageFromDOM() {
     const activeNav = document.querySelector('.nav-button.active, .nav-button[aria-current="page"]');
     if (activeNav) {
         const text = activeNav.textContent.toLowerCase();
+        if (text.includes('home')) return 'home';
         if (text.includes('still')) return 'stills';
         if (text.includes('me') || text.includes('about')) return 'me';
     }
     
     // Check URL or other indicators
     const path = window.location.pathname.toLowerCase();
+    if (path.includes('home')) return 'home';
     if (path.includes('stills')) return 'stills';
     if (path.includes('me') || path.includes('about')) return 'me';
     
-    return 'photos'; // default
+    return 'home'; // default to home now
 }
 
 /**
