@@ -443,16 +443,20 @@
 }
 
 .detail-item {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-color);
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem 0;
-}
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 66rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
 
 .icon-wrapper {
     display: flex;
@@ -469,6 +473,7 @@
     overflow: hidden;
 }
 
+/* Icon wrapper default styling for skills section */
 .icon-wrapper::before {
     content: '';
     position: absolute;
@@ -510,28 +515,10 @@
     box-shadow: none !important;
 }
 
-.icon-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-alt));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
-}
-
 /* Remove hover background effect for About Me and Get in Touch sections */
 .personal-details .icon-wrapper::before,
 .contact-info .icon-wrapper::before {
     background: none;
-}
-
-.icon-wrapper:hover {
-    transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 /* Keep hover animation but remove shadow for About Me and Get in Touch sections */
@@ -582,13 +569,20 @@
 }
 
 .tool-item {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 66rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
 }
 
 .tool-name {
@@ -645,16 +639,22 @@ a {
 }
 
 .contact-item {
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--text-color);
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 66rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+
 
 .contact-item:last-child {
     border-bottom: none;

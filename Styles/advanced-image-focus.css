@@ -96,34 +96,41 @@ body.no-scroll {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
     color: white;
-    font-size: 24px;
+    font-size: 1rem;
     line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 10001;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .advanced-close-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     stroke: currentColor;
 }
 
 .advanced-close-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.advanced-close-btn:active {
+    transform: translateY(0);
 }
 
 /* Navigation Buttons */
@@ -131,11 +138,11 @@ body.no-scroll {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+    width: 54px;
+    height: 54px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 27px;
     color: white;
     font-size: 32px;
     line-height: 1;
@@ -143,16 +150,17 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 10001;
     user-select: none;
+    -webkit-user-select: none;
 }
 
 .advanced-nav-btn svg {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     stroke: currentColor;
 }
 
@@ -166,8 +174,13 @@ body.no-scroll {
 
 .advanced-nav-btn:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-50%) scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.advanced-nav-btn:active:not(:disabled) {
+    transform: translateY(-50%) translateY(0);
 }
 
 .advanced-nav-btn:disabled {
@@ -182,16 +195,16 @@ body.no-scroll {
     right: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     z-index: 10001;
 }
 
 .advanced-zoom-btn {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 23px;
     color: white;
     font-size: 20px;
     line-height: 1;
@@ -199,16 +212,28 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     user-select: none;
+    -webkit-user-select: none;
+}
+
+.advanced-zoom-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
 }
 
 .advanced-zoom-btn:hover {
     background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.advanced-zoom-btn:active {
+    transform: translateY(0);
 }
 
 /* Counter */
@@ -266,48 +291,146 @@ body.no-scroll {
     transform: scale(1);
 }
 
+/* Label Container for group name and watch button */
+.advanced-label-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10001;
+}
+
+.advanced-group-label {
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    font-family: 'MabryPro-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: capitalize;
+    letter-spacing: 0.025em;
+}
+
+.advanced-watch-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 59, 48, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-family: 'MabryPro-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.advanced-watch-btn:hover {
+    background: rgba(255, 59, 48, 1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+}
+
+.advanced-watch-btn:active {
+    transform: translateY(0);
+}
+
+.advanced-watch-btn svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 2px;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .advanced-image-container {
         padding: 20px;
     }
     
-    .advanced-close-btn {
-        top: 10px;
-        right: 10px;
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-    }
-    
-    .advanced-nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 28px;
-    }
-    
-    .advanced-prev-btn {
-        left: 10px;
-    }
-    
-    .advanced-next-btn {
-        right: 10px;
-    }
-    
-    .advanced-zoom-controls {
-        bottom: 10px;
-        right: 10px;
+    .advanced-label-container {
+        top: 15px;
+        left: 15px;
         gap: 8px;
     }
     
+    .advanced-group-label {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .advanced-watch-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .advanced-watch-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .advanced-close-btn {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+    
+    .advanced-close-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .advanced-nav-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+    }
+    
+    .advanced-nav-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .advanced-prev-btn {
+        left: 15px;
+    }
+    
+    .advanced-next-btn {
+        right: 15px;
+    }
+    
+    .advanced-zoom-controls {
+        bottom: 15px;
+        right: 15px;
+        gap: 6px;
+    }
+    
     .advanced-zoom-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
+        width: 42px;
+        height: 42px;
+        border-radius: 21px;
+    }
+    
+    .advanced-zoom-btn svg {
+        width: 16px;
+        height: 16px;
     }
     
     .advanced-counter {
-        bottom: 10px;
+        bottom: 15px;
         font-size: 12px;
         padding: 6px 12px;
     }

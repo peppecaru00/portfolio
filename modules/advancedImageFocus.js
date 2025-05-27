@@ -8,6 +8,8 @@
  * - Responsive design that respects screen dimensions
  */
 
+import { getVideoLinks } from './videoLinks.js';
+
 // State management
 const imageGalleryState = {
     isActive: false,
@@ -23,7 +25,8 @@ const imageGalleryState = {
     minScale: 1,
     animationFrameId: null,
     lastPanTime: 0,
-    panThrottleDelay: 16 // ~60fps
+    panThrottleDelay: 16, // ~60fps
+    videoLinks: {} // Store video links for groups
 };
 
 /**
@@ -103,6 +106,30 @@ function createAdvancedOverlay() {
         const counter = document.createElement('div');
         counter.className = 'advanced-counter';
         counter.id = 'advanced-counter';
+        
+        // Label container for group name and watch button
+        const labelContainer = document.createElement('div');
+        labelContainer.className = 'advanced-label-container';
+        labelContainer.id = 'advanced-label-container';
+        
+        const groupLabel = document.createElement('div');
+        groupLabel.className = 'advanced-group-label';
+        groupLabel.id = 'advanced-group-label';
+        
+        const watchButton = document.createElement('button');
+        watchButton.className = 'advanced-watch-btn';
+        watchButton.id = 'advanced-watch-btn';
+        watchButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+            <span>Watch</span>
+        `;
+        watchButton.setAttribute('aria-label', 'Watch video');
+        watchButton.style.display = 'none'; // Hidden by default
+        
+        labelContainer.appendChild(groupLabel);
+        labelContainer.appendChild(watchButton);
           // Assemble the overlay
         zoomControls.appendChild(zoomInBtn);
         zoomControls.appendChild(zoomOutBtn);
@@ -114,6 +141,7 @@ function createAdvancedOverlay() {
         container.appendChild(nextButton);
         container.appendChild(zoomControls);
         container.appendChild(counter);
+        container.appendChild(labelContainer);
         
         overlay.appendChild(container);
         document.body.appendChild(overlay);
@@ -186,6 +214,9 @@ export function openAdvancedViewer(imgElement) {
     
     imageGalleryState.currentType = isStill ? 'still' : 'photo';
     
+    // Load video links
+    imageGalleryState.videoLinks = getVideoLinks();
+    
     // Get all images of the same type
     const selector = isStill ? '.styled-still' : '.styled-photo';
     const allImages = Array.from(document.querySelectorAll(selector));
@@ -222,6 +253,8 @@ function loadCurrentImage() {
     const overlay = document.getElementById('advanced-image-overlay');
     const image = overlay.querySelector('.advanced-image');
     const counter = overlay.querySelector('.advanced-counter');
+    const groupLabel = overlay.querySelector('.advanced-group-label');
+    const watchButton = overlay.querySelector('.advanced-watch-btn');
     
     const currentImg = imageGalleryState.imageList[imageGalleryState.currentImageIndex];
     
@@ -234,6 +267,33 @@ function loadCurrentImage() {
         
         // Update counter
         counter.textContent = `${imageGalleryState.currentImageIndex + 1} / ${imageGalleryState.imageList.length}`;
+        
+        // Extract group name from image source
+        const imageName = currentImg.src.split('/').pop().split('.')[0]; // Get filename without extension
+        const groupName = imageName.split('-')[0]; // Get group prefix
+        
+        // Update group label
+        if (groupLabel) {
+            groupLabel.textContent = groupName || 'Unknown';
+        }
+        
+        // Update watch button visibility and functionality
+        if (watchButton) {
+            const videoLink = imageGalleryState.videoLinks[groupName];
+            if (videoLink && imageGalleryState.currentType === 'still') {
+                watchButton.style.display = 'flex';
+                // Remove existing event listeners
+                const newWatchButton = watchButton.cloneNode(true);
+                watchButton.parentNode.replaceChild(newWatchButton, watchButton);
+                
+                // Add new event listener
+                newWatchButton.addEventListener('click', () => {
+                    window.open(videoLink, '_blank');
+                });
+            } else {
+                watchButton.style.display = 'none';
+            }
+        }
         
         // Reset zoom and pan
         resetZoom();
