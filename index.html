@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="Styles/theme.css">
     <link rel="stylesheet" href="Styles/transitions.css">
     <link rel="stylesheet" href="Styles/image-focus.css">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <script src="js/lib/imagesloaded.pkgd.min.js"></script>    <script defer src="js/lib/cdn.min.js"></script>
+    <link rel="icon" href="favicon.png" type="image/x-icon">    <script src="js/lib/imagesloaded.pkgd.min.js"></script>    <script defer src="js/lib/cdn.min.js"></script>
     <script src="Scripts/colorUtils.js" defer></script>
     <script type="module" src="main.js" defer></script>
 
@@ -52,10 +51,21 @@
     <div x-init="fetch('components/header.html')
     .then(response => response.text())
     .then(html => $el.outerHTML = html)"></div>    <!-- routing section -->
-    <main @transitionend="isLoading = false">
-        <div x-show="currentPage === 'home'" x-transition x-init="fetch('components/home.html')
+    <main @transitionend="isLoading = false">        <div x-show="currentPage === 'home'" x-transition x-init="fetch('components/home.html')
                     .then(response => response.text())
-                    .then(html => $el.innerHTML = html).then(isLoading = false, contentLoaded = true)"
+                    .then(html => {
+                        $el.innerHTML = html;
+                        // Trigger home animations after content is loaded
+                        setTimeout(() => {
+                            if (window.setupHomeAnimations) {
+                                window.setupHomeAnimations();
+                            }
+                        }, 100);
+                        return Promise.resolve();
+                    }).then(() => {
+                        isLoading = false;
+                        contentLoaded = true;
+                    })"
                      class="home-container" id="home-container"></div>
 
         <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"

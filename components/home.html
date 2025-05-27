@@ -3,55 +3,35 @@
 <body>
     <div class="home-content" id="home-content">
         <!-- Welcome Section with Animation -->
-        <div class="welcome-section" x-data="{ visible: false }" x-init="setTimeout(() => visible = true, 100)">
-            <div class="welcome-message" x-show="visible" x-transition:enter="transition ease-out duration-1000"
-                x-transition:enter-start="opacity-0 transform translate-y-8"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
+        <div class="welcome-section fade-in-element">
+            <div class="welcome-message">
                 <h1 class="welcome-title">Welcome, <br>this is my portfolio</h1>
                 <p class="welcome-subtitle">Explore my videos, photos and design works!</p>
             </div>
         </div>
 
-        <div class="looping-video-container">
-
-            <!-- Looping Video Section -->
-            <div class="looping-video-section video-1" x-data="{ videoVisible: false }"
-                x-init="setTimeout(() => videoVisible = true, 200)">
+        <div class="looping-video-container">            <!-- Looping Video Section -->
+            <div class="looping-video-section video-1 fade-in-element">
                 <div class="latest-video-label label-1">Latest Video</div>
-                <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
-                    x-transition:enter="transition ease-out duration-1000 delay-100"
-                    x-transition:enter-start="opacity-0 transform scale-95"
-                    x-transition:enter-end="opacity-100 transform scale-100">
+                <video autoplay loop muted playsinline class="looping-video">
                     <source src="Media/test_conversione.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
 
-            <div class="looping-video-section video-2" x-data="{ videoVisible: false }"
-                x-init="setTimeout(() => videoVisible = true, 200)">
+            <div class="looping-video-section video-2 fade-in-element">
                 <div class="latest-video-label">Latest Edit</div>
-                <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
-                    x-transition:enter="transition ease-out duration-1000 delay-100"
-                    x-transition:enter-start="opacity-0 transform scale-95"
-                    x-transition:enter-end="opacity-100 transform scale-100">
+                <video autoplay loop muted playsinline class="looping-video">
                     <source src="Media/uliveto.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
 
         </div>
-
-
-
-
         <!-- Personal Information Section - Layout in 2 parts -->
-        <div class="personal-info-grid" x-data="{ infoVisible: false }"
-            x-init="setTimeout(() => infoVisible = true, 300)">
+        <div class="personal-info-grid">
             <!-- Introduction -->
-            <div class="intro-section" x-show="infoVisible"
-                x-transition:enter="transition ease-out duration-800 delay-200"
-                x-transition:enter-start="opacity-0 transform translate-y-6"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
+            <div class="intro-section fade-in-element">
                 <div class="image-container">
                     <img src="Media/home_photo.jpg" alt="Giuseppe Caruso" class="profile-image">
                 </div>
@@ -60,10 +40,7 @@
             </div>
 
             <!-- Personal Details -->
-            <div class="personal-details" x-show="infoVisible"
-                x-transition:enter="transition ease-out duration-800 delay-300"
-                x-transition:enter-start="opacity-0 transform translate-y-6"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
+            <div class="personal-details fade-in-element">
                 <div class="section-title">
                     <div class="section-icon">🧩</div>
                     <h3 class="personal-details-title">About me</h3>
@@ -78,10 +55,7 @@
                 </div>            </div>
 
             <!-- Tools I Use Section -->
-            <div class="tools-section" x-show="infoVisible"
-                x-transition:enter="transition ease-out duration-800 delay-350"
-                x-transition:enter-start="opacity-0 transform translate-y-6"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
+            <div class="tools-section fade-in-element">
                 <div class="section-title">
                     <div class="section-icon">🛠️</div>
                     <h3 class="tools-title">Tools I Use</h3>
@@ -93,8 +67,8 @@
                         <span class="tool-name">Figma</span>
                     </div>
                     <div class="tool-item">
-                        <div class="icon-wrapper"><span class="item-icon">📱</span></div>
-                        <span class="tool-name">Adobe XD</span>
+                        <div class="icon-wrapper"><span class="item-icon">🎲</span></div>
+                        <span class="tool-name">Blender</span>
                     </div>
                     <div class="tool-item">
                         <div class="icon-wrapper"><span class="item-icon">🖌️</span></div>
@@ -106,7 +80,7 @@
                     </div>
                     <div class="tool-item">
                         <div class="icon-wrapper"><span class="item-icon">🎬</span></div>
-                        <span class="tool-name">After Effects</span>
+                        <span class="tool-name">DaVinci</span>
                     </div>
                     <div class="tool-item">
                         <div class="icon-wrapper"><span class="item-icon">💻</span></div>
@@ -116,10 +90,7 @@
             </div>
             
             <!-- Contact Information -->
-            <div class="contact-info" x-show="infoVisible"
-                x-transition:enter="transition ease-out duration-800 delay-400"
-                x-transition:enter-start="opacity-0 transform translate-y-6"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
+            <div class="contact-info fade-in-element">
 
                 <div class="section-title">
                     <div class="section-icon">📬</div>
@@ -152,63 +123,48 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Education Section - Separate from personal info grid -->
-        <div class="education-section" x-data="{ infoVisible: false }"
-            x-init="setTimeout(() => infoVisible = true, 300)">
-            <div class="education-info" x-show="infoVisible"
-                x-transition:enter="transition ease-out duration-800 delay-500"
-                x-transition:enter-start="opacity-0 transform translate-y-6"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
-
+        </div>        <!-- Education Section - Separate from personal info grid -->
+        <div class="education-section fade-in-element">
+            <div class="education-info">
                 <div class="section-title">
                     <div class="section-icon">🎓</div>
                     <div class="education-title">Education</div>
                 </div>
 
                 <div class="education-items">
-                    <div class="education-item">
+                    <div class="education-item fade-in-element">
                         <div class="item-icon-wrapper"><span class="edu-icon">🚀</span></div>
                         <div class="degree">Master's Degree in Media Engineering.</div>
                         <div class="institution text-muted">Politecnico di Torino, <span>up to present.</span></div>
                     </div>
-                    <div class="education-item">
+                    <div class="education-item fade-in-element">
                         <div class="item-icon-wrapper"><span class="edu-icon">🎬</span></div>
                         <div class="degree">Bachelor's Degree in Cinema & Media Engineering.</div>
                         <div class="institution text-muted">Politecnico di Torino, <span>21.04.2024.</span></div>
                     </div>
-                    <div class="education-item">
+                    <div class="education-item fade-in-element">
                         <div class="item-icon-wrapper"><span class="edu-icon">🔬</span></div>
                         <div class="degree">High School Degree "Liceo Scientifico P.N.I. Math & Physics".</div>
                         <div class="institution text-muted">Matteo Raeli High School, Noto, <span>2019.</span></div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Navigation Cards with Hover Animations -->
-        <div class="navigation-cards" x-data="{ cardsVisible: false }"
-            x-init="setTimeout(() => cardsVisible = true, 600)">
-
-            <div class="cards-container" x-show="cardsVisible"
-                x-transition:enter="transition ease-out duration-1000 delay-300"
-                x-transition:enter-start="opacity-0 transform translate-y-8"
-                x-transition:enter-end="opacity-100 transform translate-y-0">
-
-                <div class="nav-card" @click="currentPage = 'photos'">
+        </div>        <!-- Navigation Cards with Hover Animations -->
+        <div class="navigation-cards fade-in-element">
+            <div class="cards-container">
+                <div class="nav-card fade-in-element" @click="currentPage = 'photos'">
                     <div class="card-icon">📸</div>
                     <h3>Photos</h3>
                     <p>Explore my photography work</p>
                 </div>
 
-                <div class="nav-card" @click="currentPage = 'stills'">
+                <div class="nav-card fade-in-element" @click="currentPage = 'stills'">
                     <div class="card-icon">🎬</div>
                     <h3>Video Stills</h3>
                     <p>See frames from my video projects</p>
                 </div>
 
-                <div class="nav-card" @click="window.open('/portfolio/pdf/portfolio-design.pdf', '_blank')">
+                <div class="nav-card fade-in-element" @click="window.open('/portfolio/pdf/portfolio-design.pdf', '_blank')">
                     <div class="card-icon">🎨</div>
                     <h3>Designs</h3>
                     <p>View my design portfolio</p>

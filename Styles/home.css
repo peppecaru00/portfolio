@@ -204,7 +204,7 @@
     transition: all 0.3s ease;
 }
 
-.self-presentation{
+.self-presentation {
     font-size: 3rem;
     line-height: 100%;
     font-weight: 900;
@@ -437,13 +437,15 @@
     height: 100%;
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.personal-details-title{
+
+.personal-details-title {
     font-size: 1.8rem;
     font-weight: 700;
     line-height: 1rem;
     color: var(--text-color);
     letter-spacing: -0.01em;
 }
+
 .detail-item {
     font-size: 1.4rem;
     font-weight: 600;
@@ -506,7 +508,8 @@
 }
 
 .contact-info .contact-items .contact-item .icon-wrapper {
-    background: transparent !important; /* Added !important to override inline styles from JS */
+    background: transparent !important;
+    /* Added !important to override inline styles from JS */
     backdrop-filter: none !important;
     box-shadow: none !important;
 }
@@ -628,9 +631,10 @@
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-a{
+a {
     cursor: none;
 }
+
 .contact-title {
     font-size: 1.8rem;
     font-weight: 700;
@@ -698,10 +702,11 @@ a{
     transition: all 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.section-title{
+.section-title {
     display: flex;
     align-items: center;
 }
+
 .education-title {
     font-size: 1rem;
     font-weight: 800;
@@ -1101,6 +1106,8 @@ a{
     animation: fadeInUp 0.6s ease-out 0.9s both;
 }
 
+
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1120,7 +1127,7 @@ a{
         grid-template-rows: auto auto auto;
         gap: 1.2rem;
     }
-    
+
     .tools-section {
         grid-column: 1 / -1;
     }
@@ -1132,7 +1139,7 @@ a{
         grid-template-rows: auto auto auto;
         gap: 1.2rem;
     }
-    
+
     .tools-section {
         grid-column: 1 / -1;
     }
@@ -1296,16 +1303,16 @@ a{
     /* Make sure the grid items stretch to fill the available space */
 }
 
-.looping-video-container{
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   gap: 1rem;
-   height: auto;
+.looping-video-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    height: auto;
 }
 
 /* Looping Video Section */
-.looping-video-section{
+.looping-video-section {
     margin: 8rem auto;
     /* Adjust margin as needed */
     display: flex;
@@ -1321,11 +1328,11 @@ a{
     box-shadow: 0 10px 30px var(--random-card-shadow, rgba(0, 0, 0, 0.05));
 }
 
-.video-1{
+.video-1 {
     height: 100%;
 }
 
-.video-2{
+.video-2 {
     height: 100%;
 }
 

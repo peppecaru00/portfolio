@@ -27,6 +27,15 @@ export function setupNavigation() {
                     const newPage = determinePageFromButton(button);
                     console.log('Switching to page:', newPage);
                     restoreScrollPosition(newPage);
+                    
+                    // Re-initialize home animations if navigating to home page
+                    if (newPage === 'home') {
+                        setTimeout(() => {
+                            if (window.reinitializeHomeAnimations) {
+                                window.reinitializeHomeAnimations();
+                            }
+                        }, 200);
+                    }
                 }, 100);
             });
         });
