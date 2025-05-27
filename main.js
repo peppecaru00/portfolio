@@ -55,12 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Disable automatic scroll restoration by the browser
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
-    }
-
-    // Setup page transitions (this should be first)
+    }    // Setup page transitions (this should be first)
     setTimeout(() => setupPageTransitions(), 100);     // Initialize UI effects
-    setupScrollDetection();
-    setupNavigation();    setupCustomCursor();
+    // setupScrollDetection(); // Disabled to prevent header hide/show behavior
+    setupNavigation();setupCustomCursor();
       
     // Setup home page animations - with better timing
     setupHomeAnimationsWithObserver();

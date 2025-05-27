@@ -1170,43 +1170,73 @@ a {
     }
 
     .welcome-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        line-height: 1.1;
     }
 
     .welcome-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        line-height: 1.4;
     }
 
     .personal-info-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto;
-        gap: 1rem;
+        gap: 1.2rem;
         padding: 0;
     }
 
     .intro-section {
+        flex-direction: column;
+        text-align: center;
         padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .profile-image {
+        max-width: 250px;
     }
 
     .self-presentation {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        text-align: center;
     }
 
     .personal-details,
-    .contact-info {
-        padding: 1.8rem 1.5rem;
+    .contact-info,
+    .tools-section {
+        padding: 2rem 1.5rem;
+        min-height: auto;
+    }
+
+    .section-title {
+        justify-content: center;
+        text-align: center;
     }
 
     .detail-item {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        justify-content: center;
     }
 
     .contact-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+        text-align: center;
     }
 
     .contact-item {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        justify-content: center;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .tool-item {
+        justify-content: center;
+        text-align: center;
     }
 
     .education-info {
@@ -1214,8 +1244,221 @@ a {
     }
 
     .education-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .education-items {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .education-item {
+        padding: 1.8rem 1.5rem;
+        text-align: center;
+    }
+
+    .degree {
+        font-size: 1.2rem;
+    }
+
+    .institution {
+        font-size: 1rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .nav-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-icon {
+        font-size: 2.2rem;
+    }
+}
+
+/* Enhanced Mobile Optimizations for Home Page */
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 480px) {
+    .home-content {
+        padding: 0.5rem;
+        gap: 1.5rem;
+        margin-top: 1rem; /* Account for fixed header */
+    }
+
+    /* Welcome section optimizations */
+    .welcome-section {
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .welcome-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
+        line-height: 1.4;
+        padding: 0 0.5rem;
+    }    /* Video section mobile optimization */
+    .looping-video-container {
+        flex-direction: column !important;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    .looping-video-section {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        flex: 1;
+    }    .looping-video {
+        max-height: 50vh;
+        border-radius: 16px;
+    }
+
+    /* Second video maintains 9:16 aspect ratio on mobile */
+    .video-2 {
+        min-width: 100%; /* Constrain width to maintain aspect ratio */
+        margin: 0 auto; /* Center the video */
+    }
+
+    .video-2 .looping-video {
+        aspect-ratio: 9/16; /* Force 9:16 aspect ratio */
+        max-height: 70vh; /* Taller than first video */
+        width: 100%;
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+
+    .latest-video-label {
+        font-size: 0.8rem;
+        width: 6rem;
+        height: 1.5rem;
+        padding-top: 0.4rem;
+        left: 1rem;
+        top: 1rem;
+    }
+
+    /* Personal info grid mobile layout */
+    .personal-info-grid {
+        gap: 1rem;
+        padding: 0;
+    }
+
+    /* Intro section mobile optimization */
+    .intro-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .profile-image {
+        max-width: 200px;
+        height: auto;
+    }
+
+    .self-presentation {
+        font-size: 1.3rem;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    /* Cards mobile optimization */
+    .personal-details,
+    .contact-info,
+    .tools-section {
+        padding: 1.5rem 1rem;
+        min-height: auto;
+    }
+
+    .section-title {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-icon {
+        font-size: 2.5rem;
+        min-width: 2rem;
+        min-height: 2rem;
+        margin-right: 0;
+    }
+
+    .personal-details-title,
+    .tools-title,
+    .contact-title {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    /* Detail items mobile layout */
+    .detail-item {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    .icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Tools grid mobile layout */
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .tool-item {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    /* Contact items mobile layout */
+    .contact-item {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 0.8rem 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-item.instagram {
+        gap: 0.8rem;
+    }
+
+    /* Education section mobile optimization */
+    .education-section {
+        margin: 2rem 0 1rem 0;
+    }
+
+    .education-info {
+        padding: 1.5rem 1rem;
+    }
+
+    .education-title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
     }
 
     .education-items {
@@ -1224,15 +1467,33 @@ a {
     }
 
     .education-item {
-        padding: 1.5rem 1.2rem;
+        padding: 1.2rem 1rem;
+        text-align: center;
+    }
+
+    .item-icon-wrapper {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 1rem auto;
+    }
+
+    .edu-icon {
+        font-size: 2rem;
     }
 
     .degree {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .institution {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+    }
+
+    /* Navigation cards mobile optimization */
+    .navigation-cards {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
     .cards-container {
@@ -1242,16 +1503,108 @@ a {
 
     .nav-card {
         padding: 1.5rem 1rem;
+        min-height: auto;
     }
 
     .card-icon {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        width: 70px;
+        height: 70px;
+    }
+
+    .nav-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Disable hover effects on mobile */
+    .intro-section:hover,
+    .personal-details:hover,
+    .contact-info:hover,
+    .tools-section:hover,
+    .education-item:hover,
+    .nav-card:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    .icon-wrapper:hover,
+    .item-icon-wrapper:hover,
+    .card-icon:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+
+    /* Disable animations on mobile for better performance */
+    .intro-section,
+    .personal-details,
+    .tools-section,
+    .contact-info,
+    .education-section .education-info,
+    .item-icon-wrapper,
+    .card-icon {
+        animation: none !important;
+    }
+}
+
+/* Additional optimizations for very small screens */
+@media (max-width: 360px) {
+    .home-content {
+        padding: 0.25rem;
+    }
+
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.9rem;
     }
 
     .personal-details,
-    .contact-info {
-        min-height: 220px;
-        /* Reduced minimum height for smaller screens */
+    .contact-info,
+    .tools-section,
+    .education-info {
+        padding: 1rem 0.75rem;
+    }
+
+    .nav-card {
+        padding: 1.2rem 0.75rem;
+    }
+}
+
+/* Tablet landscape optimizations */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .looping-video-container {
+        gap: 1.5rem;
+    }
+
+    .intro-section {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .profile-image {
+        max-width: 300px;
+    }
+
+    .self-presentation {
+        font-size: 2rem;
+        text-align: left;
+    }
+}
+
+/* Improved mobile header spacing */
+@media (max-width: 800px) {
+    .home-content {
+        margin-top: 5rem; /* Account for mobile header */
+        padding-top: 1rem;
     }
 }
 
@@ -1309,27 +1662,26 @@ a {
     align-items: center;
     gap: 1rem;
     height: auto;
+    margin: 4rem 0 2rem 0; /* Better spacing */
 }
 
 /* Looping Video Section */
 .looping-video-section {
-    margin: 8rem auto;
-    /* Adjust margin as needed */
+    margin: 0; /* Remove auto margin for better mobile control */
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: var(--homecard-border-radius, 24px);
-    /* Match card border radius */
     overflow: hidden;
     position: relative;
     background-color: var(--card-background);
-    /* Optional: background if video doesn't load */
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.1));
     box-shadow: 0 10px 30px var(--random-card-shadow, rgba(0, 0, 0, 0.05));
 }
 
 .video-1 {
     height: 100%;
+    aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
 }
 
 .video-2 {
@@ -1363,4 +1715,144 @@ a {
     /* Remove extra space below video */
     border-radius: var(--homecard-border-radius, 24px);
     /* Match container */
+}
+
+/* Mobile Touch Interaction Improvements */
+@media (max-width: 800px) {
+    /* Larger touch targets */
+    .nav-card,
+    .mobile-nav-button,
+    .mobile-nav-link {
+        min-height: 48px; /* iOS/Android recommended minimum */
+    }
+
+    /* Better tap feedback */
+    .nav-card:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+        transition: all 0.1s ease;
+    }
+
+    /* Prevent zoom on double-tap */
+    .welcome-title,
+    .welcome-subtitle,
+    .self-presentation,
+    .personal-details-title,
+    .tools-title,
+    .contact-title,
+    .education-title {
+        touch-action: manipulation;
+    }
+
+    /* Improve text readability on mobile */
+    .welcome-title,
+    .self-presentation {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /* Better spacing for touch interactions */
+    .contact-item,
+    .detail-item,
+    .tool-item {
+        min-height: 44px;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Optimize images for mobile performance */
+    .profile-image,
+    .looping-video {
+        image-rendering: optimizeQuality;
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* Better mobile scrolling */
+    .home-content {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    /* Reduce motion for better mobile performance */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* Mobile video container - Fix for column layout */
+@media (max-width: 768px) {
+    .looping-video-container {
+        flex-direction: column !important;
+        gap: 1rem;
+        margin: 2rem 0;
+    }    .looping-video-section {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .looping-video {
+        max-height: 50vh;
+    }
+
+    /* Second video maintains 9:16 aspect ratio on mobile */
+    .video-2 {
+        max-width: 280px; /* Constrain width to maintain aspect ratio */
+        margin: 0 auto; /* Center the video */
+    }
+
+    .video-2 .looping-video {
+        aspect-ratio: 9/16; /* Force 9:16 aspect ratio */
+        max-height: 70vh; /* Taller than first video */
+        width: 100%;
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+}
+
+/* Improved mobile landscape orientation */
+@media (max-width: 800px) and (orientation: landscape) {
+    .welcome-section {
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+    }
+
+    .welcome-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .looping-video-container {
+        flex-direction: column !important;
+        margin: 1rem 0;
+    }    .looping-video {
+        max-height: 35vh;
+    }
+
+    /* Second video maintains 9:16 aspect ratio in landscape */
+    .video-2 {
+        max-width: 200px; /* Smaller width for landscape */
+        margin: 0 auto;
+    }
+
+    .video-2 .looping-video {
+        aspect-ratio: 9/16;
+        max-height: 60vh; /* Adjust for landscape */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .personal-info-grid {
+        gap: 0.8rem;
+    }
+
+    .navigation-cards {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
 }

@@ -76,8 +76,8 @@
 .mobile-nav-button,
 .mobile-nav-link {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: start;
     width: 100%;
     padding: 1.2rem 1rem;
     font-family: 'Mabry Pro', sans-serif;
@@ -89,7 +89,7 @@
     border-radius: 12px;
     text-decoration: none;
     text-align: left;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -106,6 +106,7 @@
 .mobile-nav-button:active,
 .mobile-nav-link:active {
     transform: translateX(2px) scale(0.98);
+    transition: all 0.1s ease;
 }
 
 .mobile-nav-button.active {
@@ -213,7 +214,7 @@
     height: 2px;
     background: var(--text-color);
     border-radius: 2px;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
     position: relative;
     z-index: 1;
@@ -288,22 +289,24 @@ html.mobile-menu-open {
     overflow: hidden !important;
 }
 
-/* Animation delays for staggered effect */
-.mobile-nav-button:nth-child(1) { 
-    transition-delay: 0.05s; 
-    animation: slideInFromRight 0.4s ease-out 0.1s both;
+/* Staggered animation for menu items - only when menu opens */
+.mobile-menu-panel[x-cloak] .mobile-nav-button,
+.mobile-menu-panel[x-cloak] .mobile-nav-link {
+    opacity: 0;
+    transform: translateX(30px);
 }
-.mobile-nav-button:nth-child(2) { 
-    transition-delay: 0.1s; 
-    animation: slideInFromRight 0.4s ease-out 0.15s both;
+
+.mobile-menu-panel:not([x-cloak]) .mobile-nav-button:nth-child(1) { 
+    animation: slideInFromRight 0.3s ease-out 0.1s both;
 }
-.mobile-nav-button:nth-child(3) { 
-    transition-delay: 0.15s; 
-    animation: slideInFromRight 0.4s ease-out 0.2s both;
+.mobile-menu-panel:not([x-cloak]) .mobile-nav-button:nth-child(2) { 
+    animation: slideInFromRight 0.3s ease-out 0.15s both;
 }
-.mobile-nav-link:nth-child(4) { 
-    transition-delay: 0.2s; 
-    animation: slideInFromRight 0.4s ease-out 0.25s both;
+.mobile-menu-panel:not([x-cloak]) .mobile-nav-button:nth-child(3) { 
+    animation: slideInFromRight 0.3s ease-out 0.2s both;
+}
+.mobile-menu-panel:not([x-cloak]) .mobile-nav-link:nth-child(4) { 
+    animation: slideInFromRight 0.3s ease-out 0.25s both;
 }
 
 /* Entrance animation for menu items */
@@ -318,35 +321,38 @@ html.mobile-menu-open {
     }
 }
 
-/* Pulse animation for active items */
-.mobile-nav-button.active {
-    animation: pulseActive 0.6s ease-out;
+/* Animation control */
+.mobile-menu-panel.animating .mobile-nav-button,
+.mobile-menu-panel.animating .mobile-nav-link {
+    pointer-events: none; /* Prevent clicks during animation */
 }
 
-@keyframes pulseActive {
-    0% {
-        transform: scale(1);
+/* Transform reset for active items to prevent conflicts */
+.mobile-nav-button.active,
+.mobile-nav-link.active {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Prevent transform conflicts during page transitions */
+.mobile-nav-button:focus,
+.mobile-nav-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    transform: none;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .mobile-nav-button,
+    .mobile-nav-link {
+        animation: none !important;
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
-    50% {
-        transform: scale(1.02);
-    }
-    100% {
-        transform: scale(1);
+    
+    .mobile-menu-panel:not([x-cloak]) .mobile-nav-button,
+    .mobile-menu-panel:not([x-cloak]) .mobile-nav-link {
+        animation: none !important;
     }
 }
 
-/* Smooth appearance for mobile menu content */
-.mobile-menu-content {
-    animation: fadeInUp 0.5s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}

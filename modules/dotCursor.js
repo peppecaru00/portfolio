@@ -1,4 +1,14 @@
 export function setupCustomCursor() {
+    // Check if device is mobile/tablet (simplified check)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                     window.innerWidth <= 768 || 
+                     ('ontouchstart' in window);
+    
+    // Don't setup cursor on mobile devices
+    if (isMobile) {
+        return;
+    }
+    
     // Create cursor element
     const cursor = document.createElement('div');
     cursor.className = 'cursor-dot';

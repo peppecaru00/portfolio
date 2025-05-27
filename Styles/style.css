@@ -1,5 +1,4 @@
-    /* Initial styles to avoid white flash */
-    html {
+    /* Initial styles to avoid white flash */    html {
         background-color: var(--background-color);
         transition: background-color 0.3s, color 0.3s;
         font-family: 'Mabry Pro', sans-serif;
@@ -11,7 +10,21 @@
         /* For Firefox */
         scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
         /* For Firefox */
+    }
 
+    /* Show default cursor on mobile devices */
+    @media (max-width: 768px), (pointer: coarse) {
+        html {
+            cursor: auto !important;
+        }
+        
+        body * {
+            cursor: auto !important;
+        }
+        
+        .cursor-dot {
+            display: none !important;
+        }
     }
 
     /* Loading state styles */
@@ -151,22 +164,23 @@
         margin-right: calc(100vw - 100%);
         /* Prevent layout shift */
         margin: 0;
-    }
-
-    .header-container {
-        display: flex;
-        position: fixed;
+    }    .header-container {
+        display: flex !important;
+        position: fixed !important;
         flex-direction: row;
-        top: 0;
-        left: 0;
+        top: 0 !important;
+        left: 0 !important;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 100% !important;
         margin: 1rem 0;
         font-family: 'Mabry Pro';
         user-select: none;
-        transition: all 0.3s ease-in-out;
-        z-index: 1001;
+        /* transition: all 0.3s ease-in-out; */ /* Disabled to prevent hide/show behavior */
+        z-index: 1001 !important;
+        transform: none !important; /* Prevent any transforms */
+        visibility: visible !important; /* Always visible */
+        opacity: 1 !important; /* Always opaque */
 
     }
 
@@ -329,12 +343,23 @@
     /* Optional: If you want to hide the "Loading images..." text when using the CSS spinner */
     .loading-spinner.visual-only {
         text-indent: -9999px;
-        /* Hides text if you keep it in the JS */
-    }
-
-    @media screen and (max-width: 800px) {
+        /* Hides text if you keep it in the JS */    }    @media screen and (max-width: 800px) {
+        /* Force normal cursor behavior on mobile */
+        html, body, body * {
+            cursor: auto !important;
+        }
+        
+        .cursor-dot {
+            display: none !important;
+        }
+        
         .header-container {
             margin: 1rem 0 0 0;
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
         }
 
         .header {

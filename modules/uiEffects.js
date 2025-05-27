@@ -126,13 +126,14 @@ function closeImageOverlay(overlay, expandedImgContainer) {
 
 
 export function setupScrollDetection() {
-    let lastScrollTop = 0;
-    const navbar = document.querySelector('.header-container');
-    let isManualScroll = false;
+    // Scroll detection disabled to keep header always visible
+    // let lastScrollTop = 0;
+    // const navbar = document.querySelector('.header-container');
+    // let isManualScroll = false;
 
-
-
-    window.addEventListener('scroll', () => {
-        isManualScroll = true;
-    });
+    // window.addEventListener('scroll', () => {
+    //     isManualScroll = true;
+    // });
+    
+    console.log('Scroll detection disabled - header will remain fixed');
 }

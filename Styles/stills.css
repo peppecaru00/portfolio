@@ -150,10 +150,11 @@
 
     .group-images {
         padding: 1rem 0 2rem 0;
+        grid-template-columns: 1fr;
     }
 
     .image-container {
-        max-width: 300px;
+        max-width: 400px;
         min-width: 30%;
     }
 
