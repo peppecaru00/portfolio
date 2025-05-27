@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Test - Portfolio</title>
+    <link rel="stylesheet" href="Styles/stills.css">
+    <link rel="stylesheet" href="Styles/photos.css">
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/theme.css">
+    <script src="js/lib/imagesloaded.pkgd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color, #1a1a1a);
+            color: var(--text-color, #ffffff);
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        
+        .test-container {
+            height: 150vh;
+            background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="debug-info">
+        <div>Scroll down to test fade-in animations</div>
+        <div id="animation-count">Animated: 0</div>
+    </div>
+
+    <h1>Animation Test Page</h1>
+    <p>This page tests the fade-up animations for the portfolio. Scroll down to see images fade in as they come into view.</p>
+
+    <div class="test-section">
+        <h2>Stills Style Animation Test</h2>
+        <div class="test-container">
+            <div id="stills-container" class="stills-container">
+                <!-- Test images will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Photos Style Animation Test</h2>
+        <div class="test-container">
+            <div id="photos-container" class="photos-container">
+                <!-- Test images will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import our animation functions
+        import { mapImages, mapPhotos } from './modules/imageHandler.js';
+
+        // Create test data
+        const testStills = [
+            'test-image-01.jpg',
+            'test-image-02.jpg', 
+            'test-image-03.jpg',
+            'test-image-04.jpg',
+            'test-image-05.jpg',
+            'another-group-01.jpg',
+            'another-group-02.jpg',
+            'another-group-03.jpg'
+        ];
+
+        const testPhotos = [
+            'photo-set-01.jpg',
+            'photo-set-02.jpg',
+            'photo-set-03.jpg',
+            'photo-set-04.jpg',
+            'vacation-01.jpg',
+            'vacation-02.jpg',
+            'vacation-03.jpg',
+            'vacation-04.jpg'
+        ];
+
+        // Debug counter
+        let animatedCount = 0;
+        const updateCounter = () => {
+            document.getElementById('animation-count').textContent = `Animated: ${animatedCount}`;
+        };
+
+        // Override console.log to track animations
+        const originalLog = console.log;
+        console.log = function(...args) {
+            if (args[0] && args[0].includes('Animating image container')) {
+                animatedCount++;
+                updateCounter();
+            }
+            originalLog.apply(console, args);
+        };
+
+        // Initialize test animations
+        setTimeout(() => {
+            console.log('Setting up test animations...');
+            mapImages(testStills);
+            mapPhotos(testPhotos);
+        }, 500);
+    </script>
+</body>
+</html>

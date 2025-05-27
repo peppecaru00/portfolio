@@ -1,5 +1,36 @@
 /* Styles specific to the Stills section */
 
+/* Loading animation styles */
+.stills-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 2rem;
+}
+
+.stills-loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(var(--text-color-rgb), 0.1);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: stillsSpinner 1s linear infinite;
+}
+
+.stills-loading-text {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-align: center;
+}
+
+@keyframes stillsSpinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .stills-container{
     display: flex;
     flex-direction: column;
@@ -80,10 +111,17 @@
     flex: 0 0 auto;
     max-width: 500px;
     min-width: 30%;
-    border-radius: 1rem;
-    transition: all 0.2s ease-in-out;
+    border-radius: .5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     object-fit: contain;
+    opacity: 0;
+    transform: translateY(30px);
  /*   cursor: url('../Cursors/focus.svg') 12 12, pointer; */
+}
+
+.image-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .styled-still {
@@ -94,9 +132,8 @@
     transition: all 0.3s ease-in-out;
 }
 
-.styled-still:hover {
-    transform: scale(1.01);
-    border-radius: 1.5rem;
+.image-container:hover {
+    transform: scale(1.05);
 }
 
 
