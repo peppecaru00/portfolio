@@ -6,6 +6,9 @@ body.transitioning {
 main {
     transition: opacity 0.3s ease-in-out;
     width: 100%;
+    display: flex; /* Added */
+    flex-direction: column; /* Added */
+    align-items: center; /* Added */
 }
 
 .page-content {

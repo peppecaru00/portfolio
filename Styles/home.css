@@ -11,11 +11,11 @@
     justify-content: center;
     width: 100%;
     max-width: 1500px;
-    margin: 0 auto;
     padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 /* Welcome Section */
@@ -138,12 +138,15 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto auto auto;
     /* Added 3rd row for education */
-    gap: 1.5rem;
+    gap: 1rem;
     /* Increased gap between rows and columns for better spacing */
     grid-auto-rows: 1fr;
     /* Make all rows in the grid the same height */
     padding: 0;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .personal-info-grid::after {
@@ -182,66 +185,57 @@
 
 .intro-section {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: flex-end; /* Align text to the start */
     grid-column: 1 / -1;
-    background: var(--random-card-bg, var(--card-background));
+    /* background: var(--random-card-bg, var(--card-background)); */ /* Remove old background color */
     border-radius: var(--homecard-border-radius);
-    padding: 3rem 3rem;
-    gap: 2.5rem;
-    backdrop-filter: blur(20px);
+    padding: 3rem;
+    backdrop-filter: blur(20px); /* This might obscure the background image, consider adjusting or removing */
     border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.15));
-    position: relative;
-    overflow: visible;
     box-shadow: 0 18px 50px var(--random-card-shadow, rgba(0, 0, 0, 0.06));
     transition: all 0.3s ease;
-    min-height: 300px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Needed for pseudo-elements or absolute positioning of text if desired */
+    overflow: hidden; /* Ensures pseudo-elements for overlay don't spill */
+
+    /* New background image properties */
+    background-image: url('../Media/home_photo.jpg');
+    background-size: cover; /* Or 'contain' depending on your preference */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Optional: Add an overlay if text is hard to read on the background */
+.intro-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+    z-index: 0; /* Ensure it's behind the text */
+    border-radius: var(--homecard-border-radius); /* Match parent's border-radius */
 }
 
 .self-presentation {
     font-size: 3rem;
+    /* position: relative; */ /* Remove old positioning */
+    /* left: -30%; */ /* Remove old positioning */
     line-height: 1.1;
     font-weight: 700;
-    color: var(--text-color);
-    margin: 0;
+    color: var(--text-color-on-dark, #FFFFFF); /* Ensure text is visible on dark overlay/image */
     letter-spacing: -0.02em;
+    z-index: 1; /* Ensure text is above the overlay */
+    max-width: 60%; /* Prevent text from covering the entire section */
+    /* Add some padding or margin if needed */
+    padding: 1rem;
 }
 
-.image-container {
-    height: auto;
-    border-radius: calc(var(--homecard-border-radius) - 1rem);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-image {
-    max-width: 500px;
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    border-radius: calc(var(--homecard-border-radius) - 1rem);
-}
-
-.intro-section .image-container {
-    flex-shrink: 0;
-    flex-basis: auto;
-    max-width: 300px;
-    width: 100%;
-}
-
-.intro-section .self-presentation {
-    text-align: left;
-    flex-grow: 1;
-    font-size: 2.8rem;
-    line-height: 1.1;
-    font-weight: 700;
-    color: var(--text-color);
-    margin: 0;
-    letter-spacing: -0.02em;
-}
 
 .section-icon {
     font-size: 3.2rem;
@@ -668,7 +662,7 @@ a {
 
 /* Education section container */
 .education-section {
-    margin: 3rem 0 0 0;
+    margin: 0;
     padding: 0;
     position: relative;
 }
@@ -1664,7 +1658,7 @@ a {
     align-items: center;
     gap: 1rem;
     height: auto;
-    margin: 4rem 0 2rem 0; /* Better spacing */
+    margin: 4rem 0 1rem 0; /* Better spacing */
 }
 
 /* Looping Video Section */
