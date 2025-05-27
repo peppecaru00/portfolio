@@ -167,14 +167,20 @@ export function mapImages(imageList) {
             hideLoadingAnimation('stills');
             
             return renderImageGroups(groups, container, folderPath, videoLinks, 'still');
-        })
-        .then(() => {
+        })        .then(() => {
             // Animate images after they're rendered
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
             
             // Preload images to avoid empty displays
             preloadImages(imageList, folderPath);
+            
+            // Setup advanced image focus for stills
+            import('./advancedImageFocus.js').then(module => {
+                module.setupAdvancedImageFocus();
+            }).catch(error => {
+                console.error('Error loading advanced image focus:', error);
+            });
         })        .catch(error => {
             console.error('Error loading video links:', error);
             hideLoadingAnimation('stills');
@@ -185,6 +191,13 @@ export function mapImages(imageList) {
             // Animate images even on error
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
+            
+            // Setup advanced image focus for stills (fallback)
+            import('./advancedImageFocus.js').then(module => {
+                module.setupAdvancedImageFocus();
+            }).catch(error => {
+                console.error('Error loading advanced image focus:', error);
+            });
         });
 }
 
@@ -230,14 +243,19 @@ export function mapPhotos(photoList) {
     }
     if (loadingElement) {
         container.appendChild(loadingElement);
-    }
-
-    renderImageGroups(groups, container, folderPath, {}, 'photo')
+    }    renderImageGroups(groups, container, folderPath, {}, 'photo')
         .then(() => {
             // Hide loading and animate images
             hideLoadingAnimation('photos');
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
+            
+            // Setup advanced image focus for photos
+            import('./advancedImageFocus.js').then(module => {
+                module.setupAdvancedImageFocus();
+            }).catch(error => {
+                console.error('Error loading advanced image focus:', error);
+            });
         });
 }
 

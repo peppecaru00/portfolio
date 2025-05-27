@@ -1,0 +1,423 @@
+/* Advanced Image Focus System Styles */
+
+/* Prevent scrolling when viewer is active */
+html.no-scroll,
+body.no-scroll {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    touch-action: none !important;
+    -ms-touch-action: none !important;
+    overscroll-behavior: none !important;
+    -webkit-overflow-scrolling: none !important;
+}
+
+/* Advanced Overlay */
+.advanced-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: grab;
+}
+
+.advanced-overlay.active {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 1;
+    display: flex;
+}
+
+.advanced-overlay.active:active {
+    cursor: grabbing;
+}
+
+/* Image Container */
+.advanced-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Image Wrapper for zoom and pan */
+.advanced-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.advanced-image-wrapper:active {
+    cursor: grabbing;
+}
+
+/* Main Image */
+.advanced-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
+}
+
+/* Close Button */
+.advanced-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10001;
+}
+
+.advanced-close-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+.advanced-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+/* Navigation Buttons */
+.advanced-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10001;
+    user-select: none;
+}
+
+.advanced-nav-btn svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+}
+
+.advanced-prev-btn {
+    left: 20px;
+}
+
+.advanced-next-btn {
+    right: 20px;
+}
+
+.advanced-nav-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.advanced-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Zoom Controls */
+.advanced-zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10001;
+}
+
+.advanced-zoom-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    user-select: none;
+}
+
+.advanced-zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+/* Counter */
+.advanced-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10001;
+    user-select: none;
+}
+
+/* Image Hover Effects */
+.image-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.image-container:hover .image-hover-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 1;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.image-zoom-icon {
+    font-size: 32px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover .image-zoom-icon {
+    transform: scale(1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .advanced-image-container {
+        padding: 20px;
+    }
+    
+    .advanced-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .advanced-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+    
+    .advanced-prev-btn {
+        left: 10px;
+    }
+    
+    .advanced-next-btn {
+        right: 10px;
+    }
+    
+    .advanced-zoom-controls {
+        bottom: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+    
+    .advanced-zoom-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .advanced-counter {
+        bottom: 10px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .image-zoom-icon {
+        font-size: 28px;
+    }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+    .advanced-overlay {
+        cursor: auto;
+    }
+    
+    .advanced-image-wrapper {
+        cursor: auto;
+    }
+    
+    .advanced-image-wrapper:active {
+        cursor: auto;
+    }
+    
+    .advanced-overlay.active {
+        cursor: auto;
+    }
+    
+    .advanced-overlay.active:active {
+        cursor: auto;
+    }
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .advanced-overlay.active {
+    background: rgba(0, 0, 0, 0.97);
+}
+
+[data-theme="dark"] .advanced-close-btn,
+[data-theme="dark"] .advanced-nav-btn,
+[data-theme="dark"] .advanced-zoom-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .advanced-close-btn:hover,
+[data-theme="dark"] .advanced-nav-btn:hover:not(:disabled),
+[data-theme="dark"] .advanced-zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .advanced-overlay.active {
+    background: rgba(0, 0, 0, 0.92);
+}
+
+/* Animation keyframes */
+@keyframes fadeInBlur {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Loading state */
+.advanced-image.loading {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .advanced-overlay.active {
+        background: rgba(0, 0, 0, 0.98);
+    }
+    
+    .advanced-close-btn,
+    .advanced-nav-btn,
+    .advanced-zoom-btn {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .advanced-overlay,
+    .advanced-image,
+    .advanced-close-btn,
+    .advanced-nav-btn,
+    .advanced-zoom-btn,
+    .image-hover-overlay,
+    .image-zoom-icon {
+        transition: none;
+    }
+}

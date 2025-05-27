@@ -64,15 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHomeAnimationsWithObserver();
       // Expose home animation functions globally for navigation
     window.reinitializeHomeAnimations = reinitializeHomeAnimations;
-    window.setupHomeAnimations = setupHomeAnimations;
-    
-    // Check if the stills container exists in the DOM
+    window.setupHomeAnimations = setupHomeAnimations;    // Check if the stills container exists in the DOM
     const stillsContainer = document.getElementById('stills-container');
     if (stillsContainer) {
         fetchImages().then(images => {
             mapImages(images);
-            // Set up image focus AFTER mapping images
-            setupImageFocus();
         });
     }
     
