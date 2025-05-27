@@ -62,8 +62,8 @@
 }
 
 .welcome-title {
-    font-size: 6rem;
-    font-weight: 800;
+    font-size: 7rem;
+    font-weight: 600;
     margin-bottom: 2rem;
     background: var(--title-gradient, linear-gradient(135deg, var(--text-color), var(--accent-color), var(--accent-color-alt), var(--text-color)));
     background-size: 300% 100%;
@@ -445,8 +445,9 @@
 .detail-item {
         display: flex;
         align-items: center;
+        width: fit-content;
         gap: 0.5rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.5rem 1.5rem;
         border-radius: 66rem;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -571,8 +572,10 @@
 .tool-item {
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: fit-content;
         gap: 0.5rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.5rem 1.2rem;
         border-radius: 66rem;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -641,8 +644,9 @@ a {
 .contact-item {
         display: flex;
         align-items: center;
+        width: fit-content;
         gap: 0.5rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.5rem 1.2rem;
         border-radius: 66rem;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
