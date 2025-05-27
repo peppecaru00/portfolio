@@ -360,16 +360,20 @@ function renderImageGroups(groups, container, folderPath, videoLinks, type = 'st
             const title = document.createElement('h2');
             title.textContent = groupName;
             title.classList.add('group-title');
-            titleContainer.appendChild(title);
-
-            // Add video link if available (stills only)
+            titleContainer.appendChild(title);            // Add video link if available (stills only)
             if (type === 'still' && videoLinks && videoLinks[groupName]) {
                 const videoLink = document.createElement('a');
                 videoLink.href = videoLinks[groupName];
                 videoLink.target = '_blank';
                 videoLink.rel = 'noopener';
                 videoLink.classList.add('video-link');
-                videoLink.innerHTML = 'Watch Video <span>↗</span>';
+                videoLink.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                    <span>Watch</span>
+                `;
+                videoLink.setAttribute('aria-label', 'Watch video');
                 titleContainer.appendChild(videoLink);
             }
 
