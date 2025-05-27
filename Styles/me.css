@@ -38,13 +38,7 @@ a:hover{
 }
 
 
-.self-presentation{
-    font-size: 3rem;
-    line-height: 100%;
-    font-weight: 300;
-    width: 100%;
-    letter-spacing: -.07rem;
-}
+
 
 .personal-information-section{
     display: flex;

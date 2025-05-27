@@ -12,18 +12,37 @@
             </div>
         </div>
 
-        <!-- Looping Video Section -->
-        <div class="looping-video-section" x-data="{ videoVisible: false }"
-            x-init="setTimeout(() => videoVisible = true, 200)">
-            <div class="latest-video-label">Latest Video</div>
-            <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
-                x-transition:enter="transition ease-out duration-1000 delay-100"
-                x-transition:enter-start="opacity-0 transform scale-95"
-                x-transition:enter-end="opacity-100 transform scale-100">
-                <source src="Media/test_conversione.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="looping-video-container">
+
+            <!-- Looping Video Section -->
+            <div class="looping-video-section video-1" x-data="{ videoVisible: false }"
+                x-init="setTimeout(() => videoVisible = true, 200)">
+                <div class="latest-video-label label-1">Latest Video</div>
+                <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
+                    x-transition:enter="transition ease-out duration-1000 delay-100"
+                    x-transition:enter-start="opacity-0 transform scale-95"
+                    x-transition:enter-end="opacity-100 transform scale-100">
+                    <source src="Media/test_conversione.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="looping-video-section video-2" x-data="{ videoVisible: false }"
+                x-init="setTimeout(() => videoVisible = true, 200)">
+                <div class="latest-video-label">Latest Edit</div>
+                <video autoplay loop muted playsinline class="looping-video" x-show="videoVisible"
+                    x-transition:enter="transition ease-out duration-1000 delay-100"
+                    x-transition:enter-start="opacity-0 transform scale-95"
+                    x-transition:enter-end="opacity-100 transform scale-100">
+                    <source src="Media/uliveto.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
         </div>
+
+
+
 
         <!-- Personal Information Section - Layout in 2 parts -->
         <div class="personal-info-grid" x-data="{ infoVisible: false }"
@@ -37,7 +56,7 @@
                     <img src="Media/home_photo.jpg" alt="Giuseppe Caruso" class="profile-image">
                 </div>
                 <div class="self-presentation">I'm <b>Giuseppe Caruso</b>, a media engineering student with
-                    passion for <i>video</i>, <b>gra<u>phi</u>cs</b> and <u>design</u>.</div>
+                    passion for <i>video</i>, <b>pho<u>togra</u>phy</b> and <u>design</u>.</div>
             </div>
 
             <!-- Personal Details -->
@@ -56,9 +75,46 @@
                 <div class="detail-item">
                     <div class="icon-wrapper"><span class="item-icon">📍</span></div>
                     Noto (SR), Sicily
+                </div>            </div>
+
+            <!-- Tools I Use Section -->
+            <div class="tools-section" x-show="infoVisible"
+                x-transition:enter="transition ease-out duration-800 delay-350"
+                x-transition:enter-start="opacity-0 transform translate-y-6"
+                x-transition:enter-end="opacity-100 transform translate-y-0">
+                <div class="section-title">
+                    <div class="section-icon">🛠️</div>
+                    <h3 class="tools-title">Tools I Use</h3>
+                </div>
+
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">🎨</span></div>
+                        <span class="tool-name">Figma</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">📱</span></div>
+                        <span class="tool-name">Adobe XD</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">🖌️</span></div>
+                        <span class="tool-name">Illustrator</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">📸</span></div>
+                        <span class="tool-name">Photoshop</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">🎬</span></div>
+                        <span class="tool-name">After Effects</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="icon-wrapper"><span class="item-icon">💻</span></div>
+                        <span class="tool-name">VS Code</span>
+                    </div>
                 </div>
             </div>
-
+            
             <!-- Contact Information -->
             <div class="contact-info" x-show="infoVisible"
                 x-transition:enter="transition ease-out duration-800 delay-400"
@@ -67,7 +123,7 @@
 
                 <div class="section-title">
                     <div class="section-icon">📬</div>
-                    <div class="contact-title">Get in touch :D</div>
+                    <div class="contact-title">Contacts</div>
                 </div>
 
                 <div class="contact-items">

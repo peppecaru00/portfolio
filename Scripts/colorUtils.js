@@ -136,9 +136,8 @@ class ColorUtils {
     }
 
     // Apply random colors by setting CSS custom properties
-    applyRandomColorsToCards() {
-        // Apply random colors to cards
-        const cards = document.querySelectorAll('.intro-section, .personal-details, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container');
+    applyRandomColorsToCards() {        // Apply random colors to cards
+        const cards = document.querySelectorAll('.intro-section, .personal-details, .tools-section, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container');
         const isDarkTheme = this.isDarkTheme();
 
         // Adjust opacity based on theme for better visibility
@@ -192,11 +191,14 @@ class ColorUtils {
                 sectionIcon.style.setProperty('--random-section-icon-before-bg', iconBeforeGradient);
                 sectionIcon.style.borderColor = iconBorderColor;
                 sectionIcon.style.background = iconBackgroundGradient;
-            });
-
-            // Apply random colors to icon wrappers inside the card
-            const iconWrappers = card.querySelectorAll('.icon-wrapper');
-            iconWrappers.forEach(iconWrapper => {
+            });            // Apply random colors to icon wrappers inside the card
+            const iconWrappers = card.querySelectorAll('.icon-wrapper');            iconWrappers.forEach(iconWrapper => {                // Skip contact info, personal details, and tools section icon wrappers (they should have transparent backgrounds)
+                if (iconWrapper.closest('.contact-info .contact-item') || 
+                    iconWrapper.closest('.personal-details .detail-item') ||
+                    iconWrapper.closest('.tools-section .tool-item')) {
+                    return;
+                }
+                
                 // Use the same color as the parent card for consistency but with different opacity
                 const iconBackgroundColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${iconBgOpacity})`;
                 const iconHoverGradient = `linear-gradient(135deg, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${iconBgOpacity * 1.2}), rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${iconBgOpacity * 1.8}))`;
@@ -221,7 +223,7 @@ class ColorUtils {
         });
 
         // Find and colorize any standalone icon wrappers not contained in cards
-        const standaloneIconWrappers = document.querySelectorAll('.icon-wrapper:not(.intro-section .icon-wrapper):not(.personal-details .icon-wrapper):not(.contact-info .icon-wrapper):not(.education-info .icon-wrapper):not(.nav-card .icon-wrapper)');
+        const standaloneIconWrappers = document.querySelectorAll('.icon-wrapper:not(.intro-section .icon-wrapper):not(.personal-details .icon-wrapper):not(.tools-section .icon-wrapper):not(.contact-info .icon-wrapper):not(.education-info .icon-wrapper):not(.nav-card .icon-wrapper)');
         
         standaloneIconWrappers.forEach(iconWrapper => {
             const baseColor = this.getRandomPastelColor();
@@ -234,7 +236,7 @@ class ColorUtils {
             iconWrapper.style.setProperty('--random-icon-hover-bg', iconHoverGradient);
             iconWrapper.style.background = iconBackgroundColor;
         });        // Find and colorize any standalone section icons not contained in cards
-        const standaloneSectionIcons = document.querySelectorAll('.section-icon:not(.intro-section .section-icon):not(.personal-details .section-icon):not(.contact-info .section-icon):not(.education-info .section-icon):not(.nav-card .section-icon)');
+        const standaloneSectionIcons = document.querySelectorAll('.section-icon:not(.intro-section .section-icon):not(.personal-details .section-icon):not(.tools-section .section-icon):not(.contact-info .section-icon):not(.education-info .section-icon):not(.nav-card .section-icon)');
         
         standaloneSectionIcons.forEach(sectionIcon => {
             const baseColor = this.getRandomPastelColor();
@@ -297,11 +299,10 @@ class ColorUtils {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                     mutation.addedNodes.forEach(node => {
-                        if (node.nodeType === Node.ELEMENT_NODE) {
-                            // Check if the added node itself is a card or contains cards
+                        if (node.nodeType === Node.ELEMENT_NODE) {                            // Check if the added node itself is a card or contains cards
                             // This is a heuristic; adjust selectors if card containers are more specific
-                            if (node.matches('.intro-section, .personal-details, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container') ||
-                                node.querySelector('.intro-section, .personal-details, .contact-info, .education-info, .nav-card')) {
+                            if (node.matches('.intro-section, .personal-details, .tools-section, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container') ||
+                                node.querySelector('.intro-section, .personal-details, .tools-section, .contact-info, .education-info, .nav-card')) {
                                 cardsPotentiallyAdded = true;
                             }
                         }
