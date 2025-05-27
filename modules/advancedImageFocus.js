@@ -323,13 +323,6 @@ function handleWheelZoom(e) {
     
     if (newScale !== imageGalleryState.scale) {
         imageGalleryState.scale = newScale;
-        
-        // Auto-center when zooming out
-        if (delta < 0) {
-            autoCenter();
-        }
-        
-        constrainPan();
         updateImageTransform();
     }
 }
@@ -340,8 +333,6 @@ function handleWheelZoom(e) {
 function zoomIn() {
     if (imageGalleryState.scale < imageGalleryState.maxScale) {
         imageGalleryState.scale = Math.min(imageGalleryState.maxScale, imageGalleryState.scale + 0.2);
-        autoCenter();
-        constrainPan();
         updateImageTransform();
     }
 }
@@ -352,46 +343,7 @@ function zoomIn() {
 function zoomOut() {
     if (imageGalleryState.scale > imageGalleryState.minScale) {
         imageGalleryState.scale = Math.max(imageGalleryState.minScale, imageGalleryState.scale - 0.2);
-        
-        // Auto-center the image when it fits within the viewport
-        autoCenter();
-        constrainPan();
         updateImageTransform();
-    }
-}
-
-/**
- * Auto-center the image when it fits within the viewport
- */
-function autoCenter() {
-    // Cache DOM elements if not cached
-    if (!imageGalleryState.cachedElements) {
-        const overlay = document.getElementById('advanced-image-overlay');
-        imageGalleryState.cachedElements = {
-            image: overlay?.querySelector('.advanced-image'),
-            wrapper: overlay?.querySelector('.advanced-image-wrapper')
-        };
-    }
-    
-    const { image, wrapper } = imageGalleryState.cachedElements;
-    if (!image || !wrapper) return;
-    
-    // Use natural dimensions to avoid expensive getBoundingClientRect calls
-    const imageNaturalWidth = image.naturalWidth || image.offsetWidth;
-    const imageNaturalHeight = image.naturalHeight || image.offsetHeight;
-    const wrapperWidth = wrapper.offsetWidth;
-    const wrapperHeight = wrapper.offsetHeight;
-    
-    // Calculate scaled dimensions
-    const scaledWidth = imageNaturalWidth * imageGalleryState.scale;
-    const scaledHeight = imageNaturalHeight * imageGalleryState.scale;
-    
-    // If the image fits within the viewport, center it
-    if (scaledWidth <= wrapperWidth) {
-        imageGalleryState.translateX = 0;
-    }
-    if (scaledHeight <= wrapperHeight) {
-        imageGalleryState.translateY = 0;
     }
 }
 
