@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     object-fit: contain;
     margin: 1rem 0 0 0;
     padding: 0 10rem;
@@ -46,7 +46,7 @@
 
 .photos-container .group-container {
     overflow-x: visible;
-    width: 100%;
+    width: 90%;
     margin-bottom: 3rem;
 }
 

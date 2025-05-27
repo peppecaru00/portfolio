@@ -287,8 +287,218 @@
 
     .portfolio_link:hover {
         color: #f5f5f5;
+    }    
+    /* Stylish Footer - Horizontal Fixed Bottom Design */
+    .stylish-footer {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-sizing: border-box;
     }
 
+    .footer-container {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-single-card {
+        background: var(--random-card-bg, var(--card-background));
+        border-radius: var(--homecard-border-radius);
+        padding: 1.5rem 2rem;
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--random-card-border, rgba(255, 255, 255, 0.15));
+        box-shadow: 0 18px 50px var(--random-card-shadow, rgba(0, 0, 0, 0.06));
+        transition: all 0.3s ease;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .footer-single-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 25px 60px var(--random-card-shadow, rgba(0, 0, 0, 0.1));
+    }
+
+    .footer-single-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--random-section-icon-before-bg, linear-gradient(135deg, var(--accent-color), var(--accent-color-alt, var(--accent-color))));
+        opacity: 0.03;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+    }
+
+    .footer-single-card:hover::before {
+        opacity: 0.05;
+    }    .footer-content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.5rem;
+    }    .footer-card-icon {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--random-section-icon-bg, linear-gradient(135deg, rgba(var(--accent-color-rgb, 102, 126, 234), 0.25), rgba(var(--accent-color-alt-rgb, 118, 75, 162), 0.25)));
+        border-radius: 12px;
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid var(--random-card-border, rgba(255, 255, 255, 0.15));
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .footer-card-icon::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--random-section-icon-before-bg, linear-gradient(135deg, var(--accent-color), var(--accent-color-alt, var(--accent-color))));
+        opacity: 0.2;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+    }    .footer-card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    .footer-nav-links,
+    .footer-contact-links {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-about-content {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-about-content p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .footer-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        border-color: var(--accent-color);
+    }
+
+    .link-icon {
+        font-size: 1rem;
+        flex-shrink: 0;
+    }    .footer-signature {
+        position: absolute;
+        bottom: -2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-align: center;
+        background: var(--background-color);
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Add bottom padding to body to prevent content from being hidden behind footer */
+    body {
+        padding-bottom: 120px;
+    }    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .footer-content-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .stylish-footer {
+            padding: 1rem;
+        }
+        
+        .footer-single-card {
+            padding: 1rem 1.5rem;
+        }
+        
+        .footer-nav-links,
+        .footer-contact-links {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-about-content {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        body {
+            padding-bottom: 180px;
+        }
+    }
+
+    /* Legacy footer styles for fallback */
     .footer {
         width: 100%;
         padding: 5rem 0 2rem 0;

@@ -133,11 +133,9 @@ class ColorUtils {
         const glowColorString = `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, 1)`; // Glow color based on the middle pastel
 
         return { gradient: gradientString, glowColor: glowColorString };
-    }
-
-    // Apply random colors by setting CSS custom properties
-    applyRandomColorsToCards() {        // Apply random colors to cards
-        const cards = document.querySelectorAll('.intro-section, .personal-details, .tools-section, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container');
+    }    // Apply random colors by setting CSS custom properties
+    applyRandomColorsToCards() {        // Apply random colors to cards (including footer single card)
+        const cards = document.querySelectorAll('.intro-section, .personal-details, .tools-section, .contact-info, .education-info, .nav-card, .home-container, .stills-container, .photos-container, .footer-single-card');
         const isDarkTheme = this.isDarkTheme();
 
         // Adjust opacity based on theme for better visibility
@@ -173,7 +171,7 @@ class ColorUtils {
                 const hoverShadowCssVariable = `0 20px 60px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${hoverShadowOpacity})`;
                 card.style.setProperty('--hover-shadow', hoverShadowCssVariable);
             }            // Apply random colors to section icons inside the card
-            const sectionIcons = card.querySelectorAll('.section-icon');
+            const sectionIcons = card.querySelectorAll('.section-icon, .footer-card-icon');
             sectionIcons.forEach(sectionIcon => {
                 // Use the same color as the parent card for consistency
                 const iconBackgroundGradient = `linear-gradient(135deg, 

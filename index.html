@@ -75,13 +75,73 @@
 
         <div x-show="currentPage === 'photos'" x-transition class="photos-container" id="photos-container"></div>
 
-    </main>
-
-    <!-- footer - only show after content is loaded -->
+    </main>    <!-- footer - only show after content is loaded -->
     <div x-show="contentLoaded" x-transition:enter="transition-opacity" x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100">
-        <footer class="footer">
-            Designed with 🤗, by me.
+        x-transition:enter-end="opacity-100">        <footer class="stylish-footer">
+            <div class="footer-container">
+                <div class="footer-single-card nav-card-footer">
+                    <div class="footer-content-grid">
+                        <!-- Quick Navigation Section -->
+                        <div class="footer-section">
+                            <div class="footer-section-header">
+                                <div class="footer-card-icon">🧭</div>
+                                <h3 class="footer-card-title">Quick Links</h3>
+                            </div>
+                            <div class="footer-nav-links">
+                                <a href="#" @click.prevent="currentPage = 'home'" class="footer-link">
+                                    <span class="link-icon">🏠</span>Home
+                                </a>
+                                <a href="#" @click.prevent="currentPage = 'photos'" class="footer-link">
+                                    <span class="link-icon">📸</span>Photos
+                                </a>
+                                <a href="#" @click.prevent="currentPage = 'stills'" class="footer-link">
+                                    <span class="link-icon">🎬</span>Video Stills
+                                </a>
+                                <a href="/portfolio/pdf/portfolio-design.pdf" target="_blank" class="footer-link">
+                                    <span class="link-icon">🎨</span>Designs
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact Info Section -->
+                        <div class="footer-section">
+                            <div class="footer-section-header">
+                                <div class="footer-card-icon">📬</div>
+                                <h3 class="footer-card-title">Get in Touch</h3>
+                            </div>
+                            <div class="footer-contact-links">
+                                <a href="mailto:giuseppe.caruso.sc@gmail.com" class="footer-link">
+                                    <span class="link-icon">📧</span>Email Me
+                                </a>
+                                <a href="https://instagram.com/giuseppe_caruso00" target="_blank" class="footer-link">
+                                    <span class="link-icon">📱</span>Instagram
+                                </a>
+                                <a href="tel:+393925808834" class="footer-link">
+                                    <span class="link-icon">☎️</span>Call Me
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- About Info Section -->
+                        <div class="footer-section">
+                            <div class="footer-section-header">
+                                <div class="footer-card-icon">🎓</div>
+                                <h3 class="footer-card-title">About</h3>
+                            </div>
+                            <div class="footer-about-content">
+                                <p>Media Engineering Student</p>
+                                <p>📍 Noto (SR), Sicily</p>
+                                <p>🎂 Born April 3rd, 2000</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Signature -->
+                    <div class="footer-signature">
+                        Designed with 🤗, by me.
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
