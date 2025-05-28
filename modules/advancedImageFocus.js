@@ -26,7 +26,8 @@ const imageGalleryState = {
     animationFrameId: null,
     lastPanTime: 0,
     panThrottleDelay: 16, // ~60fps
-    videoLinks: {} // Store video links for groups
+    videoLinks: {}, // Store video links for groups
+    savedScrollPosition: 0 // Store scroll position before overlay opens
 };
 
 /**
@@ -212,6 +213,10 @@ export function openAdvancedViewer(imgElement) {
     
     if (!isStill && !isPhoto) return;
     
+    // Save scroll position BEFORE applying no-scroll classes
+    imageGalleryState.savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    console.log('Advanced viewer: Saving scroll position:', imageGalleryState.savedScrollPosition);
+    
     imageGalleryState.currentType = isStill ? 'still' : 'photo';
     
     // Load video links
@@ -230,7 +235,7 @@ export function openAdvancedViewer(imgElement) {
     loadCurrentImage();
     showOverlay();
     
-    // Disable body scroll
+    // Disable body scroll AFTER saving position
     document.body.classList.add('no-scroll');
     document.documentElement.classList.add('no-scroll');
 }
@@ -589,6 +594,14 @@ function closeAdvancedViewer() {
     document.body.classList.remove('no-scroll');
     document.documentElement.classList.remove('no-scroll');
     
+    // Restore scroll position
+    console.log('Advanced viewer: Restoring scroll position:', imageGalleryState.savedScrollPosition);
+    window.scrollTo({
+        top: imageGalleryState.savedScrollPosition,
+        left: 0,
+        behavior: 'instant'
+    });
+    
     // Clean up animation frames
     if (imageGalleryState.animationFrameId) {
         cancelAnimationFrame(imageGalleryState.animationFrameId);
@@ -601,6 +614,7 @@ function closeAdvancedViewer() {
     imageGalleryState.imageList = [];
     imageGalleryState.cachedElements = null;
     imageGalleryState.isDragging = false;
+    imageGalleryState.savedScrollPosition = 0;
 }
 
 /**

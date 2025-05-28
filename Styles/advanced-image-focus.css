@@ -3,11 +3,6 @@
 /* Prevent scrolling when viewer is active */
 html.no-scroll,
 body.no-scroll {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
     overflow: hidden !important;
     touch-action: none !important;
     -ms-touch-action: none !important;

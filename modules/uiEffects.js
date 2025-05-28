@@ -49,9 +49,12 @@ function openImageOverlay(imageElement, currentPage) {
     if (existingOverlay) {
         existingOverlay.remove();
     }
-
-
-    document.body.classList.add('overlay-open');
+      // Save current scroll position - store it globally
+    window.savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    console.log('Saving scroll position:', window.savedScrollPosition);
+    
+    // Use CSS-only approach to prevent scrolling
+    document.body.style.overflow = 'hidden';
 
     //add zoom button
     const zoomButton = document.createElement('button');
@@ -93,12 +96,10 @@ function openImageOverlay(imageElement, currentPage) {
     requestAnimationFrame(() => {
         overlay.classList.add('active');
         expandedImgContainer.classList.add('active');
-    });
-
-    // CRITICAL FIX: Pass currentPage, not scrollY to closeImageOverlay
+    });    // Pass the saved scroll position to the close handler
     overlay.addEventListener('click', (event) => {
         if (event.target === overlay) {
-            closeImageOverlay(overlay, expandedImgContainer, currentPage);
+            closeImageOverlay(overlay, expandedImgContainer);
         }
     });
 }
@@ -107,12 +108,24 @@ function openImageOverlay(imageElement, currentPage) {
 function closeImageOverlay(overlay, expandedImgContainer) {
     // Immediately remove active classes to trigger transitions
     overlay.classList.remove('active');
-    expandedImgContainer.classList.remove('active');
-
-    // Remove body classes
-    document.body.classList.remove('overlay-open');
-    document.body.style.position = '';
-    document.body.style.top = '';
+    expandedImgContainer.classList.remove('active');    // Restore scroll behavior
+    document.body.style.overflow = '';
+    console.log('Restoring scroll position:', window.savedScrollPosition);
+    
+    // Restore the saved scroll position
+    if (window.savedScrollPosition !== undefined) {
+        setTimeout(() => {
+            console.log('Actually scrolling to:', window.savedScrollPosition);
+            // Use scrollTo with immediate behavior to override smooth scrolling
+            window.scrollTo({
+                top: window.savedScrollPosition,
+                left: 0,
+                behavior: 'instant'
+            });
+            // Clear the saved position
+            delete window.savedScrollPosition;
+        }, 100); // Slightly longer delay
+    }
 
     // Wait for transitions to complete before removing elements
     setTimeout(() => {

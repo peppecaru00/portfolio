@@ -5,6 +5,7 @@
 
 // Import imagesLoaded library for loading detection
 import '../js/lib/imagesloaded.pkgd.min.js';
+import { setupAdvancedImageFocus } from './advancedImageFocus.js';
 
 // State tracking
 const state = {
@@ -174,13 +175,8 @@ export function mapImages(imageList) {
             
             // Preload images to avoid empty displays
             preloadImages(imageList, folderPath);
-            
-            // Setup advanced image focus for stills
-            import('./advancedImageFocus.js').then(module => {
-                module.setupAdvancedImageFocus();
-            }).catch(error => {
-                console.error('Error loading advanced image focus:', error);
-            });
+              // Setup advanced image focus for stills
+            setupAdvancedImageFocus();
         })        .catch(error => {
             console.error('Error loading video links:', error);
             hideLoadingAnimation('stills');
@@ -191,13 +187,8 @@ export function mapImages(imageList) {
             // Animate images even on error
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
-            
-            // Setup advanced image focus for stills (fallback)
-            import('./advancedImageFocus.js').then(module => {
-                module.setupAdvancedImageFocus();
-            }).catch(error => {
-                console.error('Error loading advanced image focus:', error);
-            });
+              // Setup advanced image focus for stills (fallback)
+            setupAdvancedImageFocus();
         });
 }
 
@@ -249,13 +240,8 @@ export function mapPhotos(photoList) {
             hideLoadingAnimation('photos');
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
-            
-            // Setup advanced image focus for photos
-            import('./advancedImageFocus.js').then(module => {
-                module.setupAdvancedImageFocus();
-            }).catch(error => {
-                console.error('Error loading advanced image focus:', error);
-            });
+              // Setup advanced image focus for photos
+            setupAdvancedImageFocus();
         });
 }
 
@@ -393,21 +379,13 @@ function renderImageGroups(groups, container, folderPath, videoLinks, type = 'st
                 img.loading = 'lazy'; // Lazy load images
 
                 // Collect all images for loading detection
-                allImages.push(img);
-
-                if (type === 'still') {
+                allImages.push(img);                if (type === 'still') {
                     img.classList.add('styled-still');
-                    // Add click handler for stills
-                    img.addEventListener('click', () => {
-                        expandImage(img.src);
-                    });
+                    // Click handler will be added by advanced image focus system
                 } else {
                     img.classList.add('styled-photo');
                     imageDiv.classList.add('photo-item');
-                    // Use the same expand image function for photos
-                    img.addEventListener('click', () => {
-                        expandImage(img.src);
-                    });
+                    // Click handler will be added by advanced image focus system
                 }
 
                 imageDiv.appendChild(img);
