@@ -41,9 +41,8 @@
 
             <button @click="currentPage = 'photos'" :class="{ 'active': currentPage === 'photos' }"
                 class="nav-button">photos</button>
-            
-            <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
-                class="nav-button">video stills</button>
+              <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
+                class="nav-button">videos</button>
         
              <a href="/portfolio/pdf/portfolio-design.pdf" target="_blank" class="portfolio_link">designs<span> ↗</span></a>
         </div>        
@@ -95,11 +94,10 @@
                         class="mobile-nav-button">
                     <span>photos</span>
                 </button>
-                
-                <button @click="currentPage = 'stills'; setTimeout(() => closeMobileMenu(), 100)" 
+                  <button @click="currentPage = 'stills'; setTimeout(() => closeMobileMenu(), 100)" 
                         :class="{ 'active': currentPage === 'stills' }"
                         class="mobile-nav-button">
-                    <span>video stills</span>
+                    <span>videos</span>
                 </button>
 
                 <a href="/portfolio/pdf/portfolio-design.pdf" 

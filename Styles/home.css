@@ -1681,11 +1681,12 @@ a {
 
 .video-1 {
     height: 100%;
-    aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
+    aspect-ratio: 2/1; /* Maintain 16:9 aspect ratio */
 }
 
 .video-2 {
     height: 100%;
+    aspect-ratio: 9/16; /* Maintain 9:16 aspect ratio */;
 }
 
 .latest-video-label {
