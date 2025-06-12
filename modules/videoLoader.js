@@ -25,7 +25,7 @@ function createLoadingOverlay() {
     overlayContent.className = 'loading-content';
     overlayContent.innerHTML = `
         <div class="loading-ring"></div>
-        <div class="loading-text">Loading videos...</div>
+        <div class="loading-text">Getting ready 🐶</div>
         <div class="loading-progress">
             <div class="loading-progress-bar" id="loading-progress-bar"></div>
         </div>
