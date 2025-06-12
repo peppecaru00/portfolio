@@ -32,9 +32,7 @@
     }
 }">
     <header class="header">
-        <button @click="currentPage = 'home'" class="logo-button"><span class="logo-icon"></span></button>
-        
-        <!-- Desktop Navigation -->
+        <button @click="currentPage = 'home'" class="logo-button"><span class="logo-icon"></span></button>        <!-- Desktop Navigation -->
         <div class="nav-buttons desktop-nav">
             <button @click="currentPage = 'home'" :class="{ 'active': currentPage === 'home' }"
                 class="nav-button">home</button>
@@ -44,9 +42,9 @@
             
             <button @click="currentPage = 'stills'" :class="{ 'active': currentPage === 'stills' }"
                 class="nav-button">videos</button>
-        
-             <a href="/portfolio/pdf/portfolio-design.pdf" target="_blank" class="portfolio_link">designs</a>
-        </div>        
+
+            <a href="#" @click.prevent="currentPage = 'designs'" class="portfolio_link">designs</a>
+        </div>
         
         <!-- Mobile Hamburger Button -->
         <button @click="toggleMobileMenu()" 
@@ -95,18 +93,23 @@
                         class="mobile-nav-button">
                     <span>photos</span>
                 </button>
-                
-                <button @click="currentPage = 'stills'; setTimeout(() => closeMobileMenu(), 100)" 
+                  <button @click="currentPage = 'stills'; setTimeout(() => closeMobileMenu(), 100)" 
                         :class="{ 'active': currentPage === 'stills' }"
                         class="mobile-nav-button">
                     <span>videos</span>
+                </button>
+
+                <button @click="currentPage = 'designs'; setTimeout(() => closeMobileMenu(), 100)" 
+                        :class="{ 'active': currentPage === 'designs' }"
+                        class="mobile-nav-button">
+                    <span>designs</span>
                 </button>
 
                 <a href="/portfolio/pdf/portfolio-design.pdf" 
                    target="_blank" 
                    @click="setTimeout(() => closeMobileMenu(), 100)"
                    class="mobile-nav-link">
-                    <span>designs</span>
+                    <span>portfolio pdf</span>
                     <span> ↗</span>
                 </a>
             </nav>

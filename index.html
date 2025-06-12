@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="Styles/me.css">
     <link rel="stylesheet" href="Styles/stills.css">
     <link rel="stylesheet" href="Styles/photos.css">
+    <link rel="stylesheet" href="Styles/designs.css">
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="stylesheet" href="Styles/stylesheet.css">
     <link rel="stylesheet" href="Styles/theme.css">    <link rel="stylesheet" href="Styles/transitions.css">
@@ -69,12 +70,12 @@
                         isLoading = false;
                         contentLoaded = true;
                     })"
-                     class="home-container" id="home-container"></div>
-
-        <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
+                     class="home-container" id="home-container"></div>        <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
             class="stills-container" id="stills-container"></div>
 
         <div x-show="currentPage === 'photos'" x-transition class="photos-container" id="photos-container"></div>
+
+        <div x-show="currentPage === 'designs'" x-transition class="designs-container" id="designs-container"></div>
 
     </main>    <!-- footer - only show after content is loaded -->
     <div x-show="contentLoaded" x-transition:enter="transition-opacity" x-transition:enter-start="opacity-0"
@@ -94,12 +95,14 @@
                                 </a>
                                 <a href="#" @click.prevent="currentPage = 'photos'" class="footer-link">
                                     <span class="link-icon">📸</span>Photos
-                                </a>
-                                <a href="#" @click.prevent="currentPage = 'stills'" class="footer-link">
+                                </a>                                <a href="#" @click.prevent="currentPage = 'stills'" class="footer-link">
                                     <span class="link-icon">🎬</span>Video Stills
                                 </a>
-                                <a href="/portfolio/pdf/portfolio-design.pdf" target="_blank" class="footer-link">
+                                <a href="#" @click.prevent="currentPage = 'designs'" class="footer-link">
                                     <span class="link-icon">🎨</span>Designs
+                                </a>
+                                <a href="/portfolio/pdf/portfolio-design.pdf" target="_blank" class="footer-link">
+                                    <span class="link-icon">📄</span>Portfolio PDF
                                 </a>
                             </div>
                         </div>

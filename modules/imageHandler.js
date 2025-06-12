@@ -246,23 +246,41 @@ export function mapPhotos(photoList) {
 }
 
 export function mapDesigns(designList) {
-    const container = document.getElementById('design-container');
+    const container = document.getElementById('designs-container');
     if (!container) {
-        console.error('Design container not found');
+        console.error('Designs container not found');
         return;
     }
+
+    // Show loading animation
+    showLoadingAnimation(container, 'designs');
 
     const folderPath = 'Media/Designs/';
     const groups = groupImages(designList);
 
     // Preserve welcome message if exists
     const welcomeMessage = container.querySelector('p');
+    const loadingElement = container.querySelector('.designs-loading');
     container.innerHTML = '';
     if (welcomeMessage) {
         container.appendChild(welcomeMessage);
     }
+    if (loadingElement) {
+        container.appendChild(loadingElement);
+    }
 
-    renderImageGroups(groups, container, folderPath, {}, 'design');
+    // Create overlay for expanded designs if it doesn't exist
+    ensureOverlayExists();
+
+    renderImageGroups(groups, container, folderPath, {}, 'design')
+        .then(() => {
+            // Hide loading and animate images
+            hideLoadingAnimation('designs');
+            const imageContainers = container.querySelectorAll('.image-container');
+            animateImages(imageContainers);
+            // Setup advanced image focus for designs
+            setupAdvancedImageFocus();
+        });
 }
 
 /**
@@ -534,6 +552,24 @@ export function fetchPhotos() {
         })
         .catch(error => {
             console.error('Error loading photos:', error);
+            return [];
+        });
+}
+
+/**
+ * Fetches the list of designs
+ * @returns {Promise<string[]>} Promise resolving to array of design filenames
+ */
+export function fetchDesigns() {
+    return fetch('designList.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch designs: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error loading designs:', error);
             return [];
         });
 }

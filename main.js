@@ -1,4 +1,4 @@
-import { mapImages, fetchImages, fetchPhotos, mapPhotos } from './modules/imageHandler.js';
+import { mapImages, fetchImages, fetchPhotos, mapPhotos, fetchDesigns, mapDesigns } from './modules/imageHandler.js';
 import { setupImageFocus, setupScrollDetection } from './modules/uiEffects.js';
 import { setupNavigation } from './modules/navigation.js';
 import { setupPageTransitions } from './modules/transitions.js';
@@ -71,12 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchImages().then(images => {
             mapImages(images);
         });
-    }
-      // Check if the photos container exists in the DOM
+    }    // Check if the photos container exists in the DOM
     const photosContainer = document.getElementById('photos-container');
     if (photosContainer) {
         fetchPhotos().then(photos => {
             mapPhotos(photos);
+        });
+    }
+
+    // Check if the designs container exists in the DOM
+    const designsContainer = document.getElementById('designs-container');
+    if (designsContainer) {
+        fetchDesigns().then(designs => {
+            mapDesigns(designs);
         });
     }
 

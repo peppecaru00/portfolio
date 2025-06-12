@@ -9,10 +9,20 @@ const stillsOutputPath = path.join(__dirname, 'imageList.json');
 const photosDir = path.join(__dirname, 'Media/Photos');
 const photosOutputPath = path.join(__dirname, 'photoList.json');
 
+// Generate designs list
+const designsDir = path.join(__dirname, 'Media/Designs');
+const designsOutputPath = path.join(__dirname, 'designList.json');
+
 // Create the Photos directory if it doesn't exist
 if (!fs.existsSync(photosDir)) {
     fs.mkdirSync(photosDir, { recursive: true });
     console.log('Created Photos directory:', photosDir);
+}
+
+// Create the Designs directory if it doesn't exist
+if (!fs.existsSync(designsDir)) {
+    fs.mkdirSync(designsDir, { recursive: true });
+    console.log('Created Designs directory:', designsDir);
 }
 
 // Function to generate a list of image files from a directory
@@ -31,5 +41,6 @@ function generateImageList(directory, outputPath, type) {
 // Generate both lists
 generateImageList(stillsDir, stillsOutputPath, 'stills');
 generateImageList(photosDir, photosOutputPath, 'photos');
+generateImageList(designsDir, designsOutputPath, 'designs');
 
 console.log('Image lists generation process complete.');
