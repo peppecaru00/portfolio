@@ -3,6 +3,8 @@
  * Handles Intersection Observer-based fade-in animations for home page elements
  */
 
+import { initializeVideoLoader } from './videoLoader.js';
+
 /**
  * Sets up home page animations using Intersection Observer
  */
@@ -15,6 +17,20 @@ export function setupHomeAnimations() {
         console.log('Home container not found, skipping home animations');
         return;
     }
+
+    // Initialize video loading with animation callback
+    initializeVideoLoader(['.looping-video'], () => {
+        console.log('Videos loaded, starting animations');
+        startHomeAnimations();
+    });
+}
+
+function startHomeAnimations() {
+    const homeContainer = document.getElementById('home-content');
+    if (!homeContainer) return;
+
+    // Remove loading class
+    homeContainer.classList.remove('loading');
 
     // Wait a bit for content to be fully rendered
     setTimeout(() => {

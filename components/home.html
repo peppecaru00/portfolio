@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<body>
-    <div class="home-content" id="home-content">
+<body>    <div class="home-content loading" id="home-content">
         <!-- Welcome Section with Animation -->
         <div class="welcome-section fade-in-element">
             <div class="welcome-message">
@@ -13,7 +12,7 @@
         <div class="looping-video-container">            <!-- Looping Video Section -->
             <div class="looping-video-section video-1 fade-in-element">
                 <div class="latest-video-label label-1">Latest Video</div>
-                <video autoplay loop muted playsinline class="looping-video">
+                <video autoplay loop muted playsinline preload="auto" class="looping-video">
                     <source src="Media/latest_video.mkv" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -21,7 +20,7 @@
 
             <div class="looping-video-section video-2 fade-in-element">
                 <div class="latest-video-label">Latest Edit</div>
-                <video autoplay loop muted playsinline class="looping-video">
+                <video autoplay loop muted playsinline preload="auto" class="looping-video">
                     <source src="Media/uliveto.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

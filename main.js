@@ -4,6 +4,7 @@ import { setupNavigation } from './modules/navigation.js';
 import { setupPageTransitions } from './modules/transitions.js';
 import { setupCustomCursor } from './modules/dotCursor.js';
 import { setupHomeAnimations, reinitializeHomeAnimations } from './modules/homeAnimations.js';
+import { testProgressUpdate } from './modules/videoLoader.js';
 
 /**
  * Setup home animations with proper timing after content loads
@@ -71,12 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             mapImages(images);
         });
     }
-    
-    // Check if the photos container exists in the DOM
+      // Check if the photos container exists in the DOM
     const photosContainer = document.getElementById('photos-container');
     if (photosContainer) {
         fetchPhotos().then(photos => {
             mapPhotos(photos);
         });
     }
+
+    // Expose test function for debugging
+    window.testProgressUpdate = testProgressUpdate;
 });

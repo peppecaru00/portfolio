@@ -1,0 +1,108 @@
+/* Loading Screen Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background-color);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+/* Loading Ring Animation */
+.loading-ring {
+    width: 64px;
+    height: 64px;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--text-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Loading Text */
+.loading-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Progress Bar */
+.loading-progress {
+    width: 200px;
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress-bar {
+    height: 100%;
+    background-color: var(--text-color);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Percentage Text */
+.loading-percentage {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Hide home content while loading */
+.home-content.loading {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .loading-content {
+        gap: 20px;
+    }
+    
+    .loading-ring {
+        width: 48px;
+        height: 48px;
+        border-width: 3px;
+        border-top-width: 3px;
+    }
+    
+    .loading-text {
+        font-size: 16px;
+    }
+    
+    .loading-progress {
+        width: 160px;
+        height: 3px;
+    }
+    
+    .loading-percentage {
+        font-size: 12px;
+    }
+}

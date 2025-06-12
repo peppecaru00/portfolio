@@ -5,7 +5,7 @@ export function getVideoLinks() {
         'Turenheimer': 'https://youtu.be/xZri1Ajktg4',
         'FragileBTS': 'https://youtu.be/GRZqdg5-h2U',
         'PrimoMaggio': 'https://youtu.be/cvP7Oz6uYh4',
-        // Add more groups and links as needed
+        'VFXShootingDay': 'https://youtu.be/98MAwX6GGG8',
     };
 }
 
