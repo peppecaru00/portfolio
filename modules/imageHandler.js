@@ -232,13 +232,32 @@ export function mapPhotos(photoList) {
     }
     if (loadingElement) {
         container.appendChild(loadingElement);
-    }    renderImageGroups(groups, container, folderPath, {}, 'photo')
-        .then(() => {
-            // Hide loading and animate images
+    }
+
+    // Import photo order dynamically
+    import('./photoOrder.js')
+        .then(module => {
+            const orderedPhotos = module.getPhotosWithOrder();
+            // Remove loading indicator
             hideLoadingAnimation('photos');
+            
+            return renderImageGroupsOrdered(groups, container, folderPath, orderedPhotos, 'photo');
+        })
+        .then(() => {
+            // Animate images after they're rendered
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
-              // Setup advanced image focus for photos
+            // Setup advanced image focus for photos
+            setupAdvancedImageFocus();
+        })
+        .catch(error => {
+            console.error('Error loading photo order:', error);
+            hideLoadingAnimation('photos');
+            
+            return renderImageGroups(groups, container, folderPath, {}, 'photo');
+        })
+        .then(() => {
+            // Setup advanced image focus for photos (fallback)
             setupAdvancedImageFocus();
         });
 }
@@ -438,7 +457,7 @@ function renderImageGroups(groups, container, folderPath, videoLinks, type = 'st
  * @param {string} type - Type of content ('still' or 'photo')
  * @returns {Promise} Promise that resolves when images are rendered
  */
-function renderImageGroupsOrdered(groups, container, folderPath, orderedVideoLinks, type = 'still') {
+function renderImageGroupsOrdered(groups, container, folderPath, orderedItems, type = 'still') {
     return new Promise((resolve) => {
         // Check for empty groups
         if (!groups || Object.keys(groups).length === 0) {
@@ -454,31 +473,33 @@ function renderImageGroupsOrdered(groups, container, folderPath, orderedVideoLin
         const fragment = document.createDocumentFragment();
         const allImages = [];
 
-        // For stills, use the custom order from orderedVideoLinks
-        if (type === 'still' && orderedVideoLinks && orderedVideoLinks.length > 0) {
+        // Use custom order if provided
+        if (orderedItems && orderedItems.length > 0) {
             // First, render groups in the specified order
-            orderedVideoLinks
+            orderedItems
                 .sort((a, b) => a.order - b.order) // Sort by order field
-                .forEach(videoItem => {
-                    const groupName = videoItem.name;
+                .forEach(item => {
+                    const groupName = item.name;
                     const images = groups[groupName];
                     
                     if (images && images.length > 0) {
-                        const groupContainer = createGroupContainer(groupName, images, folderPath, videoItem.url, type, allImages);
+                        // For videos (stills), use the URL; for photos, no URL
+                        const url = type === 'still' ? item.url : null;
+                        const groupContainer = createGroupContainer(groupName, images, folderPath, url, type, allImages);
                         fragment.appendChild(groupContainer);
                     }
                 });
 
-            // Then, render any remaining groups that don't have video links (at the end)
+            // Then, render any remaining groups that don't have order specified (at the end)
             Object.entries(groups).forEach(([groupName, images]) => {
-                const hasVideoLink = orderedVideoLinks.some(video => video.name === groupName);
-                if (!hasVideoLink) {
+                const hasOrder = orderedItems.some(item => item.name === groupName);
+                if (!hasOrder) {
                     const groupContainer = createGroupContainer(groupName, images, folderPath, null, type, allImages);
                     fragment.appendChild(groupContainer);
                 }
             });
         } else {
-            // For photos and designs, or when no ordered links, use the original order
+            // When no ordered items, use the original order
             Object.entries(groups).forEach(([groupName, images]) => {
                 const groupContainer = createGroupContainer(groupName, images, folderPath, null, type, allImages);
                 fragment.appendChild(groupContainer);
