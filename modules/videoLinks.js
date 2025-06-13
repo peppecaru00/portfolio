@@ -13,10 +13,11 @@ export function getVideoLinksWithOrder() {
     return [
         { name: 'Compleanno', url: 'https://youtu.be/DfPS_DdDqho', order: 5 },
         { name: 'VFXShootingDay', url: 'https://youtu.be/98MAwX6GGG8', order: 1 },
-        { name: 'Turenheimer', url: 'https://youtu.be/xZri1Ajktg4', order: 6 },
+        { name: 'Turenheimer', url: 'https://youtu.be/xZri1Ajktg4', order: 7 },
         { name: 'FragileBTS', url: 'https://youtu.be/GRZqdg5-h2U', order: 4 },
-        { name: 'PrimoMaggio', url: 'https://youtu.be/cvP7Oz6uYh4', order: 2 },
+        { name: 'PrimoMaggio', url: 'https://youtu.be/cvP7Oz6uYh4', order: 6 },
         { name: 'Merda', url: 'https://youtu.be/Bd2u4AvVJ7U', order: 3 },
+        { name: 'RolloutSC24', url: 'https://youtu.be/4jD9n-rjDws', order: 2 },
     ];
 }
 
