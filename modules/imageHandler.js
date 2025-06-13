@@ -158,17 +158,15 @@ export function mapImages(imageList) {
     }
 
     // Create overlay for expanded stills if it doesn't exist
-    ensureOverlayExists();
-
-    // Import video links dynamically
+    ensureOverlayExists();    // Import video links dynamically
     import('./videoLinks.js')
         .then(module => {
-            const videoLinks = module.getVideoLinks();
+            const orderedVideoLinks = module.getVideoLinksWithOrder();
             // Remove loading indicator
             hideLoadingAnimation('stills');
             
-            return renderImageGroups(groups, container, folderPath, videoLinks, 'still');
-        })        .then(() => {
+            return renderImageGroupsOrdered(groups, container, folderPath, orderedVideoLinks, 'still');
+        }).then(() => {
             // Animate images after they're rendered
             const imageContainers = container.querySelectorAll('.image-container');
             animateImages(imageContainers);
@@ -181,7 +179,7 @@ export function mapImages(imageList) {
             console.error('Error loading video links:', error);
             hideLoadingAnimation('stills');
             
-            return renderImageGroups(groups, container, folderPath, {}, 'still');
+            return renderImageGroupsOrdered(groups, container, folderPath, [], 'still');
         })
         .then(() => {
             // Animate images even on error
@@ -429,6 +427,153 @@ function renderImageGroups(groups, container, folderPath, videoLinks, type = 'st
             }, 100);
         }
     });
+}
+
+/**
+ * Renders grouped images to the container with custom ordering for videos
+ * @param {Object} groups - Object of grouped images
+ * @param {HTMLElement} container - Container element
+ * @param {string} folderPath - Path to images folder
+ * @param {Array} orderedVideoLinks - Array of video objects with order
+ * @param {string} type - Type of content ('still' or 'photo')
+ * @returns {Promise} Promise that resolves when images are rendered
+ */
+function renderImageGroupsOrdered(groups, container, folderPath, orderedVideoLinks, type = 'still') {
+    return new Promise((resolve) => {
+        // Check for empty groups
+        if (!groups || Object.keys(groups).length === 0) {
+            const emptyMessage = document.createElement('p');
+            emptyMessage.className = 'empty-message';
+            emptyMessage.textContent = `No ${type}s found.`;
+            container.appendChild(emptyMessage);
+            resolve();
+            return;
+        }
+
+        // Create document fragment for better performance
+        const fragment = document.createDocumentFragment();
+        const allImages = [];
+
+        // For stills, use the custom order from orderedVideoLinks
+        if (type === 'still' && orderedVideoLinks && orderedVideoLinks.length > 0) {
+            // First, render groups in the specified order
+            orderedVideoLinks
+                .sort((a, b) => a.order - b.order) // Sort by order field
+                .forEach(videoItem => {
+                    const groupName = videoItem.name;
+                    const images = groups[groupName];
+                    
+                    if (images && images.length > 0) {
+                        const groupContainer = createGroupContainer(groupName, images, folderPath, videoItem.url, type, allImages);
+                        fragment.appendChild(groupContainer);
+                    }
+                });
+
+            // Then, render any remaining groups that don't have video links (at the end)
+            Object.entries(groups).forEach(([groupName, images]) => {
+                const hasVideoLink = orderedVideoLinks.some(video => video.name === groupName);
+                if (!hasVideoLink) {
+                    const groupContainer = createGroupContainer(groupName, images, folderPath, null, type, allImages);
+                    fragment.appendChild(groupContainer);
+                }
+            });
+        } else {
+            // For photos and designs, or when no ordered links, use the original order
+            Object.entries(groups).forEach(([groupName, images]) => {
+                const groupContainer = createGroupContainer(groupName, images, folderPath, null, type, allImages);
+                fragment.appendChild(groupContainer);
+            });
+        }
+
+        // Append all elements at once for better performance
+        container.appendChild(fragment);
+
+        // Use imagesLoaded to detect when all images have loaded
+        if (typeof imagesLoaded !== 'undefined' && allImages.length > 0) {
+            imagesLoaded(allImages, () => {
+                resolve();
+            });
+        } else {
+            // Fallback if imagesLoaded is not available
+            setTimeout(() => {
+                resolve();
+            }, 100);
+        }
+    });
+}
+
+/**
+ * Creates a group container for images
+ * @param {string} groupName - Name of the group
+ * @param {Array} images - Array of image filenames
+ * @param {string} folderPath - Path to images folder
+ * @param {string|null} videoUrl - URL of the video (if any)
+ * @param {string} type - Type of content ('still' or 'photo')
+ * @param {Array} allImages - Array to collect all image elements
+ * @returns {HTMLElement} Group container element
+ */
+function createGroupContainer(groupName, images, folderPath, videoUrl, type, allImages) {
+    const groupContainer = document.createElement('div');
+    groupContainer.classList.add('group-container');
+
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('title-container');
+
+    const title = document.createElement('h2');
+    title.textContent = groupName;
+    title.classList.add('group-title');
+    titleContainer.appendChild(title);
+
+    // Add video link if available (stills only)
+    if (type === 'still' && videoUrl) {
+        const videoLink = document.createElement('a');
+        videoLink.href = videoUrl;
+        videoLink.target = '_blank';
+        videoLink.rel = 'noopener';
+        videoLink.classList.add('video-link');
+        videoLink.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+            <span>Watch</span>
+        `;
+        videoLink.setAttribute('aria-label', 'Watch video');
+        titleContainer.appendChild(videoLink);
+    }
+
+    groupContainer.appendChild(titleContainer);
+
+    const imageGrid = document.createElement('div');
+    imageGrid.classList.add('group-images');
+
+    // Process images
+    images.forEach(imageName => {
+        const imageDiv = document.createElement('div');
+        imageDiv.classList.add('image-container');
+
+        const img = document.createElement('img');
+        img.src = folderPath + imageName;
+        img.alt = formatImageName(imageName);
+        img.loading = 'lazy'; // Lazy load images
+
+        // Collect all images for loading detection
+        allImages.push(img);
+
+        if (type === 'still') {
+            img.classList.add('styled-still');
+            // Click handler will be added by advanced image focus system
+        } else {
+            img.classList.add('styled-photo');
+            imageDiv.classList.add('photo-item');
+            // Click handler will be added by advanced image focus system
+        }
+
+        imageDiv.appendChild(img);
+        imageGrid.appendChild(imageDiv);
+    });
+
+    groupContainer.appendChild(imageGrid);
+    return groupContainer;
 }
 
 /**
