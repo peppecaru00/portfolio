@@ -144,15 +144,18 @@ export function mapImages(imageList) {
     showLoadingAnimation(container, 'stills');
 
     const folderPath = 'Media/Stills/';
-    const groups = groupImages(imageList);
-
-    // Preserve welcome message if exists
+    const groups = groupImages(imageList);    // Preserve welcome message if exists
     const welcomeMessage = container.querySelector('p');
     const loadingElement = container.querySelector('.stills-loading');
-    container.innerHTML = '';
-    if (welcomeMessage) {
-        container.appendChild(welcomeMessage);
-    }
+    
+    // Clear container and add intro text
+    container.innerHTML = `
+        <div class="page-intro">
+            <h1>Check those movies 🎬</h1>
+        </div>
+    `;
+    
+    // Re-add loading if it existed
     if (loadingElement) {
         container.appendChild(loadingElement);
     }
@@ -221,15 +224,18 @@ export function mapPhotos(photoList) {
     showLoadingAnimation(container, 'photos');
 
     const folderPath = 'Media/Photos/';
-    const groups = groupImages(photoList);
-
-    // Preserve welcome message if exists
+    const groups = groupImages(photoList);    // Preserve welcome message if exists
     const welcomeMessage = container.querySelector('p');
     const loadingElement = container.querySelector('.photos-loading');
-    container.innerHTML = '';
-    if (welcomeMessage) {
-        container.appendChild(welcomeMessage);
-    }
+    
+    // Clear container and add intro text
+    container.innerHTML = `
+        <div class="page-intro">
+            <h1>Some of my favourite pictures 📸</h1>
+        </div>
+    `;
+    
+    // Re-add loading if it existed
     if (loadingElement) {
         container.appendChild(loadingElement);
     }
@@ -264,6 +270,7 @@ export function mapPhotos(photoList) {
 
 export function mapDesigns(designList) {
     const container = document.getElementById('designs-container');
+    
     if (!container) {
         console.error('Designs container not found');
         return;
@@ -278,10 +285,14 @@ export function mapDesigns(designList) {
     // Preserve welcome message if exists
     const welcomeMessage = container.querySelector('p');
     const loadingElement = container.querySelector('.designs-loading');
-    container.innerHTML = '';
-    if (welcomeMessage) {
-        container.appendChild(welcomeMessage);
-    }
+    
+    // Clear container and add intro text
+    container.innerHTML = `
+        <div class="page-intro">
+            <h1>Some cool Designs 📸</h1>
+        </div>
+    `;
+      // Re-add loading if it existed
     if (loadingElement) {
         container.appendChild(loadingElement);
     }
