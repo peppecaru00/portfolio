@@ -151,7 +151,8 @@ export function mapImages(imageList) {
     // Clear container and add intro text
     container.innerHTML = `
         <div class="page-intro">
-            <h1>Check those movies 🎬</h1>
+            <h1>Check those videos 🎬</h1>
+            <h4>Juicy colors 🤑</h4>
         </div>
     `;
     
