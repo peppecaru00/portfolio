@@ -6,7 +6,7 @@ export function getVideoLinks() {
         'FragileBTS': 'https://youtu.be/GRZqdg5-h2U',
         'PrimoMaggio': 'https://youtu.be/cvP7Oz6uYh4',
         'VFXShootingDay': 'https://youtu.be/98MAwX6GGG8',
-        'MyLamination' : 'https://www.youtube.com/watch?v=B2Lg6g_98JY'
+        'MyLamination' : 'https://www.youtube.com/watch?v=KD3qh4QlHFE'
     };
 }
 
