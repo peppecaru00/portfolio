@@ -4,7 +4,7 @@
  * Handles video preloading with loading screen for homepage
  */
 
-export let videosAlreadyLoaded = sessionStorage.getItem('videosLoaded') === 'true';
+export let videosAlreadyLoaded = false;
 export let initialPageLoad = true;
 
 let loadingOverlay = null;
@@ -67,7 +67,6 @@ function hideLoadingOverlayAndCallback(callback) {
     if (allVideosHandled) return;
     allVideosHandled = true;
 
-    sessionStorage.setItem('videosLoaded', 'true');
     videosAlreadyLoaded = true;
 
     hideLoadingOverlay();
