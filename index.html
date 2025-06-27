@@ -3,7 +3,32 @@
     theme: 'dark', 
     currentPage: 'home', 
     contentLoaded: false, 
-    isLoading: true}"
+    isLoading: true,
+    
+    // Watch for page changes and initialize content accordingly
+    init() {
+        this.$watch('currentPage', (newPage) => {
+            console.log('Page changed to:', newPage);
+            
+            // Small delay to ensure the page has transitioned
+            setTimeout(() => {
+                if (newPage === 'stills' && window.fetchImages && window.mapImages) {
+                    window.fetchImages().then(images => {
+                        window.mapImages(images);
+                    });
+                } else if (newPage === 'photos' && window.fetchPhotos && window.mapPhotos) {
+                    window.fetchPhotos().then(photos => {
+                        window.mapPhotos(photos);
+                    });
+                } else if (newPage === 'designs' && window.fetchDesigns && window.mapDesigns) {
+                    window.fetchDesigns().then(designs => {
+                        window.mapDesigns(designs);
+                    });
+                }
+            }, 300);
+        });
+    }
+}"
     :data-theme="theme">
 
 <head>
@@ -70,12 +95,44 @@
                         isLoading = false;
                         contentLoaded = true;
                     })"
-                     class="home-container" id="home-container"></div>        <div x-show="currentPage === 'stills'" x-transition x-include="'components/stills.html'"
-            class="stills-container" id="stills-container"></div>
+                     class="home-container" id="home-container"></div>        <div x-show="currentPage === 'stills'" x-transition 
+             x-init="if (currentPage === 'stills') {
+                 // Initialize stills content when page becomes active
+                 setTimeout(() => {
+                     if (window.fetchImages && window.mapImages) {
+                         window.fetchImages().then(images => {
+                             window.mapImages(images);
+                         });
+                     }
+                 }, 100);
+             }"
+             class="stills-container" id="stills-container"></div>
 
-        <div x-show="currentPage === 'photos'" x-transition class="photos-container" id="photos-container"></div>
+        <div x-show="currentPage === 'photos'" x-transition 
+             x-init="if (currentPage === 'photos') {
+                 // Initialize photos content when page becomes active
+                 setTimeout(() => {
+                     if (window.fetchPhotos && window.mapPhotos) {
+                         window.fetchPhotos().then(photos => {
+                             window.mapPhotos(photos);
+                         });
+                     }
+                 }, 100);
+             }"
+             class="photos-container" id="photos-container"></div>
 
-        <div x-show="currentPage === 'designs'" x-transition class="designs-container" id="designs-container"></div>
+        <div x-show="currentPage === 'designs'" x-transition 
+             x-init="if (currentPage === 'designs') {
+                 // Initialize designs content when page becomes active
+                 setTimeout(() => {
+                     if (window.fetchDesigns && window.mapDesigns) {
+                         window.fetchDesigns().then(designs => {
+                             window.mapDesigns(designs);
+                         });
+                     }
+                 }, 100);
+             }"
+             class="designs-container" id="designs-container"></div>
 
     </main>    <!-- footer - only show after content is loaded -->
     <div x-show="contentLoaded" x-transition:enter="transition-opacity" x-transition:enter-start="opacity-0"

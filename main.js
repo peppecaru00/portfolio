@@ -63,15 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
       
     // Setup home page animations - with better timing
     setupHomeAnimationsWithObserver();
-      // Expose home animation functions globally for navigation
+    // Expose functions globally for navigation-triggered initialization
+    window.fetchImages = fetchImages;
+    window.mapImages = mapImages;
+    window.fetchPhotos = fetchPhotos;
+    window.mapPhotos = mapPhotos;
+    window.fetchDesigns = fetchDesigns;
+    window.mapDesigns = mapDesigns;
+    
+    // Expose home animation functions globally for navigation
     window.reinitializeHomeAnimations = reinitializeHomeAnimations;
-    window.setupHomeAnimations = setupHomeAnimations;    // Check if the stills container exists in the DOM
+    window.setupHomeAnimations = setupHomeAnimations;
+
+    // Check if the stills container exists in the DOM and load content
     const stillsContainer = document.getElementById('stills-container');
     if (stillsContainer) {
         fetchImages().then(images => {
             mapImages(images);
         });
-    }    // Check if the photos container exists in the DOM
+    }
+
+    // Check if the photos container exists in the DOM and load content
     const photosContainer = document.getElementById('photos-container');
     if (photosContainer) {
         fetchPhotos().then(photos => {
@@ -79,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Check if the designs container exists in the DOM
+    // Check if the designs container exists in the DOM and load content
     const designsContainer = document.getElementById('designs-container');
     if (designsContainer) {
         fetchDesigns().then(designs => {

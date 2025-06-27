@@ -28,11 +28,35 @@ export function setupNavigation() {
                     console.log('Switching to page:', newPage);
                     restoreScrollPosition(newPage);
                     
-                    // Re-initialize home animations if navigating to home page
+                    // Re-initialize content based on the page we're navigating to
                     if (newPage === 'home') {
                         setTimeout(() => {
                             if (window.reinitializeHomeAnimations) {
                                 window.reinitializeHomeAnimations();
+                            }
+                        }, 200);
+                    } else if (newPage === 'stills') {
+                        setTimeout(() => {
+                            if (window.fetchImages && window.mapImages) {
+                                window.fetchImages().then(images => {
+                                    window.mapImages(images);
+                                });
+                            }
+                        }, 200);
+                    } else if (newPage === 'photos') {
+                        setTimeout(() => {
+                            if (window.fetchPhotos && window.mapPhotos) {
+                                window.fetchPhotos().then(photos => {
+                                    window.mapPhotos(photos);
+                                });
+                            }
+                        }, 200);
+                    } else if (newPage === 'designs') {
+                        setTimeout(() => {
+                            if (window.fetchDesigns && window.mapDesigns) {
+                                window.fetchDesigns().then(designs => {
+                                    window.mapDesigns(designs);
+                                });
                             }
                         }, 200);
                     }
