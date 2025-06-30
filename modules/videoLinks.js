@@ -19,7 +19,7 @@ export function getVideoLinksWithOrder() {
         { name: 'PrimoMaggio', url: 'https://youtu.be/cvP7Oz6uYh4', order: 6 },
         { name: 'Merda', url: 'https://youtu.be/Bd2u4AvVJ7U', order: 4 },
         { name: 'RolloutSC24', url: 'https://youtu.be/4jD9n-rjDws', order: 3 },
-        { name: 'MyLamination', url: 'https://www.youtube.com/watch?v=B2Lg6g_98JY', order: 1 },
+        { name: 'MyLamination', url: 'https://www.youtube.com/watch?v=ZVVIxxHfSjo', order: 1 },
         { name: 'MissPianezza25', url: 'https://www.youtube.com/watch?v=kn0naWfcsqw', order: 8 }
     ];
 }
