@@ -14,12 +14,13 @@ export function getVideoLinksWithOrder() {
     return [
         { name: 'Compleanno', url: 'https://youtu.be/DfPS_DdDqho', order: 7 },
         { name: 'VFXShootingDay', url: 'https://youtu.be/98MAwX6GGG8', order: 2 },
-        { name: 'Turenheimer', url: 'https://youtu.be/xZri1Ajktg4', order: 8 },
+        { name: 'Turenheimer', url: 'https://youtu.be/xZri1Ajktg4', order: 9 },
         { name: 'FragileBTS', url: 'https://youtu.be/GRZqdg5-h2U', order: 5 },
         { name: 'PrimoMaggio', url: 'https://youtu.be/cvP7Oz6uYh4', order: 6 },
         { name: 'Merda', url: 'https://youtu.be/Bd2u4AvVJ7U', order: 4 },
         { name: 'RolloutSC24', url: 'https://youtu.be/4jD9n-rjDws', order: 3 },
-        { name: 'MyLamination', url: 'https://www.youtube.com/watch?v=B2Lg6g_98JY', order: 1 }
+        { name: 'MyLamination', url: 'https://www.youtube.com/watch?v=B2Lg6g_98JY', order: 1 },
+        { name: 'MissPianezza25', url: 'https://www.youtube.com/watch?v=kn0naWfcsqw', order: 8 }
     ];
 }
 
